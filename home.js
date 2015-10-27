@@ -1,5 +1,11 @@
 variables = {}
 
+commitsDivHtml =
+    '<div id="commits">' +
+    '  <button class="btn btn-default" onclick="javascript:addResource()">Add</button>' +
+    '  <button class="btn btn-default" onclick="javascript:nixResource()">Cancel</button>' +
+    '</div>';
+
 function populateDetails(which) {
     detailsHtml = "";
 
@@ -50,6 +56,8 @@ function populateDetails(which) {
 	detailsHtml = "VMSS";
 	break;
     }
+
+    detailHtml += commitsDivHtml;
 
     $('#details').html(detailsHtml);
 }
