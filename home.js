@@ -1,12 +1,15 @@
-variables = {"location": "US West"};
-console.log(variables)
+variables = {}
 
 function populateDetails(which) {
     detailsHtml = "";
 
     switch (which) {
     case "VAR":
-	detailsHtml = "VAR";
+	detailsHtml =
+	    "<div class='row'>" +
+	    "  <div class='col-md-6'><input id='varName'></input></div>" +
+	    "  <div class='col-md-6'><input id='varType'></input></div>" +
+	    "</div>";
 	break;
 
     case "PAR":
