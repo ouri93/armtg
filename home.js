@@ -25,7 +25,19 @@ function populateDetails(which) {
 	break;
 
     case "PAR":
-	detailsHtml = "PAR";
+	detailsHtml =
+	    "<div class='row'>" +
+	    "  <div class='col-md-4'>Parameter Name: <input id='varName'></input>" +
+	    "  </div>" +
+	    "  <div class='col-md-4'>Parameter Type: " +
+	    "    <select>" +
+	    "      <option value='string'>string</option>" +
+	    "      <option value='securestring'>securestring</option>" +
+	    "    </select>" +
+	    "  </div>" +
+	    "  <div class='col-md-4'>Parameter Metadata: <input id='parMD'>" +
+	    "  </div>" +
+	    "</div>";
 	break;
 
     case "VNET":
