@@ -7,19 +7,27 @@ function populateDetails(which) {
 	break;
 
     case "PIP":
-	detailsHtml = "PIP"
+	detailsHtml = "PIP";
 	break;
 
     case "LB":
-	detailsHtml = "LB"
+	detailsHtml = "LB";
+	break;
+
+    case "NIC":
+	detailsHtml = "NIC";
+	break;
+
+    case "SA":
+	detailsHtml = "SA";
 	break;
 
     case "VM":
-	detailsHtml = "VM"
+	detailsHtml = "VM";
 	break;
 
     case "VMSS":
-	detailsHtml = "VMSS"
+	detailsHtml = "VMSS";
 	break;
     }
 
