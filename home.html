@@ -13,10 +13,12 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
-
+    
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <link href='/home.css' rel='stylesheet' type='text/css'>
+
+    <script src="/home.js"></script>
   </head>
 
 
@@ -27,20 +29,20 @@
 
     <div id="control">
       <div class="row">
-	<div class="col-md-3"><button class="btn btn-default">+ Virtual Network</button></div>
-	<div class="col-md-3"><button class="btn btn-default">+ Public IP Address</button></div>
-	<div class="col-md-3"><button class="btn btn-default">+ Load Balancer</button></div>
-	<div class="col-md-3"><button class="btn btn-default">+ Virtual Machine</button></div>
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VNET')">+ Virtual Network</button></div>
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('PIP')">+ Public IP Address</button></div>
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('LB')">+ Load Balancer</button></div>
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VM')">+ Virtual Machine</button></div>
       </div>
 
       <br/>
 
       <div class="row">
-	<button class="btn btn-default">+ Virtual Machine Scale Set</button></div>
+	<button class="btn btn-default" onclick="javascript:populateDetails('VMSS')">+ Virtual Machine Scale Set</button></div>
       </div>
     </div>
 
     <div id="details"></div>
-    <div id="results"></div>
+    <div id="current"></div>
   </body>
 </html>
