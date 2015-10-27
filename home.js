@@ -53,3 +53,11 @@ function populateDetails(which) {
 
     $('#details').html(detailsHtml);
 }
+
+function addResource() {
+    alert('TODO!');
+}
+
+function nixResource() {
+    alert('TODO!');
+}
