@@ -7,11 +7,11 @@ commitsDivHtml =
     '</div>';
 
 function populateDetails(which) {
-    detailsHtml = "";
+    detailsHtml = "<hr/>";
 
     switch (which) {
     case "VAR":
-	detailsHtml =
+	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>Variable Name: <input id='varName'></input>" +
 	    "  </div>" +
@@ -25,7 +25,7 @@ function populateDetails(which) {
 	break;
 
     case "PAR":
-	detailsHtml =
+	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>Parameter Name: <input id='varName'></input>" +
 	    "  </div>" +
@@ -41,35 +41,35 @@ function populateDetails(which) {
 	break;
 
     case "VNET":
-	detailsHtml = "VNET";
+	detailsHtml += "VNET";
 	break;
 
     case "PIP":
-	detailsHtml = "PIP";
+	detailsHtml += "PIP";
 	break;
 
     case "LB":
-	detailsHtml = "LB";
+	detailsHtml += "LB";
 	break;
 
     case "NIC":
-	detailsHtml = "NIC";
+	detailsHtml += "NIC";
 	break;
 
     case "SA":
-	detailsHtml = "SA";
+	detailsHtml += "SA";
 	break;
 
     case "VM":
-	detailsHtml = "VM";
+	detailsHtml += "VM";
 	break;
 
     case "VMSS":
-	detailsHtml = "VMSS";
+	detailsHtml += "VMSS";
 	break;
     }
 
-    detailsHtml += commitsDivHtml;
+    detailsHtml += commitsDivHtml + "<hr/>";
 
     $('#details').html(detailsHtml);
 }
