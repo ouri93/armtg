@@ -2,3 +2,7 @@ h1#title {
   text-align: center;
   font-family: 'Raleway', sans-serif;
 }
+
+div#control {
+  text-align: center;
+}
