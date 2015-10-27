@@ -2,6 +2,14 @@ function populateDetails(which) {
     detailsHtml = "";
 
     switch (which) {
+    case "VAR":
+	detailsHtml = "VAR";
+	break;
+
+    case "PAR":
+	detailsHtml = "PAR";
+	break;
+
     case "VNET":
 	detailsHtml = "VNET";
 	break;
