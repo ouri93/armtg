@@ -1,3 +1,6 @@
+variables = {"location": "US West"};
+console.log(variables)
+
 function populateDetails(which) {
     detailsHtml = "";
 
