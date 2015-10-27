@@ -1,23 +1,27 @@
 function populateDetails(which) {
+    detailsHtml = "";
+
     switch (which) {
     case "VNET":
-	$('#details').html('VNET');
+	detailsHtml = "VNET";
 	break;
 
     case "PIP":
-	$('#details').html('PIP');
+	detailsHtml = "PIP"
 	break;
 
     case "LB":
-	$('#details').html('LB');
+	detailsHtml = "LB"
 	break;
 
     case "VM":
-	$('#details').html('VM');
+	detailsHtml = "VM"
 	break;
 
     case "VMSS":
-	$('#details').html('VMSS');
+	detailsHtml = "VMSS"
 	break;
     }
+
+    $('#details').html(detailsHtml);
 }
