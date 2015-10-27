@@ -7,8 +7,14 @@ function populateDetails(which) {
     case "VAR":
 	detailsHtml =
 	    "<div class='row'>" +
-	    "  <div class='col-md-6'><input id='varName'></input></div>" +
-	    "  <div class='col-md-6'><input id='varType'></input></div>" +
+	    "  <div class='col-md-6'>Variable Name: <input id='varName'></input>" +
+	    "  </div>" +
+	    "  <div class='col-md-6'>Variable Type: " +
+	    "    <select>" +
+	    "      <option value='string'>string</option>" +
+	    "      <option value='securestring'>securestring</option>" +
+	    "    </select>" +
+	    "  </div>" +
 	    "</div>";
 	break;
 
