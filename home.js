@@ -25,7 +25,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (should be unique per vnet): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes vnets): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-6'>" + 
 	    "    number of subnets: <input id='numSubnets'></input>" +
@@ -37,7 +37,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (should be unique per pip): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes pips): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-6'>" + 
 	    "    opional domain label: <input id='domainLabel'></input>" +
@@ -49,7 +49,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (should be unique per nic): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes nics): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-6'>" + 
 	    "    subnet: " +
@@ -64,7 +64,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" + 
-	    "    optional naming infix (should be unique per lb): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes lbs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "</div>" +
 	    "<div class='row'>" +

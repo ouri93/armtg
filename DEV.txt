@@ -12,6 +12,7 @@ for resources:
 
 
 TODO
+> "make parameter" option
 > populate <select> options
 > multiple LB rules
 > probe url?
