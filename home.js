@@ -122,8 +122,6 @@ function populateDetails(which) {
 	break;
 
     case "VM":
-	console.log('hi!');
-	console.log(detailsHtml);
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" +
@@ -177,7 +175,6 @@ function populateDetails(which) {
 	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
 	    "  </div>" +
 	    "</div>";
-	console.log(detailsHtml);
 	break;
 
     case "VMSS":
