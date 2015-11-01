@@ -18,7 +18,7 @@ function commitsDivHtml(which) {
 }
 
 function populateDetails(which) {
-    detailsHtml = "<hr/>" + "NEW " + which + "<br/>";
+    detailsHtml = "<hr/>" + "NEW " + which + "<br/><br/>";
 
     switch (which) {
     case "VNET":
