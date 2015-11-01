@@ -7,3 +7,10 @@ for resources:
     All else selects:
         "from Parameter option"
 	other reasonable options based on existing resources
+
+
+
+
+TODO
+> network security groups
+> script extensions
