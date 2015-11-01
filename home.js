@@ -18,7 +18,7 @@ function commitsDivHtml(which) {
 }
 
 function populateDetails(which) {
-    detailsHtml = "<hr/>" + "NEW " + which + "<br/><br/>";
+    detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + which + "</div><br/><br/>";
 
     switch (which) {
     case "VNET":
@@ -69,7 +69,7 @@ function populateDetails(which) {
 	    "</div>" +
 	    "<div class='row'>" +
 	    "<br/>" +
-	    "Optional Round Robin Rules" +
+	    "<div class='subtitle'>Optional Round Robin Rules</div>" +
 	    "<br/>" +
 	    "<br/>" +
 	    "</div>" +
@@ -86,7 +86,7 @@ function populateDetails(which) {
 	    "</div>" +
 	    "<div class='row'>" +
 	    "<br/>" +
-	    "Optional NAT Rules" +
+	    "<div class='subtitle'>Optional NAT Rules</div>" +
 	    "<br/>" +
 	    "<br/>" +
 	    "</div>" +

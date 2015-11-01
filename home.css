@@ -10,3 +10,7 @@ div#control {
 div#details {
   text-align: center;
 }
+
+.subtitle {
+  font-weight: bold;
+}
