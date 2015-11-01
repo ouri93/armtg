@@ -144,7 +144,7 @@ function populateDetails(which) {
 	    "      <option value='Standard_D3'>Standard_D3</option>" +
 	    "      <option value='Standard_D4'>Standard_D4</option>" +
 	    "    </select>" + 
-	    "  </div> "; /* +
+	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    OS: " +
 	    "    <select id='os'>" +
@@ -154,7 +154,7 @@ function populateDetails(which) {
 	    "  </div"> +
 	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
-	    "  </div>" +
+	    "  </div>"; /* +
 	    "  <div class='col-md-3'>" +
 	    "    admin password: <input id='admin password'></input>" +
 	    "  </div>" +
