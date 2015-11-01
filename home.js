@@ -22,7 +22,15 @@ function populateDetails(which) {
 
     switch (which) {
     case "VNET":
-	detailsHtml += "VNET";
+	detailsHtml +=
+	    "<div class='row'>" +
+	    "  <div class='col-md-6>" + 
+	    "    optional naming infix: <input id='namingInfix'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-6>" + 
+	    "    number of subnets: <input id='numSubnets'></input>" +
+	    "  </div> " +
+	    "</div>";
 	break;
 
     case "PIP":
