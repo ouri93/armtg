@@ -14,6 +14,8 @@ for resources:
 TODO
 > "make parameter" option
 > populate <select> options
+> VM sizes should have better selection of sizes
+> availability set?
 > multiple LB rules
 > probe url?
 > multiple probes
@@ -22,3 +24,5 @@ TODO
 > script extensions
 > copyIndex on all resources
 > tcp/udp? (LB, nsg's, etc.)
+> other things in templates?
+  > paas things?
