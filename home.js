@@ -151,7 +151,7 @@ function populateDetails(which) {
 	    "      <option value='Linux'>Linux</option>" +
 	    "      <option value='Windows'>Windows</option>" +
 	    "    </select>" + 
-	    "  </div">; /* +
+	    "  </div>" +
 	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
 	    "  </div>" +
