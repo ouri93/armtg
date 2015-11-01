@@ -150,6 +150,7 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div> " +
 	    "</div>" +
+	    "<br/>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
