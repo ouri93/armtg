@@ -25,7 +25,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix: <input id='namingInfix'></input>" +
+	    "    optional naming infix (should be unique per vnet): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-6'>" + 
 	    "    number of subnets: <input id='numSubnets'></input>" +
