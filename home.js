@@ -3,7 +3,7 @@ variables = {};
 function commitsDivHtml(which) {
     ret =
 	'<div id="commits">' +
-	'  <button class="btn btn-default" onclick="javascript:addResource("' + which + '")">Add</button>' +
+	'  <button class="btn btn-default" onclick="javascript:addResource(\'' + which + '\')">Add</button>' +
 	'  <button class="btn btn-default" onclick="javascript:nixResource()">Cancel</button>' +
 	'</div>';
 
