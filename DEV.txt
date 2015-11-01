@@ -13,7 +13,11 @@ for resources:
 
 TODO
 > populate <select> options
+> multiple LB rules
+> probe url?
+> multiple probes
 > dependencies ("this requires this but you haven't made it yet, let me make it for you?")
 > network security groups
 > script extensions
 > copyIndex on all resources
+> tcp/udp? (LB, nsg's, etc.)

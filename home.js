@@ -61,7 +61,40 @@ function populateDetails(which) {
 	break;
 
     case "LB":
-	detailsHtml += "LB";
+	detailsHtml +=
+	    "<div class='row'>" +
+	    "  <div class='col-md-12'>" + 
+	    "    optional naming infix (should be unique per nic): <input id='namingInfix'></input>" +
+	    "  </div> " +
+	    "</div>" +
+	    "<div class='row'>" +
+	    "Round Robin Rules"
+	    "</div>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-4'>" + 
+	    "    front end port: <input id='roundRobinFrontEndPort'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-4'>" + 
+	    "    back end port: <input id='roundRobinBackEndPort'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-4'>" + 
+	    "    probe port: <input id='roundRobinProbePort'></input>" +
+	    "  </div> " +
+	    "</div>" +
+	    "<div class='row'>" +
+	    "NAT Rules"
+	    "</div>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-4'>" + 
+	    "    front end starting port: <input id='NATFrontEndStartingPort'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-4'>" + 
+	    "    front end ending port: <input id='NATFrontEndEndingPort'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-4'>" + 
+	    "    back end port: <input id='NATBackEndPort'></input>" +
+	    "  </div> " +
+	    "</div>";
 	break;
 
     case "SA":
