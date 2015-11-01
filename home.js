@@ -75,7 +75,7 @@ function populateDetails(which) {
 	break;
     }
 
-    detailsHtml += "<br/>" + commitsDivHtml(which) + "<hr/>";
+    detailsHtml += "<br/>" + commitsDivHtml("'" + which + "'") + "<hr/>";
 
     $('#details').html(detailsHtml);
 }
