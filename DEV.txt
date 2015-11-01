@@ -1,0 +1,9 @@
+default params:
+	unique naming substring
+	location
+
+for resources:
+    1 input: unique naming subsubstring
+    All else selects:
+        "from Parameter option"
+	other reasonable options based on existing resources
