@@ -14,3 +14,7 @@ div#details {
 .subtitle {
   font-weight: bold;
 }
+
+.left {
+  text-align: center;
+}

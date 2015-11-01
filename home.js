@@ -69,8 +69,8 @@ function populateDetails(which) {
 	    "</div>" +
 	    "<div class='row'>" +
 	    "<br/>" +
-	    "<div class='subtitle'>Optional Round Robin Rules</div>" +
 	    "<br/>" +
+	    "<div class='subtitle'>Optional Round Robin Rules</div>" +
 	    "<br/>" +
 	    "</div>" +
 	    "<div class='row'>" +
@@ -86,8 +86,8 @@ function populateDetails(which) {
 	    "</div>" +
 	    "<div class='row'>" +
 	    "<br/>" +
-	    "<div class='subtitle'>Optional NAT Rules</div>" +
 	    "<br/>" +
+	    "<div class='subtitle'>Optional NAT Rules</div>" +
 	    "<br/>" +
 	    "</div>" +
 	    "<div class='row'>" +
@@ -124,7 +124,7 @@ function populateDetails(which) {
     case "VM":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-6,left'>" + 
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
