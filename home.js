@@ -105,47 +105,35 @@ function addBlock(which) {
 	break;
 
     case "PAR":
-	detailsHtml +=
-	    "<div class='row'>" +
-	    "  <div class='col-md-4'>Parameter Name: <input id='varName'></input>" +
-	    "  </div>" +
-	    "  <div class='col-md-4'>Parameter Type: " +
-	    "    <select>" +
-	    "      <option value='string'>string</option>" +
-	    "      <option value='securestring'>securestring</option>" +
-	    "    </select>" +
-	    "  </div>" +
-	    "  <div class='col-md-4'>Parameter Metadata: <input id='parMD'>" +
-	    "  </div>" +
-	    "</div>";
+	alert('TODO!');
 	break;
 
     case "VNET":
-	detailsHtml += "VNET";
+	alert('TODO!');
 	break;
 
     case "PIP":
-	detailsHtml += "PIP";
+	alert('TODO!');
 	break;
 
     case "LB":
-	detailsHtml += "LB";
+	alert('TODO!');
 	break;
 
     case "NIC":
-	detailsHtml += "NIC";
+	alert('TODO!');
 	break;
 
     case "SA":
-	detailsHtml += "SA";
+	alert('TODO!');
 	break;
 
     case "VM":
-	detailsHtml += "VM";
+	alert('TODO!');
 	break;
 
     case "VMSS":
-	detailsHtml += "VMSS";
+	alert('TODO!');
 	break;
     }
 }
