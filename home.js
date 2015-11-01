@@ -70,8 +70,8 @@ function populateDetails(which) {
 	    "<div class='row'>" +
 	    "<br/>" +
 	    "<hr/>" +
-	    "<br/>" +
 	    "Round Robin Rules" +
+	    "<br/>" +
 	    "</div>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>" + 
@@ -87,8 +87,8 @@ function populateDetails(which) {
 	    "<div class='row'>" +
 	    "<br/>" +
 	    "<hr/>" +
-	    "<br/>" +
 	    "NAT Rules" +
+	    "<br/>" +
 	    "</div>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>" + 
