@@ -27,11 +27,7 @@ function populateDetails(which) {
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>Variable Name: <input id='varName'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-6'>Variable Value: " +
-	    "    <select id='varVal'>" +
-	    "      <option value='string'>string</option>" +
-	    "      <option value='securestring'>securestring</option>" +
-	    "    </select>" +
+	    "  <div class='col-md-6'>Variable Value: <input id='varVal'></input>" +
 	    "  </div>" +
 	    "</div>";
 	break;
