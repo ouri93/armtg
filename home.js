@@ -122,6 +122,7 @@ function populateDetails(which) {
 	break;
 
     case "VM":
+	console.log('hi!');
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" +
