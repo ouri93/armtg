@@ -1,4 +1,3 @@
-variables = {};
 parameters = {};
 vnets = {};
 pips = {};
@@ -18,53 +17,10 @@ function commitsDivHtml(which) {
     return ret;
 }
 
-function defaultResourceBlock(which) {
-    
-    ret = 
-	"<div class='row'>" +
-	"  <div class='col-md-12'>API Version: " +
-	"    <select id='apiVersion'>" +
-	"      <option value='2015-05-01-preview'>2015-05-01-preview</option>" +
-	"    </select>" +
-	"  </div>" +
-	"</div>" +
-	"<div class='row'>" + 
-	"  <div class='col-md-6'>name: <input id='resourceName'>[variables('"+ which.toLowerCase() + "Name')]</input>" +
-	"  <div class='col-md-6'>loction: <input id='resourceLocation'>[parameters('location')]</input>" +
-	"  </div>" +
-	"</div>"
-}
-
 function populateDetails(which) {
     detailsHtml = "<hr/>";
 
     switch (which) {
-    case "VAR":
-	detailsHtml +=
-	    "<div class='row'>" +
-	    "  <div class='col-md-6'>Variable Name: <input id='varName'></input>" +
-	    "  </div>" +
-	    "  <div class='col-md-6'>Variable Value: <input id='varVal'></input>" +
-	    "  </div>" +
-	    "</div>";
-	break;
-
-    case "PAR":
-	detailsHtml +=
-	    "<div class='row'>" +
-	    "  <div class='col-md-4'>Parameter Name: <input id='parName'></input>" +
-	    "  </div>" +
-	    "  <div class='col-md-4'>Parameter Type: " +
-	    "    <select id='parType'>" +
-	    "      <option value='string'>string</option>" +
-	    "      <option value='securestring'>securestring</option>" +
-	    "    </select>" +
-	    "  </div>" +
-	    "  <div class='col-md-4'>Parameter Metadata: <input id='parMD'>" +
-	    "  </div>" +
-	    "</div>";
-	break;
-
     case "VNET":
 	detailsHtml += "VNET";
 	break;
@@ -101,39 +57,6 @@ function populateDetails(which) {
 
 function addBlock(which) {
     switch (which) {
-    case "VAR":
-	name = $('#varName').val();
-	if (name  == "") {
-	    alert("variable must have a name!");
-	    break;
-	}
-
-	if (name in variables) {
-	    alert("variable " + name + " already exists! Please edit or remove it below.");
-	    break;
-	}
-
-	val = $('#varVal').val();	
-	variables[name] = val;
-	break;
-
-    case "PAR":
-	name = $('#parName').val();
-	if (name  == "") {
-	    alert("parameter must have a name!");
-	    break;
-	}
-
-	if (name in parameters) {
-	    alert("parameter " + name + " already exists! Please edit or remove it below.");
-	    break;
-	}
-	
-	type = $('#parType').val();
-	md = $('#parMD').val();
-	parameters[name] = {'type': type, 'md': md};
-	break;
-
     case "VNET":
 	alert('TODO!');
 	break;

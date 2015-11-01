@@ -28,61 +28,23 @@
 
     <div id="globals">
 
-
-      <div class="row">
-	<div class="col-md-12">
-	  <button class="btn btn-default" onclick="javascript:populateDetails('VAR')">Import Template</button>
-	</div>
-      </div>
-
-      <br/>
-	  
-      <div class="row">
-	<div class="col-md-12">Schema:
-	  <select id="schema">
-	    <option value="https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#">https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#</option>
-	    <option value="http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json">http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json</option>
-	    <option value="http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#">http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#</option>
-	  </select>
-	</div>
-      </div>
-
-	  
-
-      <div class="row">
-	<div class="col-md-12">Content Version:
-	  <select id="schema">
-	    <option value="1.0.0.0">1.0.0.0</option>
-	  </select>
-	</div>
-      </div>
-
-    </div>
-
-    <br/>
-    
     <div id="control">
       <div class="row">
-	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VAR')">+ Variable</button></div>
-	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('PAR')">+ Parameter</button></div>
 	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VNET')">+ Virtual Network</button></div>
 	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('PIP')">+ Public IP Address</button></div>
-      </div>
-
-      <br/>
-
-      <div class="row">
 	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('LB')">+ Load Balancer</button></div>
 	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('NIC')">+ Network Interface</button></div>
-	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('SA')">+ Storage Account</button></div>
-	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VM')">+ Virtual Machine</button></div>
       </div>
 
       <br/>
 
       <div class="row">
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('SA')">+ Storage Account</button></div>
+	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VM')">+ Virtual Machine</button></div>
 	<div class="col-md-3"><button class="btn btn-default" onclick="javascript:populateDetails('VMSS')">+ Virtual Machine Scale Set</button></div>
       </div>
+
+      <br/>
     </div>
 
     <br/>
