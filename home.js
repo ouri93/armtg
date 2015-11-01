@@ -45,12 +45,23 @@ function populateDetails(which) {
 	    "</div>";
 	break;
 
-    case "LB":
-	detailsHtml += "LB";
+    case "NIC":
+	detailsHtml +=
+	    "<div class='row'>" +
+	    "  <div class='col-md-6'>" + 
+	    "    optional naming infix (should be unique per nic): <input id='namingInfix'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-6'>" + 
+	    "    subnet: " +
+	    "    <select id='subnet'>" +
+	    "      <option value='generate for me'>generate for me</option>"
+	    "    </select>" + 
+	    "  </div> " +
+	    "</div>";
 	break;
 
-    case "NIC":
-	detailsHtml += "NIC";
+    case "LB":
+	detailsHtml += "LB";
 	break;
 
     case "SA":
@@ -81,11 +92,11 @@ function addBlock(which) {
 	alert('TODO!');
 	break;
 
-    case "LB":
+    case "NIC":
 	alert('TODO!');
 	break;
 
-    case "NIC":
+    case "LB":
 	alert('TODO!');
 	break;
 
