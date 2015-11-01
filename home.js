@@ -18,6 +18,23 @@ function commitsDivHtml(which) {
     return ret;
 }
 
+function defaultResourceBlock(which) {
+    
+    ret = 
+	"<div class='row'>" +
+	"  <div class='col-md-12'>API Version: " +
+	"    <select id='apiVersion'>" +
+	"      <option value='2015-05-01-preview'>2015-05-01-preview</option>" +
+	"    </select>" +
+	"  </div>" +
+	"</div>" +
+	"<div class='row'>" + 
+	"  <div class='col-md-6'>name: <input id='resourceName'>[variables('"+ which.toLowerCase() + "Name')]</input>" +
+	"  <div class='col-md-6'>loction: <input id='resourceLocation'>[parameters('location')]</input>" +
+	"  </div>" +
+	"</div>"
+}
+
 function populateDetails(which) {
     detailsHtml = "<hr/>";
 
