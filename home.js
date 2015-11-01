@@ -67,6 +67,7 @@ function populateDetails(which) {
 	    "    optional naming infix (should be unique per lb): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "</div>" +
+	    "<br/>" +
 	    "<div class='row'>" +
 	    "Round Robin Rules" +
 	    "</div>" +
@@ -82,6 +83,7 @@ function populateDetails(which) {
 	    "  </div> " +
 	    "</div>" +
 	    "<div class='row'>" +
+	    "<br/>" +
 	    "NAT Rules" +
 	    "</div>" +
 	    "<div class='row'>" +
