@@ -158,7 +158,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-3'>" +
 	    "    admin password: <input id='admin password'></input>" +
 	    "  </div>" +
-	    "</div>" +
+	    "</div>";/* +
 	    "<br/>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>" +
@@ -176,7 +176,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-4'>" +
 	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
 	    "  </div>" +
-	    "</div>";
+	    "</div>";*/
 	console.log(detailsHtml);
 	break;
 
