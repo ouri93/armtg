@@ -39,10 +39,10 @@ function populateDetails(which) {
     case "PAR":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-4'>Parameter Name: <input id='varName'></input>" +
+	    "  <div class='col-md-4'>Parameter Name: <input id='parName'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-4'>Parameter Type: " +
-	    "    <select>" +
+	    "    <select id='parType'>" +
 	    "      <option value='string'>string</option>" +
 	    "      <option value='securestring'>securestring</option>" +
 	    "    </select>" +
@@ -95,17 +95,30 @@ function addBlock(which) {
 	    break;
 	}
 
-	val = $('#varVal').val();
 	if (name in variables) {
 	    alert("variable " + name + " already exists! Please edit or remove it below.");
 	    break;
 	}
-	
+
+	val = $('#varVal').val();	
 	variables[name] = val;
 	break;
 
     case "PAR":
-	alert('TODO!');
+	name = $('#parName').val();
+	if (name  == "") {
+	    alert("parameter must have a name!");
+	    break;
+	}
+
+	if (name in parameters) {
+	    alert("parameter " + name + " already exists! Please edit or remove it below.");
+	    break;
+	}
+	
+	type = $('#parType').val();
+	md = $('#parMD').val();
+	parameters[name] = {'type': type, 'md': md};
 	break;
 
     case "VNET":
