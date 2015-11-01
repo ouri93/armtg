@@ -129,7 +129,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-12'>" +
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
-	    "</div>"; /* +
+	    "</div>" +
 	    "<br/>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-3'>" + 
@@ -144,7 +144,7 @@ function populateDetails(which) {
 	    "      <option value='Standard_D3'>Standard_D3</option>" +
 	    "      <option value='Standard_D4'>Standard_D4</option>" +
 	    "    </select>" + 
-	    "  </div> " +
+	    "  </div> "; /* +
 	    "  <div class='col-md-3'>" + 
 	    "    OS: " +
 	    "    <select id='os'>" +
