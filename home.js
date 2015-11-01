@@ -54,7 +54,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    subnet: " +
 	    "    <select id='subnet'>" +
-	    "      <option value='generate for me'>generate for me</option>"
+	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
 	    "  </div> " +
 	    "</div>";
