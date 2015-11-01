@@ -106,7 +106,21 @@ function populateDetails(which) {
 	break;
 
     case "SA":
-	detailsHtml += "SA";
+	detailsHtml +=
+	    "<div class='row'>" +
+	    "  <div class='col-md-6'>" + 
+	    "    optional naming infix (distinguishes sas): <input id='namingInfix'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-6'>" + 
+	    "    type: " +
+	    "    <select id='subnet'>" +
+	    "      <option value='Standard_LRS'>Standard_LRS</option>" +
+	    "      <option value='Standard_GRS'>Standard_GRS</option>" +
+	    "      <option value='Standard_RAGRS'>Standard_RAGRS</option>" +
+	    "      <option value='Premium_LRS'>Premium_LRS</option>" +
+	    "    </select>" + 
+	    "  </div> " +
+	    "</div>";
 	break;
 
     case "VM":
