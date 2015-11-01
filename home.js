@@ -24,10 +24,10 @@ function populateDetails(which) {
     case "VNET":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-6>" + 
+	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix: <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-6>" + 
+	    "  <div class='col-md-6'>" + 
 	    "    number of subnets: <input id='numSubnets'></input>" +
 	    "  </div> " +
 	    "</div>";
