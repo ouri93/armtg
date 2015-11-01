@@ -15,6 +15,6 @@ div#details {
   font-weight: bold;
 }
 
-.left {
-  text-align: center;
+#left {
+  text-align: left;
 }

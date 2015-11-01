@@ -124,7 +124,7 @@ function populateDetails(which) {
     case "VM":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-6,left'>" + 
+	    "  <div class='col-md-6' id='left'>" + 
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
