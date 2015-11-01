@@ -124,10 +124,13 @@ function populateDetails(which) {
     case "VM":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-6'>" +
+	    "  <div class='col-md-12'>" +
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-2'>" + 
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" + 
 	    "    size: " +
 	    "    <select id='size'>" +
 	    "      <option value='Standard_A1'>Standard_A1</option>" +
@@ -140,36 +143,36 @@ function populateDetails(which) {
 	    "      <option value='Standard_D4'>Standard_D4</option>" +
 	    "    </select>" + 
 	    "  </div> " +
-	    "  <div class='col-md-2'>" + 
+	    "  <div class='col-md-3'>" + 
 	    "    OS: " +
 	    "    <select id='os'>" +
 	    "      <option value='Linux'>Linux</option>" +
 	    "      <option value='Windows'>Windows</option>" +
 	    "    </select>" + 
-	    "  </div> " +
-	    "  <div class='col-md-2'>" +
-	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
-	    "  </div>" +
-	    "</div>" +
-	    "<br/>" +
-	    "<div class='row'>" +
 	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
 	    "    admin password: <input id='admin password'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-3'>" +
+	    "  </div> " +
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-4'>" +
 	    "    nic: " +
 	    "    <select id='nic'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
 	    "  </div>" +
-	    "  <div class='col-md-3'>" +
+	    "  <div class='col-md-4'>" +
 	    "    storage account: " +
 	    "    <select id='sa'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
+	    "  </div>" +
+	    "  <div class='col-md-4'>" +
+	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
 	    "  </div>" +
 	    "</div>";
 	break;
