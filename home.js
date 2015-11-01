@@ -1,10 +1,14 @@
-variables = {}
+variables = {};
 
-commitsDivHtml =
-    '<div id="commits">' +
-    '  <button class="btn btn-default" onclick="javascript:addResource()">Add</button>' +
-    '  <button class="btn btn-default" onclick="javascript:nixResource()">Cancel</button>' +
-    '</div>';
+function commitsDivHtml(which) {
+    ret =
+	'<div id="commits">' +
+	'  <button class="btn btn-default" onclick="javascript:addResource(' + which + ')">Add</button>' +
+	'  <button class="btn btn-default" onclick="javascript:nixResource()">Cancel</button>' +
+	'</div>';
+
+    return ret;
+}
 
 function populateDetails(which) {
     detailsHtml = "<hr/>";
@@ -69,13 +73,13 @@ function populateDetails(which) {
 	break;
     }
 
-    detailsHtml += "<br/>" + commitsDivHtml + "<hr/>";
+    detailsHtml += "<br/>" + commitsDivHtml(which) + "<hr/>";
 
     $('#details').html(detailsHtml);
 }
 
-function addResource() {
-    alert('TODO!');
+function addResource(which) {
+    alert('TODO!' + which);
 }
 
 function nixResource() {
