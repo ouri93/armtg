@@ -27,8 +27,8 @@ function populateDetails(which) {
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>Variable Name: <input id='varName'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-6'>Variable Type: " +
-	    "    <select id='varType'>" +
+	    "  <div class='col-md-6'>Variable Value: " +
+	    "    <select id='varVal'>" +
 	    "      <option value='string'>string</option>" +
 	    "      <option value='securestring'>securestring</option>" +
 	    "    </select>" +
@@ -95,13 +95,13 @@ function addBlock(which) {
 	    break;
 	}
 
-	type = $('#varType').val();
+	val = $('#varVal').val();
 	if (name in variables) {
 	    alert("variable " + name + " already exists! Please edit or remove it below.");
 	    break;
 	}
 	
-	variables[name] = type;
+	variables[name] = val;
 	break;
 
     case "PAR":
