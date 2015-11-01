@@ -1,6 +1,8 @@
 variables = {};
 
 function commitsDivHtml(which) {
+    console.log(which);
+
     ret =
 	'<div id="commits">' +
 	'  <button class="btn btn-default" onclick="javascript:addResource(' + which + ')">Add</button>' +
