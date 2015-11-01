@@ -3,8 +3,8 @@ variables = {};
 function commitsDivHtml(which) {
     ret =
 	'<div id="commits">' +
-	'  <button class="btn btn-default" onclick="javascript:addResource(\'' + which + '\')">Add</button>' +
-	'  <button class="btn btn-default" onclick="javascript:nixResource()">Cancel</button>' +
+	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + which + '\')">Add</button>' +
+	'  <button class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
 	'</div>';
 
     return ret;
@@ -78,10 +78,10 @@ function populateDetails(which) {
     $('#details').html(detailsHtml);
 }
 
-function addResource(which) {
+function addBlock(which) {
     alert('TODO!');
 }
 
-function nixResource() {
+function nixBlock() {
     alert('TODO!');
 }
