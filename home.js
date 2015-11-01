@@ -64,11 +64,11 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" + 
-	    "    optional naming infix (should be unique per nic): <input id='namingInfix'></input>" +
+	    "    optional naming infix (should be unique per lb): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "</div>" +
 	    "<div class='row'>" +
-	    "Round Robin Rules"
+	    "Round Robin Rules" +
 	    "</div>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>" + 
@@ -82,7 +82,7 @@ function populateDetails(which) {
 	    "  </div> " +
 	    "</div>" +
 	    "<div class='row'>" +
-	    "NAT Rules"
+	    "NAT Rules" +
 	    "</div>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-4'>" + 
