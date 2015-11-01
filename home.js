@@ -124,10 +124,9 @@ function populateDetails(which) {
     case "VM":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
-	    "</div>" +
-	    "<br/>" +
-	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" +
+	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
+	    "  </div>" +
 	    "  <div class='col-md-3'>" + 
 	    "    size: " +
 	    "    <select id='size'>" +
@@ -149,6 +148,12 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div> " +
 	    "  <div class='col-md-3'>" +
+	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
+	    "  </div>" +
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
@@ -157,20 +162,17 @@ function populateDetails(which) {
 	    "</div>" +
 	    "<br/>" +
 	    "<div class='row'>" +
-	    "  <div class='col-md-4'>" +
+	    "  <div class='col-md-3'>" +
 	    "    nic: " +
 	    "    <select id='nic'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
 	    "  </div>" +
-	    "  <div class='col-md-4'>" +
+	    "  <div class='col-md-3'>" +
 	    "    storage account: " +
 	    "    <select id='sa'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
-	    "  </div>" +
-	    "  <div class='col-md-4'>" +
-	    "    boot diagnostics: <input type='checkbox' id='bootDiagnostics'></input>" +
 	    "  </div>" +
 	    "</div>";
 	break;
