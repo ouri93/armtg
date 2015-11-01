@@ -90,9 +90,14 @@ function addBlock(which) {
     switch (which) {
     case "VAR":
 	name = $('#varName').val();
+	if (name  == "") {
+	    alert("variable must have a name!");
+	    break;
+	}
+
 	type = $('#varType').val();
 	if (name in variables) {
-	    alert("variable " + name + "already exists! Please edit or remove it below.");
+	    alert("variable " + name + " already exists! Please edit or remove it below.");
 	    break;
 	}
 	
