@@ -34,7 +34,14 @@ function populateDetails(which) {
 	break;
 
     case "PIP":
-	detailsHtml += "PIP";
+	    "<div class='row'>" +
+	    "  <div class='col-md-6'>" + 
+	    "    optional naming infix (should be unique per pip): <input id='namingInfix'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-6'>" + 
+	    "    opional domain label: <input id='domainLabel'></input>" +
+	    "  </div> " +
+	    "</div>";
 	break;
 
     case "LB":
