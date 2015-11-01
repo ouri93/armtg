@@ -14,3 +14,4 @@ for resources:
 TODO
 > network security groups
 > script extensions
+> copyIndex on all resources
