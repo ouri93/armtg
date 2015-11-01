@@ -34,6 +34,7 @@ function populateDetails(which) {
 	break;
 
     case "PIP":
+	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (should be unique per pip): <input id='namingInfix'></input>" +
