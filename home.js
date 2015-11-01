@@ -79,7 +79,7 @@ function populateDetails(which) {
 }
 
 function addResource(which) {
-    alert('TODO!' + which);
+    alert('TODO!');
 }
 
 function nixResource() {
