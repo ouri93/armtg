@@ -389,6 +389,11 @@ function addBlock(which) {
 	    alert('Some NAT rule properties are specified and others not! Please either specify all of them or none of them.');
 	    break;
 	}
+
+	if (allRREmpty && allNATEmpty) {
+	    alert('No rules are specified! Please specify a set of round-robin rules, a set of NAT rules, or both');
+	    break;
+	}
 	
 	lbs[infix] = {"roundRobinFrontEndPort": roundRobinFrontEndPort,
 		       "roundRobinBackEndPort": roundRobinBackEndPort,
