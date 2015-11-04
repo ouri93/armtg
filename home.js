@@ -390,7 +390,7 @@ function addBlock(which) {
 	    break;
 	}
 	
-	nics[infix] = {"roundRobinFrontEndPort": roundRobinFrontEndPort,
+	lbs[infix] = {"roundRobinFrontEndPort": roundRobinFrontEndPort,
 		       "roundRobinBackEndPort": roundRobinBackEndPort,
 		       "roundRobinProbePort": roundRobinProbePort,
 		       "NATFrontEndStartingPort": NATFrontEndStartingPort,
