@@ -212,6 +212,13 @@ function populateDetails(which) {
 	    "    number of vmsses: <input id='numVMSS'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
+	    "    target instance count per vmss: " +
+	    "    <input id='targetInstanceCount'></input>" +
+	    "  </div>" +
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" + 
 	    "    vm size: " +
 	    "    <select id='size'>" +
 	    "      <option value='Standard_A1'>Standard_A1</option>" +
@@ -224,20 +231,12 @@ function populateDetails(which) {
 	    "      <option value='Standard_D4'>Standard_D4</option>" +
 	    "    </select>" + 
 	    "  </div> " +
-	    "  </div>" +
-	    "</div>" +
-	    "<br/>" +
-	    "<div class='row'>" +
 	    "  <div class='col-md-3'>" + 
 	    "    OS: " +
 	    "    <select id='os'>" +
 	    "      <option value='Linux'>Linux</option>" +
 	    "      <option value='Windows'>Windows</option>" +
 	    "    </select>" + 
-	    "  </div>" +
-	    "  <div class='col-md-3'>" + 
-	    "    target instance count: " +
-	    "    <input id='targetInstanceCount'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
 	    "    admin username: <input id='admin username'></input>" +
