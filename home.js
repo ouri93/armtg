@@ -282,10 +282,25 @@ function populateDetails(which) {
     $('#details').html(detailsHtml);
 }
 
+function success(which) {
+    $('#details').html('Added ' + which + "!");
+}
+
 function addBlock(which) {
     switch (which) {
     case "VNET":
-	alert('TODO!');
+	infix = $('#namingInfix').val();
+	numVnets = $('#numVnets').val();
+	numSubnetsPerVnet = $('#numSubnetsPerVnet').val();
+
+	if (infix in vnets) {
+	    alert('There is already a vnet with this infix! please choose a different infix, or edit/delete the other vnet.');
+	    break;
+	}
+
+	vnets[infix] = {"numVnets": numVnets,
+			"numSubnetsPerVnet": numSubnetsPerVnet};
+	success();
 	break;
 
     case "PIP":
