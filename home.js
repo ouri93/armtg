@@ -167,7 +167,7 @@ function populateDetails(which) {
 	    "    admin username: <input id='admin username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-4'>" +
-	    "    admin password: <input id='admin password'></input>" +
+	    "    admin password: <input id='admin password' type='password'></input>" +
 	    "  </div>" +
 	    "</div>" +
 	    "<br/>" +
@@ -230,7 +230,7 @@ function populateDetails(which) {
 	    "    admin username: <input id='admin username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
-	    "    admin password: <input id='admin password'></input>" +
+	    "    admin password: <input id='admin password' type='password'></input>" +
 	    "  </div>" +
 	    "</div>" +
 	    "<br/>" +
