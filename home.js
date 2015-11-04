@@ -25,7 +25,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (distinguishes vnets): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes VNETs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    number of vnets: <input id='numVnets'></input>" +
@@ -40,7 +40,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (distinguishes pips): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes PIPs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    number of pips: <input id='numPips'></input>" +
@@ -55,7 +55,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (distinguishes nics): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes NICs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    subnet: " +
@@ -83,7 +83,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" + 
-	    "    optional naming infix (distinguishes lbs): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes LBs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "</div>" +
 	    "<div class='row'>" +
@@ -126,7 +126,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" + 
-	    "    optional naming infix (distinguishes sas): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes SAs): <input id='namingInfix'></input>" +
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    type: " +
@@ -147,7 +147,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" +
-	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes VMs): <input id='namingInfix'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" + 
 	    "    number of vms: <input id='numVMs'></input>" +
@@ -206,7 +206,7 @@ function populateDetails(which) {
 	detailsHtml +=
 	    "<div class='row'>" +
 	    "  <div class='col-md-6'>" +
-	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
+	    "    optional naming infix (distinguishes VMSSes): <input id='namingInfix'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" + 
 	    "    number of vmsses: <input id='numVMSS'></input>" +
