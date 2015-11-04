@@ -180,7 +180,76 @@ function populateDetails(which) {
 	break;
 
     case "VMSS":
-	detailsHtml += "VMSS";
+	detailsHtml +=
+	    "<div class='row'>" +
+	    "  <div class='col-md-6'>" +
+	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
+	    "  </div>" +
+	    "  <div class='col-md-6'>" +
+	    "  <div class='col-md-6'>" + 
+	    "    size: " +
+	    "    <select id='size'>" +
+	    "      <option value='Standard_A1'>Standard_A1</option>" +
+	    "      <option value='Standard_A2'>Standard_A2</option>" +
+	    "      <option value='Standard_A3'>Standard_A3</option>" +
+	    "      <option value='Standard_A4'>Standard_A4</option>" +
+	    "      <option value='Standard_D1'>Standard_D1</option>" +
+	    "      <option value='Standard_D2'>Standard_D2</option>" +
+	    "      <option value='Standard_D3'>Standard_D3</option>" +
+	    "      <option value='Standard_D4'>Standard_D4</option>" +
+	    "    </select>" + 
+	    "  </div> " +
+	    "  </div>" +
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" + 
+	    "    OS: " +
+	    "    <select id='os'>" +
+	    "      <option value='Linux'>Linux</option>" +
+	    "      <option value='Windows'>Windows</option>" +
+	    "    </select>" + 
+	    "  </div>" +
+	    "  <div class='col-md-3'>" + 
+	    "    target instance count: " +
+	    "    <input id='targetInstanceCount'></input>" +
+	    "  </div>" +
+	    "  <div class='col-md-3'>" +
+	    "    admin username: <input id='admin username'></input>" +
+	    "  </div>" +
+	    "  <div class='col-md-3'>" +
+	    "    admin password: <input id='admin password'></input>" +
+	    "  </div>" +
+	    "</div>" +
+	    "<br/>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-3'>" +
+	    "    subnet: " +
+	    "    <select id='subnet'>" +
+	    "      <option value='generate for me'>generate for me</option>" +
+	    "    </select>" + 
+	    "  </div>" +
+	    "  <div class='col-md-3'>" +
+	    "    round-robin lb: " +
+	    "    <select id='lb'>" +
+	    "      <option value='generate for me'>generate for me</option>" +
+	    "      <option value='none'>none</option>" +
+	    "    </select>" + 
+	    "  </div>" +
+	    "  <div class='col-md-3'>" +
+	    "    nat rules: " +
+	    "    <select id='natRules'>" +
+	    "      <option value='generate for me'>generate for me</option>" +
+	    "      <option value='none'>none</option>" +
+	    "    </select>" + 
+	    "  </div>" +
+	    "  <div class='col-md-3'>" +
+	    "    storage accounts: " +
+	    "    <select id='sas'>" +
+	    "      <option value='generate for me'>generate for me</option>" +
+	    "    </select>" + 
+	    "  </div>" +
+	    "</div>";
 	break;
     }
 
