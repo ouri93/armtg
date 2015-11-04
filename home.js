@@ -71,6 +71,7 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div> " +
 	    "</div>" +
+	    "<br/>" +
 	    "<div class='row'>" +
 	    "  <div class='col-md-12'>" + 
 	    "    number of nics: <input id='numNics'></input>" +
@@ -148,7 +149,6 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" +
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-6'>" +
 	    "  <div class='col-md-3'>" + 
 	    "    number of vms: <input id='numVMs'></input>" +
 	    "  </div> " +
@@ -208,7 +208,6 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" +
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
-	    "  <div class='col-md-6'>" +
 	    "  <div class='col-md-3'>" + 
 	    "    number of vmsses: <input id='numVMSS'></input>" +
 	    "  </div> " +
