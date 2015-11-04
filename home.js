@@ -17,6 +17,8 @@ function commitsDivHtml(which) {
     return ret;
 }
 
+
+
 function populateDetails(which) {
     detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + which + "</div><br/><br/>";
 
@@ -286,6 +288,10 @@ function success(which) {
     $('#details').html('Added ' + which + "!");
 }
 
+function populateNicSelectors {
+    
+}
+
 function addBlock(which) {
     switch (which) {
     case "VNET":
@@ -304,7 +310,7 @@ function addBlock(which) {
 	break;
 
     case "PIP":
-	infix = $("namingInfix").val();
+	infix = $("#namingInfix").val();
 	numPips = parseInt($('#numPips').val());
 	domainLabel = $('#domainLabel').val();
 
