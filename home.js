@@ -290,8 +290,8 @@ function addBlock(which) {
     switch (which) {
     case "VNET":
 	infix = $('#namingInfix').val();
-	numVnets = $('#numVnets').val();
-	numSubnetsPerVnet = $('#numSubnetsPerVnet').val();
+	numVnets = parseInt($('#numVnets').val());
+	numSubnetsPerVnet = parseInt($('#numSubnetsPerVnet').val());
 
 	if (infix in vnets) {
 	    alert('There is already a vnet with this infix! please choose a different infix, or edit/delete the other vnet.');
@@ -300,11 +300,21 @@ function addBlock(which) {
 
 	vnets[infix] = {"numVnets": numVnets,
 			"numSubnetsPerVnet": numSubnetsPerVnet};
-	success();
+	success(which);
 	break;
 
     case "PIP":
-	alert('TODO!');
+	infix = $("namingInfix").val();
+	numPips = parseInt($('#numPips').val());
+	domainLabel = parseInt($('#domainLabel').val());
+
+	if (infix in pips) {
+	    alert('There is already a pip with this infix! please choose a different infix, or edit/delete the other pip.');
+	    break;
+	}
+
+	pips[infix] = {"numPips": numPips,
+		       "numSubnetsPerVnet": numSubnetsPerVnet};
 	break;
 
     case "NIC":
