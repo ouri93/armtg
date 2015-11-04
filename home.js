@@ -26,16 +26,11 @@ function populateDetails(which) {
     case "VNET":
 	detailsHtml +=
 	    "<div class='row'>" +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-12'>" + 
 	    "    optional naming infix (distinguishes VNETs): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-3'>" + 
-	    "    number of vnets: <input id='numVnets'></input>" +
-	    "  </div> " +
-	    "  <div class='col-md-3'>" + 
-	    "    number of subnets per vnet: <input id='numSubnetsPerVnet'></input>" +
-	    "  </div> " +
 	    "</div>";
+
 	break;
 
     case "PIP":
@@ -44,10 +39,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (distinguishes PIPs): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-3'>" + 
-	    "    number of pips: <input id='numPips'></input>" +
-	    "  </div> " +
-	    "  <div class='col-md-3'>" + 
+	    "  <div class='col-md-6'>" + 
 	    "    opional domain label: <input id='domainLabel'></input>" +
 	    "  </div> " +
 	    "</div>";
@@ -73,13 +65,8 @@ function populateDetails(which) {
 	    "      <option value='generate for me'>none</option>" +
 	    "    </select>" + 
 	    "  </div> " +
-	    "</div>" +
-	    "<br/>" +
-	    "<div class='row'>" +
-	    "  <div class='col-md-12'>" + 
-	    "    number of nics: <input id='numNics'></input>" +
-	    "  </div> " +
 	    "</div>";
+
 	break;
 
     case "LB":
@@ -294,19 +281,11 @@ function success(which) {
 function populateSelectors(which) {
     switch (which) {
     case "NIC":
-	for (pip in pips) {
-	    numPips = pips[pip]["numPips"];
-	    if (numPips > 1) {
-		value = pip + " pips " + "1-" + numPips.toString();
-		curOption = "<option value='" + value + "'>" +
-		    value + "</option>";
-	    } else {
-		value = pip + " pip";
-		curOption = "<option value='" + value + "'>" +
-		    value + "</option>";
-	    }
-
-	    $('#pip').append(curOption);
+	for (vnet in vnets) {
+	    value = "already-created-vnet-subnet-" + vnet["infix"];
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#subnet").append(option);
 	}
 	
 	break;
@@ -318,22 +297,18 @@ function addBlock(which) {
     switch (which) {
     case "VNET":
 	infix = $('#namingInfix').val();
-	numVnets = parseInt($('#numVnets').val());
-	numSubnetsPerVnet = parseInt($('#numSubnetsPerVnet').val());
 
 	if (infix in vnets) {
 	    alert('There is already a vnet with this infix! please choose a different infix, or edit/delete the other vnet.');
 	    break;
 	}
 
-	vnets[infix] = {"numVnets": numVnets,
-			"numSubnetsPerVnet": numSubnetsPerVnet};
+	vnets[infix] = {};
 	success(which);
 	break;
 
     case "PIP":
 	infix = $("#namingInfix").val();
-	numPips = parseInt($('#numPips').val());
 	domainLabel = $('#domainLabel').val();
 
 	if (infix in pips) {
@@ -341,8 +316,7 @@ function addBlock(which) {
 	    break;
 	}
 
-	pips[infix] = {"numPips": numPips,
-		       "domainLabel": domainLabel};
+	pips[infix] = {"domainLabel": domainLabel};
 	success(which);
 	break;
 
