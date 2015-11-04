@@ -27,8 +27,11 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (distinguishes vnets): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-6'>" + 
-	    "    number of subnets: <input id='numSubnets'></input>" +
+	    "  <div class='col-md-3'>" + 
+	    "    number of vnets: <input id='numVnets'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
+	    "    number of subnets per vnet: <input id='numSubnetsPerVnet'></input>" +
 	    "  </div> " +
 	    "</div>";
 	break;
@@ -39,7 +42,10 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (distinguishes pips): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-3'>" + 
+	    "    number of pips: <input id='numPips'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
 	    "    opional domain label: <input id='domainLabel'></input>" +
 	    "  </div> " +
 	    "</div>";
@@ -51,11 +57,23 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (distinguishes nics): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-3'>" + 
 	    "    subnet: " +
 	    "    <select id='subnet'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
+	    "    optional public ip: " +
+	    "    <select id='pip'>" +
+	    "      <option value='generate for me'>generate for me</option>" +
+	    "      <option value='generate for me'>none</option>" +
+	    "    </select>" + 
+	    "  </div> " +
+	    "</div>" +
+	    "<div class='row'>" +
+	    "  <div class='col-md-12'>" + 
+	    "    number of nics: <input id='numNics'></input>" +
 	    "  </div> " +
 	    "</div>";
 	break;
@@ -109,7 +127,7 @@ function populateDetails(which) {
 	    "  <div class='col-md-6'>" + 
 	    "    optional naming infix (distinguishes sas): <input id='namingInfix'></input>" +
 	    "  </div> " +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-3'>" + 
 	    "    type: " +
 	    "    <select id='subnet'>" +
 	    "      <option value='Standard_LRS'>Standard_LRS</option>" +
@@ -117,6 +135,9 @@ function populateDetails(which) {
 	    "      <option value='Standard_RAGRS'>Standard_RAGRS</option>" +
 	    "      <option value='Premium_LRS'>Premium_LRS</option>" +
 	    "    </select>" + 
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
+	    "    number of sas: <input id='numsas'></input>" +
 	    "  </div> " +
 	    "</div>";
 	break;
@@ -128,7 +149,10 @@ function populateDetails(which) {
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-6'>" +
-	    "  <div class='col-md-6'>" + 
+	    "  <div class='col-md-3'>" + 
+	    "    number of vms: <input id='numVMs'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
 	    "    size: " +
 	    "    <select id='size'>" +
 	    "      <option value='Standard_A1'>Standard_A1</option>" +
@@ -141,7 +165,6 @@ function populateDetails(which) {
 	    "      <option value='Standard_D4'>Standard_D4</option>" +
 	    "    </select>" + 
 	    "  </div> " +
-	    "  </div>" +
 	    "</div>" +
 	    "<br/>" +
 	    "<div class='row'>" +
@@ -186,8 +209,11 @@ function populateDetails(which) {
 	    "    optional naming infix (distinguishes vms): <input id='namingInfix'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-6'>" +
-	    "  <div class='col-md-6'>" + 
-	    "    size: " +
+	    "  <div class='col-md-3'>" + 
+	    "    number of vmsses: <input id='numVMSS'></input>" +
+	    "  </div> " +
+	    "  <div class='col-md-3'>" + 
+	    "    vm size: " +
 	    "    <select id='size'>" +
 	    "      <option value='Standard_A1'>Standard_A1</option>" +
 	    "      <option value='Standard_A2'>Standard_A2</option>" +
