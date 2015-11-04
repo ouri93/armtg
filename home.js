@@ -308,11 +308,18 @@ function populateSelectors(which) {
     case "VMSS":
 	for (vnet in vnets) {
 	    for (subnet in subnets) {
-		value = "already-created-subnet-" + vnet + "-" + subnet;
+		value = "already-created-subnet-" + vnet;
 		option = "<option value='" + value + "'>" +
 		    value + "</option>";
 		$("#subnet").append(option);
 	    }
+	}
+
+	for (lb in lbs) {
+	    value = "already-created-lb-" + lb;
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#lb").append(option);
 	}
 
 	for (sa in sas) {
