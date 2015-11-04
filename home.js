@@ -341,7 +341,7 @@ function addBlock(which) {
 	break;
 
     case "LB":
-	infix = $("namingInfix").val();
+	infix = $("#namingInfix").val();
 
 	roundRobinFrontEndPort = parseInt($("#roundRobinFrontEndPort").val());
 	roundRobinBackEndPort = parseInt($("#roundRobinBackEndPort").val());
