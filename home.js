@@ -51,6 +51,7 @@ function populateDetails(which) {
 	    "    opional domain label: <input id='domainLabel'></input>" +
 	    "  </div> " +
 	    "</div>";
+	
 	break;
 
     case "NIC":
@@ -282,6 +283,8 @@ function populateDetails(which) {
     detailsHtml += "<br/>" + commitsDivHtml(which) + "<hr/>";
 
     $('#details').html(detailsHtml);
+
+    populateSelectors(which);
 }
 
 function success(which) {
@@ -289,7 +292,26 @@ function success(which) {
 }
 
 function populateSelectors(which) {
-    console.log(which);
+    switch (which) {
+    case "NIC":
+	for (pip in pips) {
+	    numPips = pips[pip]["numPips"];
+	    if (numPips > 1) {
+		value = pip + " pips " + "1-" + numPips.toString();
+		curOption = "<option value='" + value + "'>" +
+		    value + "</option>";
+	    } else {
+		value = pip + " pip";
+		curOption = "<option value='" + value + "'>" +
+		    value + "</option>";
+	    }
+
+	    $('#pip').append(curOption);
+	}
+	
+	break;
+    }
+
 }
 
 function addBlock(which) {
@@ -321,6 +343,7 @@ function addBlock(which) {
 
 	pips[infix] = {"numPips": numPips,
 		       "domainLabel": domainLabel};
+	success(which);
 	break;
 
     case "NIC":
