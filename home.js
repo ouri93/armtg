@@ -164,10 +164,10 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div>" +
 	    "  <div class='col-md-4'>" +
-	    "    admin username: <input id='admin username'></input>" +
+	    "    admin username: <input id='username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-4'>" +
-	    "    admin password: <input id='admin password' type='password'></input>" +
+	    "    admin password: <input id='password' type='password'></input>" +
 	    "  </div>" +
 	    "</div>" +
 	    "<br/>" +
@@ -179,7 +179,7 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div>" +
 	    "  <div class='col-md-4'>" +
-	    "    storage account: " +
+	    "    storage account(s): " +
 	    "    <select id='sa'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
@@ -256,7 +256,7 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
-	    "    storage accounts: " +
+	    "    storage account(s): " +
 	    "    <select id='sas'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
@@ -291,6 +291,23 @@ function populateSelectors(which) {
 	    option = "<option value='" + value + "'>" +
 		value + "</option>";
 	    $("#pip").append(option);
+	}
+	
+	break;
+
+    case "VM":
+	for (nic in nics) {
+	    value = "already-created-nic-" + nic;
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#nic").append(option);
+	}
+
+	for (sa in sas) {
+	    value = "already-created-sa-" + sa;
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#sa").append(option);
 	}
 	
 	break;
@@ -430,7 +447,40 @@ function addBlock(which) {
 	break;
 
     case "VM":
-	alert('TODO!');
+	infix = $('#namingInfix').val();
+	num = parseInt($('numVMs').val());
+	size = $('#size').val();
+	os = $('#OS').val();
+	username = $('#username').val();
+	password = $('#password').val();
+	nic = $('nic').val();
+	sa = $('sa').val();
+	bd = $('bootDiagnostics').val();
+
+	if (infix in vms) {
+	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
+	    break;
+	}
+
+	if (isNaN(num)) {
+	    alert('The number of VMs is invalid!');
+	    break;
+	}
+
+	if (num < 1) {
+	    alert('The number of VMs is invalid!');
+	    break;
+	}
+
+	vms[infix] = {"num": num,
+		      "size": size,
+		      "os": os,
+		      "username": username,
+		      "password": password,
+		      "nic": nic,
+		      "sa": sa,
+		      "bd": bd};
+	success(which);
 	break;
 
     case "VMSS":

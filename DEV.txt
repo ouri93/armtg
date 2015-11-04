@@ -15,16 +15,18 @@ TODO
 > "make parameter" option
 > populate <select> options
 > VM sizes should have better selection of sizes
+> script extensions
 > multiple subnets per vnet
+> copyIndex on all resources
+> multiple LB rules
+> more informative names or some instructions (e.g. multiple resources will round-robin, etc.)
+
 > VMSS boot diagnostics?
 > availability set?
-> multiple LB rules
 > probe url?
 > multiple probes
-> dependencies ("this requires this but you haven't made it yet, let me make it for you?")
 > network security groups
-> script extensions
-> copyIndex on all resources
+
 > tcp/udp? (LB, nsg's, etc.)
 > other things in templates?
   > paas things?
