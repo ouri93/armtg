@@ -426,6 +426,7 @@ function addBlock(which) {
 
 	sas[infix] = {"type": type,
 		      "num": num};
+	success(which);
 	break;
 
     case "VM":
