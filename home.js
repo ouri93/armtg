@@ -288,8 +288,8 @@ function success(which) {
     $('#details').html('Added ' + which + "!");
 }
 
-function populateNicSelectors {
-    
+function populateSelectors(which) {
+    console.log(which);
 }
 
 function addBlock(which) {
