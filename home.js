@@ -17,8 +17,6 @@ function commitsDivHtml(which) {
     return ret;
 }
 
-
-
 function populateDetails(which) {
     detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + which + "</div><br/><br/>";
 
@@ -343,7 +341,62 @@ function addBlock(which) {
 	break;
 
     case "LB":
-	alert('TODO!');
+	infix = $("namingInfix").val();
+
+	roundRobinFrontEndPort = parseInt($("roundRobinFrontEndPort").val());
+	roundRobinBackEndPort = parseInt($("roundRobinBackEndPort").val());
+	roundRobinProbePort = parseInt($("roundRobinProbePort").val());
+
+	NATFrontEndStartingPort = parseInt($("NATFrontEndStartingPort").val());
+	NATFrontEndEndingPort = parseInt($("NATFrontEndEndingPort").val());
+	NATBackEndPort = parseInt($("NATBackEndPort").val());
+
+	if (infix in lbs) {
+	    alert('There is already a lb with infix "' + infix + '"! please choose a different infix, or edit/delete the other lb.');
+	    break;
+	}
+	
+	allRREmpty =
+	    isNaN(roundRobinFrontEndPort) &&
+	    isNaN(roundRobinBackEndPort) &&
+	    isNaN(roundRobinProbePort);
+
+	allRRSpecified = 
+	    (!isNaN(roundRobinFrontEndPort)) &&
+	    (!isNaN(roundRobinBackEndPort)) &&
+	    (!isNaN(roundRobinProbePort));
+
+	allRR = allRREmpty || allRRSpecified;
+	
+	if (!allRR) {
+	    alert('Some round robin rule properties are specified and others not! Please either specify all of them or none of them.');
+	    break;
+	}
+
+	allNATEmpty =
+	    isNaN(NATFrontEndStartingPort) &&
+	    isNaN(NATFrontEndEndingPort) &&
+	    isNaN(NATBackEndPort);
+
+	allNATSpecified =
+	    (!isNaN(NATFrontEndStartingPort)) &&
+	    (!isNaN(NATFrontEndEndingPort)) &&
+	    (!isNaN(NATBackEndPort));
+
+	allNAT = allNATEmpty || allNATSpecified;
+	
+	if (!allNat) {
+	    alert('Some NAT rule properties are specified and others not! Please either specify all of them or none of them.');
+	    break;
+	}
+	
+	nics[infix] = {"roundRobinFrontEndPort": roundRobinFrontEndPort,
+		       "roundRobinBackEndPort": roundRobinBackEndPort,
+		       "roundRobinProbePort": roundRobinProbePort,
+		       "NATFrontEndStartingPort": NATFrontEndStartingPort,
+		       "NATFrontEndEndingPort": NATFrontEndEndingPort,
+		       "NATBackEndPort": NATBackEndPort};
+	success(which);
 	break;
 
     case "SA":

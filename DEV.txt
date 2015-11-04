@@ -28,3 +28,5 @@ TODO
 > tcp/udp? (LB, nsg's, etc.)
 > other things in templates?
   > paas things?
+> error checking
+  > e.g. that ports are real numbers, etc.
