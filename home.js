@@ -343,13 +343,13 @@ function addBlock(which) {
     case "LB":
 	infix = $("namingInfix").val();
 
-	roundRobinFrontEndPort = parseInt($("roundRobinFrontEndPort").val());
-	roundRobinBackEndPort = parseInt($("roundRobinBackEndPort").val());
-	roundRobinProbePort = parseInt($("roundRobinProbePort").val());
+	roundRobinFrontEndPort = parseInt($("#roundRobinFrontEndPort").val());
+	roundRobinBackEndPort = parseInt($("#roundRobinBackEndPort").val());
+	roundRobinProbePort = parseInt($("#roundRobinProbePort").val());
 
-	NATFrontEndStartingPort = parseInt($("NATFrontEndStartingPort").val());
-	NATFrontEndEndingPort = parseInt($("NATFrontEndEndingPort").val());
-	NATBackEndPort = parseInt($("NATBackEndPort").val());
+	NATFrontEndStartingPort = parseInt($("#NATFrontEndStartingPort").val());
+	NATFrontEndEndingPort = parseInt($("#NATFrontEndEndingPort").val());
+	NATBackEndPort = parseInt($("#NATBackEndPort").val());
 
 	if (infix in lbs) {
 	    alert('There is already a lb with infix "' + infix + '"! please choose a different infix, or edit/delete the other lb.');
