@@ -306,7 +306,7 @@ function addBlock(which) {
     case "PIP":
 	infix = $("namingInfix").val();
 	numPips = parseInt($('#numPips').val());
-	domainLabel = parseInt($('#domainLabel').val());
+	domainLabel = $('#domainLabel').val();
 
 	if (infix in pips) {
 	    alert('There is already a pip with this infix! please choose a different infix, or edit/delete the other pip.');
