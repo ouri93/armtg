@@ -448,14 +448,14 @@ function addBlock(which) {
 
     case "VM":
 	infix = $('#namingInfix').val();
-	num = parseInt($('numVMs').val());
+	num = parseInt($('#numVMs').val());
 	size = $('#size').val();
 	os = $('#OS').val();
 	username = $('#username').val();
 	password = $('#password').val();
-	nic = $('nic').val();
-	sa = $('sa').val();
-	bd = $('bootDiagnostics').val();
+	nic = $('#nic').val();
+	sa = $('#sa').val();
+	bd = $('#bootDiagnostics').val();
 
 	if (infix in vms) {
 	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
