@@ -560,7 +560,7 @@ function addBlock(which) {
 		      "password": password,
 		      "subnet": subnet,
 		      "lb": lb,
-		      "sas": sas,
+		      "sas": sas};
 	success(which);
 	break;
     }
