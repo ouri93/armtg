@@ -314,7 +314,7 @@ function addBlock(which) {
 	}
 
 	pips[infix] = {"numPips": numPips,
-		       "numSubnetsPerVnet": numSubnetsPerVnet};
+		       "domainLabel": domainLabel};
 	break;
 
     case "NIC":
