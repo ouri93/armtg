@@ -385,7 +385,7 @@ function addBlock(which) {
 
 	allNAT = allNATEmpty || allNATSpecified;
 	
-	if (!allNat) {
+	if (!allNAT) {
 	    alert('Some NAT rule properties are specified and others not! Please either specify all of them or none of them.');
 	    break;
 	}
