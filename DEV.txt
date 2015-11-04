@@ -30,4 +30,6 @@ TODO
   > paas things?
 > error checking
   > e.g. that ports are real numbers, etc.
+  > ports adhere to inequality constraints (start < end for nat rules, etc.)
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
+

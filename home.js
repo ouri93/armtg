@@ -118,7 +118,7 @@ function populateDetails(which) {
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
 	    "    type: " +
-	    "    <select id='subnet'>" +
+	    "    <select id='type'>" +
 	    "      <option value='Standard_LRS'>Standard_LRS</option>" +
 	    "      <option value='Standard_GRS'>Standard_GRS</option>" +
 	    "      <option value='Standard_RAGRS'>Standard_RAGRS</option>" +
@@ -126,7 +126,7 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div> " +
 	    "  <div class='col-md-3'>" + 
-	    "    number of sas: <input id='numsas'></input>" +
+	    "    number of SAs: <input id='numsas'></input>" +
 	    "  </div> " +
 	    "</div>";
 	break;
@@ -405,7 +405,27 @@ function addBlock(which) {
 	break;
 
     case "SA":
-	alert('TODO!');
+	infix = $('#namingInfix').val();
+	type = $('#type').val();
+	num = parseInt($('#numsas').val());
+
+	if (infix in sas) {
+	    alert('There is already a sa with infix "' + infix + '"! please choose a different infix, or edit/delete the other sa.');
+	    break;
+	}
+
+	if (isNaN(num)) {
+	    alert('The number of SAs is invalid!');
+	    break;
+	}
+
+	if (num < 1) {
+	    alert('The number of SAs is invalid!');
+	    break;
+	}
+
+	sas[infix] = {"type": type,
+		      "num": num};
 	break;
 
     case "VM":
