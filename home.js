@@ -282,7 +282,7 @@ function populateSelectors(which) {
     switch (which) {
     case "NIC":
 	for (vnet in vnets) {
-	    value = "already-created-vnet-subnet-" + vnet["infix"];
+	    value = "already-created-vnet-subnet-" + vnet;
 	    option = "<option value='" + value + "'>" +
 		value + "</option>";
 	    $("#subnet").append(option);
