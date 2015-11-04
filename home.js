@@ -455,7 +455,7 @@ function addBlock(which) {
 	password = $('#password').val();
 	nic = $('#nic').val();
 	sa = $('#sa').val();
-	bd = $('#bootDiagnostics').val();
+	bd = $('#bootDiagnostics').is(":checked");
 
 	if (infix in vms) {
 	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
