@@ -287,6 +287,13 @@ function populateSelectors(which) {
 		value + "</option>";
 	    $("#subnet").append(option);
 	}
+
+	for (pip in pips) {
+	    value = "already-created-pip-" + pip;
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#pip").append(option);
+	}
 	
 	break;
     }
