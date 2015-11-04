@@ -305,7 +305,7 @@ function populateSelectors(which) {
 	
 	break;
 
-    case "VMSSS":
+    case "VMSS":
 	for (vnet in vnets) {
 	    for (subnet in subnets) {
 		value = "already-created-subnet-" + vnet + "-" + subnet;
