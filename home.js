@@ -557,7 +557,7 @@ function addBlock(which) {
 	    break;
 	}
 
-	vms[infix] = {"numVMSS": numVMSS,
+	vmsses[infix] = {"numVMSS": numVMSS,
 		      "target": target,
 		      "size": size,
 		      "os": os,
