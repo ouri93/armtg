@@ -472,6 +472,16 @@ function addBlock(which) {
 	    break;
 	}
 
+	if (username == "") {
+	    alert("admin username can't be empty!");
+	    break;
+	}
+
+	if (password == "") {
+	    alert("admin password can't be empty!");
+	    break;
+	}
+
 	vms[infix] = {"num": num,
 		      "size": size,
 		      "os": os,
