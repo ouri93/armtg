@@ -306,7 +306,7 @@ function addBlock(which) {
 	infix = $('#namingInfix').val();
 
 	if (infix in vnets) {
-	    alert('There is already a vnet with this infix! please choose a different infix, or edit/delete the other vnet.');
+	    alert('There is already a vnet with infix"' + infix + '"! please choose a different infix, or edit/delete the other vnet.');
 	    break;
 	}
 
@@ -319,7 +319,7 @@ function addBlock(which) {
 	domainLabel = $('#domainLabel').val();
 
 	if (infix in pips) {
-	    alert('There is already a pip with this infix! please choose a different infix, or edit/delete the other pip.');
+	    alert('There is already a pip with infix"' + infix + '"! please choose a different infix, or edit/delete the other pip.');
 	    break;
 	}
 
@@ -328,7 +328,18 @@ function addBlock(which) {
 	break;
 
     case "NIC":
-	alert('TODO!');
+	infix = $("#namingInfix").val();
+	subnet = $("#subnet").val();
+	pip = $("#pip").val();
+
+	if (infix in nics) {
+	    alert('There is already a nic with infix "' + infix + '"! please choose a different infix, or edit/delete the other nic.');
+	    break;
+	}
+
+	nics[infix] = {"subnet": subnet,
+		       "pip": pip};
+	success(which);
 	break;
 
     case "LB":
