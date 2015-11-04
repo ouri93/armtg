@@ -227,35 +227,28 @@ function populateDetails(which) {
 	    "    </select>" + 
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
-	    "    admin username: <input id='admin username'></input>" +
+	    "    admin username: <input id='username'></input>" +
 	    "  </div>" +
 	    "  <div class='col-md-3'>" +
-	    "    admin password: <input id='admin password' type='password'></input>" +
+	    "    admin password: <input id='password' type='password'></input>" +
 	    "  </div>" +
 	    "</div>" +
 	    "<br/>" +
 	    "<div class='row'>" +
-	    "  <div class='col-md-3'>" +
+	    "  <div class='col-md-4'>" +
 	    "    subnet: " +
 	    "    <select id='subnet'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
 	    "  </div>" +
-	    "  <div class='col-md-3'>" +
-	    "    round-robin lb: " +
+	    "  <div class='col-md-4'>" +
+	    "    lb: " +
 	    "    <select id='lb'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "      <option value='none'>none</option>" +
 	    "    </select>" + 
 	    "  </div>" +
-	    "  <div class='col-md-3'>" +
-	    "    nat rules: " +
-	    "    <select id='natRules'>" +
-	    "      <option value='generate for me'>generate for me</option>" +
-	    "      <option value='none'>none</option>" +
-	    "    </select>" + 
-	    "  </div>" +
-	    "  <div class='col-md-3'>" +
+	    "  <div class='col-md-4'>" +
 	    "    storage account(s): " +
 	    "    <select id='sas'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
@@ -310,6 +303,25 @@ function populateSelectors(which) {
 	    $("#sa").append(option);
 	}
 	
+	break;
+
+    case "VMSSS":
+	for (vnet in vnets) {
+	    for (subnet in subnets) {
+		value = "already-created-subnet-" + vnet + "-" + subnet;
+		option = "<option value='" + value + "'>" +
+		    value + "</option>";
+		$("#subnet").append(option);
+	    }
+	}
+
+	for (sa in sas) {
+	    value = "already-created-sa-" + sa;
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $("#sas").append(option);
+	}
+
 	break;
     }
 
@@ -494,7 +506,62 @@ function addBlock(which) {
 	break;
 
     case "VMSS":
-	alert('TODO!');
+	infix = $('#namingInfix').val();
+	numVMSS = parseInt($('#numVMSS').val());
+	target = parseInt($('#targetInstanceCount').val());
+	size = $('#size').val();
+	os = $('#OS').val();
+	username = $('#username').val();
+	password = $('#password').val();
+	subnet = $('#subnet').val();
+	lb = $('#lb').val();
+	sas = $('#sas').val();
+
+	if (infix in vms) {
+	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
+	    break;
+	}
+
+	if (isNaN(numVMSS)) {
+	    alert('The number of VMSSes is invalid!');
+	    break;
+	}
+
+	if (isNaN(target)) {
+	    alert('The target instance count per VMSS is invalid!');
+	    break;
+	}
+
+	if (numVMSS < 1) {
+	    alert('The number of VMSSes is invalid!');
+	    break;
+	}
+
+	if (target < 1) {
+	    alert('The target instance count per VMSS is invalid!');
+	    break;
+	}
+
+	if (username == "") {
+	    alert("admin username can't be empty!");
+	    break;
+	}
+
+	if (password == "") {
+	    alert("admin password can't be empty!");
+	    break;
+	}
+
+	vms[infix] = {"numVMSS": numVMSS,
+		      "target": target,
+		      "size": size,
+		      "os": os,
+		      "username": username,
+		      "password": password,
+		      "subnet": subnet,
+		      "lb": lb,
+		      "sas": sas,
+	success(which);
 	break;
     }
 }
