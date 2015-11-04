@@ -315,5 +315,5 @@ function addBlock(which) {
 }
 
 function nixBlock() {
-    alert('TODO!');
+    $('#details').html("");
 }
