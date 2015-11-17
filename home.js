@@ -569,8 +569,21 @@ function addBlock(which) {
 	success(which);
 	break;
     }
+
+    drawCurrent();
 }
 
 function nixBlock() {
     $('#details').html("");
+}
+
+function drawCurrent() {
+    currentString = "vnets: ";
+    for (vnet in vnets) {
+	currentString += "alread-created-vnet-subnet-" + vnet;
+    }
+
+    curentString += "\n";
+    
+    $("#current").html(currentString);
 }
