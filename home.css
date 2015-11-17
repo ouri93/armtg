@@ -11,6 +11,10 @@ div#details {
   text-align: center;
 }
 
+div#currentTitle {
+  text-align: center;
+}
+
 .subtitle {
   font-weight: bold;
 }
