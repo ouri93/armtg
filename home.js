@@ -589,42 +589,42 @@ function drawCurrent() {
     currentString += "&nbsp;&nbsp;<span class='subtitle'>PIPs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (pip in pips) {
-	currentString += "already-created-pip-" + pip;
+	currentString += "already-created-pip-" + pip + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>NICs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (nic in nics) {
-	currentString += "already-created-nic-" + nic;
+	currentString += "already-created-nic-" + nic + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>LBs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (lb in lbs) {
-	currentString += "already-created-lb-" + lb;
+	currentString += "already-created-lb-" + lb + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>SAs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (sa in sas) {
-	currentString += "already-created-sa-" + sa;
+	currentString += "already-created-sa-" + sa + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>VMs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (vm in vms) {
-	currentString += "already-created-vm-" + vm;
+	currentString += "already-created-vm-" + vm + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>VMSSes:</span>&nbsp;&nbsp;&nbsp;";
 
     for (vmss in vmsses) {
-	currentString += "already-created-vmss-" + vmss;
+	currentString += "already-created-vmss-" + vmss + "&nbsp;&nbsp;&nbsp;";
     }
     
     $("#current").html(currentString);
