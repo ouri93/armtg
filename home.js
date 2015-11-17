@@ -522,7 +522,7 @@ function addBlock(which) {
 	password = $('#password').val();
 	subnet = $('#subnet').val();
 	lb = $('#lb').val();
-	sas = $('#sas').val();
+	vmssSAs = $('#sas').val();
 
 	if (infix in vms) {
 	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
@@ -567,7 +567,7 @@ function addBlock(which) {
 		      "password": password,
 		      "subnet": subnet,
 		      "lb": lb,
-		      "sas": sas};
+		      "sas": vmssSAs};
 	success(which);
 	break;
     }
