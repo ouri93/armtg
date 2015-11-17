@@ -583,14 +583,14 @@ function drawCurrent() {
 	currentString += "already-created-vnet-subnet-" + vnet + "&nbsp;&nbsp;&nbsp;";
     }
 
-    currentString += "\n";
+    currentString += "<br/>";
     currentString += "&nbsp;&nbsp;<span class='subtitle'>pips:</span>&nbsp;&nbsp;&nbsp;";
 
     for (pip in pips) {
 	currentString += "already-created-pip-" + pip;
     }
 
-    currentString += "\n";
+    currentString += "<br/>";
     
     $("#current").html(currentString);
 }
