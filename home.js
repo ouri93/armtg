@@ -578,7 +578,7 @@ function nixBlock() {
 }
 
 function drawCurrent() {
-    "<br/><br/>vnets: ";
+    currentString = "vnets: ";
     for (vnet in vnets) {
 	currentString += "already-created-vnet-subnet-" + vnet + " ";
     }
