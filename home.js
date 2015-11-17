@@ -1,8 +1,8 @@
 parameters = {};
 vnets = {};
 pips = {};
-lbs = {};
 nics = {};
+lbs = {};
 sas = {};
 vms = {};
 vmsses = {};
@@ -580,19 +580,52 @@ function nixBlock() {
 }
 
 function drawCurrent() {
-    currentString = "&nbsp;&nbsp;<span class='subtitle'>vnets:</span>&nbsp;&nbsp;&nbsp;";
+    currentString = "&nbsp;&nbsp;<span class='subtitle'>VNETs:</span>&nbsp;&nbsp;&nbsp;";
     for (vnet in vnets) {
 	currentString += "already-created-vnet-subnet-" + vnet + "&nbsp;&nbsp;&nbsp;";
     }
 
     currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>pips:</span>&nbsp;&nbsp;&nbsp;";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>PIPs:</span>&nbsp;&nbsp;&nbsp;";
 
     for (pip in pips) {
 	currentString += "already-created-pip-" + pip;
     }
 
     currentString += "<br/>";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>NICs:</span>&nbsp;&nbsp;&nbsp;";
+
+    for (nic in nics) {
+	currentString += "already-created-nic-" + nic;
+    }
+
+    currentString += "<br/>";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>LBs:</span>&nbsp;&nbsp;&nbsp;";
+
+    for (lb in lbs) {
+	currentString += "already-created-lb-" + lb;
+    }
+
+    currentString += "<br/>";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>SAs:</span>&nbsp;&nbsp;&nbsp;";
+
+    for (sa in sas) {
+	currentString += "already-created-sa-" + sa;
+    }
+
+    currentString += "<br/>";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>VMs:</span>&nbsp;&nbsp;&nbsp;";
+
+    for (vm in vms) {
+	currentString += "already-created-vm-" + vm;
+    }
+
+    currentString += "<br/>";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>VMSSes:</span>&nbsp;&nbsp;&nbsp;";
+
+    for (vmss in vmsses) {
+	currentString += "already-created-vmss-" + vmss;
+    }
     
     $("#current").html(currentString);
 }
