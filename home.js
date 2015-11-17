@@ -583,7 +583,7 @@ function drawCurrent() {
 	currentString += "alread-created-vnet-subnet-" + vnet;
     }
 
-    curentString += "\n";
+    currentString += "\n";
     
     $("#current").html(currentString);
 }
