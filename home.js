@@ -584,6 +584,12 @@ function drawCurrent() {
     }
 
     currentString += "\n";
+
+    for (pip in pips) {
+	currentString += "already-created-pip-" + pip;
+    }
+
+    currentString += "\n";
     
     $("#current").html(currentString);
 }
