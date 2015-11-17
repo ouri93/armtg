@@ -266,7 +266,7 @@ function populateDetails(which) {
 }
 
 function success(which) {
-    $('#details').html('Added ' + which + "!");
+    return;
 }
 
 function populateSelectors(which) {
