@@ -7,6 +7,8 @@ sas = {};
 vms = {};
 vmsses = {};
 
+$(document).ready(drawCurrent);
+
 function commitsDivHtml(which) {
     ret =
 	'<div id="commits">' +
