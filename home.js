@@ -584,6 +584,7 @@ function drawCurrent() {
     }
 
     currentString += "\n";
+    currentString += "&nbsp;&nbsp;<span class='subtitle'>pips:</span>&nbsp;&nbsp;&nbsp;";
 
     for (pip in pips) {
 	currentString += "already-created-pip-" + pip;
