@@ -243,6 +243,18 @@ function addBlock(blockType) {
 	return;
     }
 
+    newBlock = {}
+    for (var property in block[blockType]['properties']) {
+	var val = null;
+	if (property['type'] == 'checkbox') {
+	    val = $('#' + property).is(":checked");
+	} else {
+	    val = $('#' + property).val();
+	}
+
+	newBlock[property] = val;
+    }
+
     return;
 
     switch (which) {
