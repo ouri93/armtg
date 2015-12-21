@@ -82,6 +82,66 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 				      'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
 		       'cospecifications': []}};
 
+function getView(details, referenceId) {
+    switch(details['type']) {
+    case 'text':
+	return "<input id='" + referenceId + "'></input>"
+
+    case 'num':
+	return "<input id='" + referenceId + "'></input>";
+
+    case 'password':
+	return "<input id='" + referenceId + "' type='password'></input>";
+
+    case 'dropdown':
+	ret = "<select id='" + referenceId + "'><option value='generateForMe'>generatForMe</option>";
+
+	if (!(details['required'])) {
+	    ret += "<option value='none'>none</option>";
+	}
+	
+	ret += "</select>";
+
+	return ret;
+
+    case 'storageType';
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Standard_LRS'>Standard_LRS</option>" +
+	    "<option value='Standard_GRS'>Standard_GRS</option>" +
+	    "<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
+	    "<option value='Premium_LRS'>Premium_LRS</option>" +
+	    "</select>";
+
+    case 'vmSize':
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Standard_A1'>Standard_A1</option>" +
+	    "<option value='Standard_A2'>Standard_A2</option>" +
+	    "<option value='Standard_A3'>Standard_A3</option>" +
+	    "<option value='Standard_A4'>Standard_A4</option>" +
+	    "<option value='Standard_D1'>Standard_D1</option>" +
+	    "<option value='Standard_D2'>Standard_D2</option>" +
+	    "<option value='Standard_D3'>Standard_D3</option>" +
+	    "<option value='Standard_D4'>Standard_D4</option>" +
+	    "</select>";
+
+    case 'os':
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Linux'>Linux</option>" +
+	    "<option value='Windows'>Windows</option>" +
+	    "</select>";
+
+    case 'checkbox':
+	return "<input type='checkbox' id='" + referenceId + "'></input>";
+
+
+	    
+    case default:
+	console.log('invalid view type ' + viewType + ' with referenceId ' + referenceId);
+    }
+}
+
+views = {'text': "<input id='domainLabel'></input>" +
+
 var properRowWidth = 12;
 
 $(document).ready(drawCurrent);
@@ -116,7 +176,7 @@ function populateDetails(blockType) {
 	}
 
 	blockHtml += "<div class='col-md-" + blocks[blockType]['properties'][property]['columnWidth'].toString() + "'>" +
-	    property + ": </div>";
+	    property + ": " + getView(blocks[blockType]['properties'][property], property) + "</div>";
 
 	currentWidthUsed += blocks[blockType]['properties'][property]['columnWidth'];
 
