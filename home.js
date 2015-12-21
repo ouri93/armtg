@@ -97,6 +97,7 @@ function commitsDivHtml(blockType) {
 }
 
 function populateDetails(blockType) {
+    console.log(blockType);
     var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
 
     var blockHtml =
