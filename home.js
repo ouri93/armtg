@@ -226,7 +226,7 @@ function populateSelectors(blockType) {
 	    value = getBlockName(blockType, blockName)
 	    option = "<option value='" + value + "'>" +
 		value + "</option>";
-	    $('#' + blockType).append(option);
+	    $('#' + populatableSelector).append(option);
 	}
     }
 }
