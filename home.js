@@ -104,7 +104,7 @@ function getView(details, referenceId) {
 
 	return ret;
 
-    case 'storageType';
+    case 'storageType':
 	return "<select id='" + referenceId + "'>" +
 	    "<option value='Standard_LRS'>Standard_LRS</option>" +
 	    "<option value='Standard_GRS'>Standard_GRS</option>" +
