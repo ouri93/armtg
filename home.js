@@ -127,7 +127,7 @@ function populateDetails(blockType) {
 	}
     }
 
-    detailsHtml += blockHtml + "<br/>" + commitsDivHtml(which) + "<hr/>";
+    detailsHtml += blockHtml + "<br/>" + commitsDivHtml(blockType) + "<hr/>";
 
     $('#details').html(detailsHtml);
 
