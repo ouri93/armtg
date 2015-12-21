@@ -524,8 +524,8 @@ function addBlock(which) {
 	lb = $('#lb').val();
 	vmssSAs = $('#sas').val();
 
-	if (infix in vms) {
-	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
+	if (infix in vmsses) {
+	    alert('There is already a vmss with infix "' + infix + '"! please choose a different infix, or edit/delete the other vmss.');
 	    break;
 	}
 
