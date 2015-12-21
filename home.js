@@ -29,7 +29,7 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 	      'PIP': {'plural': 'PIPs',
 		      'populatableSelectors': [],
 		      'blocks': {},
-		      'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 6}},
+		      'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
 		      'cospecifications': []},
 	      
 	      'NIC': {'plural': 'NICs',
