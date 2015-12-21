@@ -34,7 +34,7 @@ blocks = {'parameter': {'plural': 'parameters',
 		  'populatableSelectors': ['vnet', 'pip'],
 		  'blocks': {},
 		  'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-				 'pip': {'type': 'dropdown': 'required': false, 'columnWidth': 6}},
+				 'pip': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
 		  'cospecifications': []},
 
 	  'lb': {'plural': 'LBs',
