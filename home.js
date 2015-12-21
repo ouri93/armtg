@@ -1,4 +1,4 @@
-// rev 2
+// rev 3
 
 /*
   The blocks object is essentially the object model for all blocks.
@@ -61,7 +61,7 @@ blocks = {'parameter': {'plural': 'parameters',
 		 'populatableSelectors': ['nic', 'sa'],
 		 'blocks': {},
 		 'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
-				'os': {'type': 'os', 'required': true, , 'columnWidth': 6},
+				'os': {'type': 'os', 'required': true, 'columnWidth': 6},
 				'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
 				'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
 				'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
