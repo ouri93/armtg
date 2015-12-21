@@ -1,4 +1,4 @@
-// rev 1
+// rev 2
 
 /*
   The blocks object is essentially the object model for all blocks.
@@ -54,7 +54,7 @@ blocks = {'parameter': {'plural': 'parameters',
 	  'sa': {'plural': 'SAs',
 		 'populatableSelectors': [],
 		 'blocks': {},
-		 'properties': {'storageType': {'type': 'storageType', 'required': true, , 'columnWidth': 12}},
+		 'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
 		 'cospecifications': []},
 	  
 	  'vm': {'plural': 'VMs',
