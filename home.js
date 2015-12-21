@@ -140,8 +140,6 @@ function getView(details, referenceId) {
     }
 }
 
-views = {'text': "<input id='domainLabel'></input>" +
-
 var properRowWidth = 12;
 
 $(document).ready(drawCurrent);
