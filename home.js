@@ -374,7 +374,7 @@ function populateDetails(blockType) {
 }
 
 function getBlockName(blockType, blockName) {
-    if !(blockType in blocks) {
+    if (!(blockType in blocks)) {
 	console.log('ERROR: invalid block type: ' + blockType);
 	return;
     }
@@ -387,7 +387,7 @@ function getBlockName(blockType, blockName) {
 }
 
 function populateSelectors(blockType) {
-    if !(blockType in blocks) {
+    if (!(blockType in blocks)) {
 	console.log('ERROR: invalid block type: ' + blockType);
 	return;
     }
@@ -403,7 +403,7 @@ function populateSelectors(blockType) {
 }
 
 function addBlock(blockType) {
-    if !(blockType in blocks) {
+    if (!(blockType in blocks)) {
 	console.log('ERROR: invalid block type: ' + blockType);
 	return;
     }
