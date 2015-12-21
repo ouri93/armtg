@@ -14,80 +14,80 @@
   'properties::columnWidth': width of the column for that property; a single row has width of 12 (really belongs in a view of some sort but is convenient to have here)
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 */
-blocks = {'parameter': {'plural': 'parameters',
-			'populatableSelectors': [],
-			'blocks': {},
-			'properties': {},
-			'cospecifications': []},
+var blocks = {'parameter': {'plural': 'parameters',
+			    'populatableSelectors': [],
+			    'blocks': {},
+			    'properties': {},
+			    'cospecifications': []},
+	      
+	      'vnet': {'plural': 'VNETs',
+		       'populatableSelectors': [],
+		       'blocks': {},
+		       'properties': {},
+		       'cospecifications': []},
+	      
+	      'pip': {'plural': 'PIPs',
+		      'populatableSelectors': [],
+		      'blocks': {},
+		      'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 6}},
+		      'cospecifications': []},
+	      
+	      'nic': {'plural': 'NICs',
+		      'populatableSelectors': ['vnet', 'pip'],
+		      'blocks': {},
+		      'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+				     'pip': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
+		      'cospecifications': []},
+	      
+	      'lb': {'plural': 'LBs',
+		     'populatableSelectors': [],
+		     'blocks': {},
+		     'properties': {'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				    'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				    'roundRobinProbePort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				    'NATFrontEndStartingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				    'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				    'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
+		     'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
+					  ['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
+	      
+	      'sa': {'plural': 'SAs',
+		     'populatableSelectors': [],
+		     'blocks': {},
+		     'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
+		     'cospecifications': []},
+	      
+	      'vm': {'plural': 'VMs',
+		     'populatableSelectors': ['nic', 'sa'],
+		     'blocks': {},
+		     'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
+				    'os': {'type': 'os', 'required': true, 'columnWidth': 6},
+				    'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
+				    'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
+				    'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				    'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				    'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
+		     'cospecifications': []},
+	      
+	      'vmss': {'plural': 'VMSSes',
+		       'populatableSelectors': ['vnet', 'lb', 'sa'],
+		       'blocks': {},
+		       'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
+				      'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
+				      'os': {'type': 'os', 'required': true, 'columnWidth': 4},
+				      'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
+				      'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
+				      'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				      'lb': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
+				      'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4}}
+		       'cospecifications': []}};
 
-	  'vnet': {'plural': 'VNETs',
-		   'populatableSelectors': [],
-		   'blocks': {},
-		   'properties': {},
-		   'cospecifications': []},
-
-	  'pip': {'plural': 'PIPs',
-		  'populatableSelectors': [],
-		  'blocks': {},
-		  'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 6}},
-		  'cospecifications': []},
-
-	  'nic': {'plural': 'NICs',
-		  'populatableSelectors': ['vnet', 'pip'],
-		  'blocks': {},
-		  'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-				 'pip': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
-		  'cospecifications': []},
-
-	  'lb': {'plural': 'LBs',
-		 'populatableSelectors': [],
-		 'blocks': {},
-		 'properties': {'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				'roundRobinProbePort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				'NATFrontEndStartingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
-		 'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
-				      ['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
-	  
-	  'sa': {'plural': 'SAs',
-		 'populatableSelectors': [],
-		 'blocks': {},
-		 'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
-		 'cospecifications': []},
-	  
-	  'vm': {'plural': 'VMs',
-		 'populatableSelectors': ['nic', 'sa'],
-		 'blocks': {},
-		 'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
-				'os': {'type': 'os', 'required': true, 'columnWidth': 6},
-				'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
-				'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
-				'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
-		 'cospecifications': []},
-
-	  'vmss': {'plural': 'VMSSes',
-		   'populatableSelectors': ['vnet', 'lb', 'sa'],
-		   'blocks': {},
-		   'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
-				  'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
-				  'os': {'type': 'os', 'required': true, 'columnWidth': 4},
-				  'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
-				  'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
-				  'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				  'lb': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
-				  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4}}
-		   'cospecifications': []}};
-
-properRowWidth = 12;
+var properRowWidth = 12;
 
 $(document).ready(drawCurrent);
 
 function commitsDivHtml(blockType) {
-    ret =
+    var ret =
 	'<div id="commits">' +
 	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
 	'  <button class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
@@ -97,9 +97,9 @@ function commitsDivHtml(blockType) {
 }
 
 function populateDetails(blockType) {
-    detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
+    var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
 
-    blockHtml =
+    var blockHtml =
 	"<div class='row'>" +
 	"  <div class='col-md-6'>" + 
 	"    naming infix (distinguishes " + blocks[blockType]['plural'] + "): <input id='namingInfix'></input>" +
@@ -108,8 +108,8 @@ function populateDetails(blockType) {
 	"    number of  " + blocks[blockType]['plural'] + ": <input id='num'></input>" +
 	"  </div> " +
 	"</div>";
-    currentWidthUsed = 0;
-    for (property in blocks[blockType]['properties']) {
+    var currentWidthUsed = 0;
+    for (var property in blocks[blockType]['properties']) {
 	if (currentWidthUsed == 0) {
 	    blockHtml += "<div class='row'>";
 	}
@@ -120,6 +120,7 @@ function populateDetails(blockType) {
 	if (currentWidthUsed == properRowWidth) {
 	    blockHtml += "</div>";
 	    currentWidthUsed = 0;
+
 	} else if (currentWidthUsed > properRowWidth) {
 	    console.log("row width (" + currentWidthUsed.toString() + ") for for blockType " + blockType + " was over max of " + properRowWidth.toString());
 	}
@@ -407,11 +408,13 @@ function addBlock(blockType) {
 	return;
     }
 
-    infix = $('#namingInfix').val();
+    var infix = $('#namingInfix').val();
     if (infix in blocks[blockType]['blocks']) {
 	alert('There is already a ' + blockType + ' with infix "' + infix + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
 	return;
     }
+
+    return;
 
     switch (which) {
     case "VNET":
@@ -605,7 +608,7 @@ function nixBlock() {
 }
 
 function drawCurrent() {
-    currentString = "";
+    var currentString = "";
     for (blockType in blocks) {
 	currentString += "&nbsp;&nbsp;<span class='subtitle'>" + blockType['plural'] + ":</span>&nbsp;&nbsp;&nbsp;";
 	for (blockName in blocks[blockType]['blocks']) {
