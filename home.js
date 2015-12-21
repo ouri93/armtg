@@ -222,7 +222,7 @@ function populateSelectors(blockType) {
     }
     
     for (populatableSelector in blocks[blockType]['populatableSelectors']) {
-	for (blockName in blocks[populatableSelector]) {
+	for (blockName in blocks[populatableSelector]['blocks']) {
 	    value = getBlockName(blockType, blockName)
 	    option = "<option value='" + value + "'>" +
 		value + "</option>";
