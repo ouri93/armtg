@@ -135,7 +135,7 @@ function getView(details, referenceId) {
 
 
 	    
-    case default:
+    default:
 	console.log('invalid view type ' + viewType + ' with referenceId ' + referenceId);
     }
 }
