@@ -1,26 +1,135 @@
-parameters = {};
-vnets = {};
-pips = {};
-nics = {};
-lbs = {};
-sas = {};
-vms = {};
-vmsses = {};
+/*
+  The blocks object is essentially the object model for all blocks.
+  
+  Description of keys
+  -------------------
+  'plural': the plural form of the block type, used for interacting with the user
+  'populatableSelectors': selectors for an object that should be a dropdown based on existing blocks
+  'blocks': the currently created blocks of this type
+  'properties': the user-specified aspects of blocks of this type
+  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties::required': true if required, false if not
+  'properties::columnWidth': width of the column for that property; a single row has width of 12 (really belongs in a view of some sort but is convenient to have here)
+  'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
+*/
+blocks = {'parameter': {'plural': 'parameters',
+			'populatableSelectors': [],
+			'blocks': {},
+			'properties': {},
+			'cospecifications': []},
+
+	  'vnet': {'plural': 'VNETs',
+		   'populatableSelectors': [],
+		   'blocks': {},
+		   'properties': {},
+		   'cospecifications': []},
+
+	  'pip': {'plural': 'PIPs',
+		  'populatableSelectors': [],
+		  'blocks': {},
+		  'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 6}},
+		  'cospecifications': []},
+
+	  'nic': {'plural': 'NICs',
+		  'populatableSelectors': ['vnet', 'pip'],
+		  'blocks': {},
+		  'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+				 'pip': {'type': 'dropdown': 'required': false, 'columnWidth': 6}},
+		  'cospecifications': []},
+
+	  'lb': {'plural': 'LBs',
+		 'populatableSelectors': [],
+		 'blocks': {},
+		 'properties': {'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				'roundRobinProbePort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				'NATFrontEndStartingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+				'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
+		 'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
+				      ['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
+	  
+	  'sa': {'plural': 'SAs',
+		 'populatableSelectors': [],
+		 'blocks': {},
+		 'properties': {'storageType': {'type': 'storageType', 'required': true, , 'columnWidth': 12}},
+		 'cospecifications': []},
+	  
+	  'vm': {'plural': 'VMs',
+		 'populatableSelectors': ['nic', 'sa'],
+		 'blocks': {},
+		 'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
+				'os': {'type': 'os', 'required': true, , 'columnWidth': 6},
+				'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
+				'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
+				'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
+		 'cospecifications': []},
+
+	  'vmss': {'plural': 'VMSSes',
+		   'populatableSelectors': ['vnet', 'lb', 'sa'],
+		   'blocks': {},
+		   'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
+				  'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
+				  'os': {'type': 'os', 'required': true, 'columnWidth': 4},
+				  'admin username': {'type': 'text', 'required': true, 'columnWidth': 6},
+				  'admin password': {'type': 'password', 'required': true, 'columnWidth': 6},
+				  'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+				  'lb': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
+				  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4}}
+		   'cospecifications': []}}
+
+properRowWidth = 12;
 
 $(document).ready(drawCurrent);
 
-function commitsDivHtml(which) {
+function commitsDivHtml(blockType) {
     ret =
 	'<div id="commits">' +
-	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + which + '\')">Add</button>' +
+	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
 	'  <button class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
 	'</div>';
 
     return ret;
 }
 
-function populateDetails(which) {
-    detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + which + "</div><br/><br/>";
+function populateDetails(blockType) {
+    detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
+
+    blockHtml =
+	"<div class='row'>" +
+	"  <div class='col-md-6'>" + 
+	"    naming infix (distinguishes " + blocks[blockType]['plural'] + "): <input id='namingInfix'></input>" +
+	"  </div> " +
+	"  <div class='col-md-6'>" + 
+	"    number of  " + blocks[blockType]['plural'] + ": <input id='num'></input>" +
+	"  </div> " +
+	"</div>";
+    currentWidthUsed = 0;
+    for (property in blocks[blockType]['properties']) {
+	if (currentWidthUsed == 0) {
+	    blockHtml += "<div class='row'>";
+	}
+
+	blockHtml += "<div class='col-md-" + blocks[blockType]['properties'][property]['columnWidth'].toString() + "'>" +
+	    property + ": ";
+
+	if (currentWidthUsed == properRowWidth) {
+	    blockHtml += "</div>";
+	    currentWidthUsed = 0;
+	} else if (currentWidthUsed > properRowWidth) {
+	    console.log("row width (" + currentWidthUsed.toString() + ") for for blockType " + blockType + " was over max of " + properRowWidth.toString());
+	}
+    }
+
+    detailsHtml += blockHtml + "<br/>" + commitsDivHtml(which) + "<hr/>";
+
+    $('#details').html(detailsHtml);
+
+//    populateSelectors(which);
+
+    return;
 
     switch (which) {
     case "VNET":
@@ -252,133 +361,74 @@ function populateDetails(which) {
 	    "  </div>" +
 	    "  <div class='col-md-4'>" +
 	    "    storage account(s): " +
-	    "    <select id='sas'>" +
+	    "    <select id='sa'>" +
 	    "      <option value='generate for me'>generate for me</option>" +
 	    "    </select>" + 
 	    "  </div>" +
 	    "</div>";
 	break;
     }
-
-    detailsHtml += "<br/>" + commitsDivHtml(which) + "<hr/>";
-
-    $('#details').html(detailsHtml);
-
-    populateSelectors(which);
 }
 
-function success(which) {
-    return;
-}
-
-function populateSelectors(which) {
-    switch (which) {
-    case "NIC":
-	for (vnet in vnets) {
-	    value = "already-created-vnet-subnet-" + vnet;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#subnet").append(option);
-	}
-
-	for (pip in pips) {
-	    value = "already-created-pip-" + pip;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#pip").append(option);
-	}
-	
-	break;
-
-    case "VM":
-	for (nic in nics) {
-	    value = "already-created-nic-" + nic;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#nic").append(option);
-	}
-
-	for (sa in sas) {
-	    value = "already-created-sa-" + sa;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#sa").append(option);
-	}
-	
-	break;
-
-    case "VMSS":
-	for (vnet in vnets) {
-	    value = "already-created-subnet-" + vnet;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#subnet").append(option);
-	}
-
-	for (lb in lbs) {
-	    value = "already-created-lb-" + lb;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#lb").append(option);
-	}
-
-	for (sa in sas) {
-	    value = "already-created-sa-" + sa;
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
-	    $("#sas").append(option);
-	}
-
-	break;
+function getBlockName(blockType, blockName) {
+    if !(blockType in blocks) {
+	console.log('ERROR: invalid block type: ' + blockType);
+	return;
     }
 
+    if (blockName == "") {
+	return blockType;
+    }
+
+    return blockType + '-' + blockName;
 }
 
-function addBlock(which) {
+function populateSelectors(blockType) {
+    if !(blockType in blocks) {
+	console.log('ERROR: invalid block type: ' + blockType);
+	return;
+    }
+    
+    for (populatableSelector in blocks[blockType]['populatableSelectors']) {
+	for (blockName in blocks[populatableSelector]) {
+	    value = getBlockName(blockType, blockName)
+	    option = "<option value='" + value + "'>" +
+		value + "</option>";
+	    $('#' + blockType).append(option);
+	}
+    }
+}
+
+function addBlock(blockType) {
+    if !(blockType in blocks) {
+	console.log('ERROR: invalid block type: ' + blockType);
+	return;
+    }
+
+    infix = $('#namingInfix').val();
+    if (infix in blocks[blockType]['blocks']) {
+	alert('There is already a ' + blockType + ' with infix "' + infix + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
+	return;
+    }
+
     switch (which) {
     case "VNET":
-	infix = $('#namingInfix').val();
-
-	if (infix in vnets) {
-	    alert('There is already a vnet with infix"' + infix + '"! please choose a different infix, or edit/delete the other vnet.');
-	    break;
-	}
-
 	vnets[infix] = {};
-	success(which);
 	break;
 
     case "PIP":
-	infix = $("#namingInfix").val();
 	domainLabel = $('#domainLabel').val();
-
-	if (infix in pips) {
-	    alert('There is already a pip with infix"' + infix + '"! please choose a different infix, or edit/delete the other pip.');
-	    break;
-	}
-
 	pips[infix] = {"domainLabel": domainLabel};
-	success(which);
 	break;
 
     case "NIC":
-	infix = $("#namingInfix").val();
 	subnet = $("#subnet").val();
 	pip = $("#pip").val();
-
-	if (infix in nics) {
-	    alert('There is already a nic with infix "' + infix + '"! please choose a different infix, or edit/delete the other nic.');
-	    break;
-	}
-
 	nics[infix] = {"subnet": subnet,
 		       "pip": pip};
-	success(which);
 	break;
 
     case "LB":
-	infix = $("#namingInfix").val();
-
 	roundRobinFrontEndPort = parseInt($("#roundRobinFrontEndPort").val());
 	roundRobinBackEndPort = parseInt($("#roundRobinBackEndPort").val());
 	roundRobinProbePort = parseInt($("#roundRobinProbePort").val());
@@ -387,11 +437,6 @@ function addBlock(which) {
 	NATFrontEndEndingPort = parseInt($("#NATFrontEndEndingPort").val());
 	NATBackEndPort = parseInt($("#NATBackEndPort").val());
 
-	if (infix in lbs) {
-	    alert('There is already a lb with infix "' + infix + '"! please choose a different infix, or edit/delete the other lb.');
-	    break;
-	}
-	
 	allRREmpty =
 	    isNaN(roundRobinFrontEndPort) &&
 	    isNaN(roundRobinBackEndPort) &&
@@ -437,18 +482,11 @@ function addBlock(which) {
 		       "NATFrontEndStartingPort": NATFrontEndStartingPort,
 		       "NATFrontEndEndingPort": NATFrontEndEndingPort,
 		       "NATBackEndPort": NATBackEndPort};
-	success(which);
 	break;
 
     case "SA":
-	infix = $('#namingInfix').val();
 	type = $('#type').val();
 	num = parseInt($('#numsas').val());
-
-	if (infix in sas) {
-	    alert('There is already a sa with infix "' + infix + '"! please choose a different infix, or edit/delete the other sa.');
-	    break;
-	}
 
 	if (isNaN(num)) {
 	    alert('The number of SAs is invalid!');
@@ -462,11 +500,9 @@ function addBlock(which) {
 
 	sas[infix] = {"type": type,
 		      "num": num};
-	success(which);
 	break;
 
     case "VM":
-	infix = $('#namingInfix').val();
 	num = parseInt($('#numVMs').val());
 	size = $('#size').val();
 	os = $('#OS').val();
@@ -475,11 +511,6 @@ function addBlock(which) {
 	nic = $('#nic').val();
 	sa = $('#sa').val();
 	bd = $('#bootDiagnostics').is(":checked");
-
-	if (infix in vms) {
-	    alert('There is already a vm with infix "' + infix + '"! please choose a different infix, or edit/delete the other vm.');
-	    break;
-	}
 
 	if (isNaN(num)) {
 	    alert('The number of VMs is invalid!');
@@ -509,11 +540,9 @@ function addBlock(which) {
 		      "nic": nic,
 		      "sa": sa,
 		      "bd": bd};
-	success(which);
 	break;
 
     case "VMSS":
-	infix = $('#namingInfix').val();
 	numVMSS = parseInt($('#numVMSS').val());
 	target = parseInt($('#targetInstanceCount').val());
 	size = $('#size').val();
@@ -523,11 +552,6 @@ function addBlock(which) {
 	subnet = $('#subnet').val();
 	lb = $('#lb').val();
 	vmssSAs = $('#sas').val();
-
-	if (infix in vmsses) {
-	    alert('There is already a vmss with infix "' + infix + '"! please choose a different infix, or edit/delete the other vmss.');
-	    break;
-	}
 
 	if (isNaN(numVMSS)) {
 	    alert('The number of VMSSes is invalid!');
@@ -568,7 +592,6 @@ function addBlock(which) {
 		      "subnet": subnet,
 		      "lb": lb,
 		      "sas": vmssSAs};
-	success(which);
 	break;
     }
 
@@ -580,51 +603,14 @@ function nixBlock() {
 }
 
 function drawCurrent() {
-    currentString = "&nbsp;&nbsp;<span class='subtitle'>VNETs:</span>&nbsp;&nbsp;&nbsp;";
-    for (vnet in vnets) {
-	currentString += "already-created-vnet-subnet-" + vnet + "&nbsp;&nbsp;&nbsp;";
-    }
+    currentString = "";
+    for (blockType in blocks) {
+	currentString += "&nbsp;&nbsp;<span class='subtitle'>" + blockType['plural'] + ":</span>&nbsp;&nbsp;&nbsp;";
+	for (blockName in blocks[blockType]['blocks']) {
+	    currentString += getBlockName(blockType, blockName) + "&nbsp;&nbsp;&nbsp;";
+	}
 
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>PIPs:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (pip in pips) {
-	currentString += "already-created-pip-" + pip + "&nbsp;&nbsp;&nbsp;";
-    }
-
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>NICs:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (nic in nics) {
-	currentString += "already-created-nic-" + nic + "&nbsp;&nbsp;&nbsp;";
-    }
-
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>LBs:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (lb in lbs) {
-	currentString += "already-created-lb-" + lb + "&nbsp;&nbsp;&nbsp;";
-    }
-
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>SAs:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (sa in sas) {
-	currentString += "already-created-sa-" + sa + "&nbsp;&nbsp;&nbsp;";
-    }
-
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>VMs:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (vm in vms) {
-	currentString += "already-created-vm-" + vm + "&nbsp;&nbsp;&nbsp;";
-    }
-
-    currentString += "<br/>";
-    currentString += "&nbsp;&nbsp;<span class='subtitle'>VMSSes:</span>&nbsp;&nbsp;&nbsp;";
-
-    for (vmss in vmsses) {
-	currentString += "already-created-vmss-" + vmss + "&nbsp;&nbsp;&nbsp;";
+	currentString += "<br/>";
     }
     
     $("#current").html(currentString);
