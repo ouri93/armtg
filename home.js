@@ -171,6 +171,7 @@ function populateDetails(blockType) {
     var currentWidthUsed = 0;
     for (var property in blocks[blockType]['properties']) {
 	if (currentWidthUsed == 0) {
+	    blockHtml += "<br/>";
 	    blockHtml += "<div class='row'>";
 	}
 
@@ -181,7 +182,6 @@ function populateDetails(blockType) {
 
 	if (currentWidthUsed == properRowWidth) {
 	    blockHtml += "</div>";
-	    blockHtml += "<br/>";
 	    currentWidthUsed = 0;
 
 	} else if (currentWidthUsed > properRowWidth) {
