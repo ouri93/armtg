@@ -80,7 +80,7 @@ blocks = {'parameter': {'plural': 'parameters',
 				  'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
 				  'lb': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
 				  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 4}}
-		   'cospecifications': []}}
+		   'cospecifications': []}};
 
 properRowWidth = 12;
 
