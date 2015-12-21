@@ -243,7 +243,7 @@ function addBlock(blockType) {
 	return;
     }
 
-    newBlock = {}
+    var newBlock = {}
     for (var property in blocks[blockType]['properties']) {
 	var val = null;
 	if (property['type'] == 'checkbox') {
@@ -255,7 +255,7 @@ function addBlock(blockType) {
 	newBlock[property] = val;
     }
 
-    blocks[blockType]['blocks'].push(newBlock);
+    blocks[blockType]['blocks'][infix] = newBlock;
 
     return;
 
