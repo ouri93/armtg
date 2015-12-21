@@ -118,7 +118,7 @@ function populateDetails(blockType) {
 	blockHtml += "<div class='col-md-" + blocks[blockType]['properties'][property]['columnWidth'].toString() + "'>" +
 	    property + ": </div>";
 
-	currentWidthUsed += blocks[blockType['properties'][property]['columnWidth'];
+	currentWidthUsed += blocks[blockType]['properties'][property]['columnWidth'];
 
 	if (currentWidthUsed == properRowWidth) {
 	    blockHtml += "</div>";
