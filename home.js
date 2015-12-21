@@ -6,12 +6,19 @@
   Description of keys
   -------------------
   'plural': the plural form of the block type, used for interacting with the user
+
   'populatableSelectors': selectors for an object that should be a dropdown based on existing blocks
+
   'blocks': the currently created blocks of this type
+
   'properties': the user-specified aspects of blocks of this type
+
   'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+
   'properties::required': true if required, false if not
-  'properties::columnWidth': width of the column for that property; a single row has width of 12 (really belongs in a view of some sort but is convenient to have here)
+
+  'properties::columnWidth': width of the column for that property; a single row has width of 12 (really belongs in a view of some sort but is convenient to have here); EACH ROW MUST ADD UP TO 12; THE VIEW-GENERATION CODE ASSUMES THIS; IF THE LAST ROW DOES NOT ADD UP TO 12, THE CLOSING </div> WON'T BE ADDED
+
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 */
 var blocks = {'PARAMETER': {'plural': 'parameters',
@@ -192,7 +199,7 @@ function populateDetails(blockType) {
 
     $('#details').html(detailsHtml);
 
-//    populateSelectors(which);
+    populateSelectors(blockType);
 }
 
 function getBlockName(blockType, blockName) {
