@@ -94,7 +94,7 @@ function getView(details, referenceId) {
 	return "<input id='" + referenceId + "' type='password'></input>";
 
     case 'dropdown':
-	ret = "<select id='" + referenceId + "'><option value='generateForMe'>generatForMe</option>";
+	ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
 
 	if (!(details['required'])) {
 	    ret += "<option value='none'>none</option>";
@@ -167,6 +167,7 @@ function populateDetails(blockType) {
 	"    number of  " + blocks[blockType]['plural'] + ": <input id='num'></input>" +
 	"  </div> " +
 	"</div>";
+
     var currentWidthUsed = 0;
     for (var property in blocks[blockType]['properties']) {
 	if (currentWidthUsed == 0) {
@@ -180,6 +181,7 @@ function populateDetails(blockType) {
 
 	if (currentWidthUsed == properRowWidth) {
 	    blockHtml += "</div>";
+	    blockHtml += "<br/>";
 	    currentWidthUsed = 0;
 
 	} else if (currentWidthUsed > properRowWidth) {
