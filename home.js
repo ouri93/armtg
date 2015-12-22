@@ -259,12 +259,7 @@ function validateBlock(blockType, proposedBlock) {
 		return false;
 	    }
 
-	    /*
-	      === is important here because false == "", so a checkbox with value false, even though specified, will trigger
-	      this alert even though it shouldn't; granted, it's impossible to not provide a value for a checkbox,
-	      so checking whether or not it is specified is pointless in the first place, so perhaps this should be fixed
-	     */
-	    if (proposedBlock[property] === "") {
+	    if (proposedBlock[property] === undefined) {
 		alert('Property ' + property + ' is required but not specified!');
 		return false;
 	    }
