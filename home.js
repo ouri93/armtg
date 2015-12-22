@@ -223,7 +223,7 @@ function populateSelectors(blockType) {
     
     for (populatableSelector in blocks[blockType]['populatableSelectors']) {
 	for (blockName in blocks[populatableSelector]['blocks']) {
-	    value = getBlockName(blockType, blockName)
+	    value = getBlockName(populatableSelector, blockName)
 	    option = "<option value='" + value + "'>" +
 		value + "</option>";
 	    $('#' + populatableSelector).append(option);
