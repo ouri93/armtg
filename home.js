@@ -95,7 +95,7 @@ function getView(details, referenceId) {
 	return "<input id='" + referenceId + "'></input>"
 
     case 'num':
-	return "<input id='" + referenceId + "'></input>";
+	return "<input id='" + referenceId + "' type='number'></input>";
 
     case 'password':
 	return "<input id='" + referenceId + "' type='password'></input>";
@@ -231,6 +231,38 @@ function populateSelectors(blockType) {
     }
 }
 
+function numValidity(n, property) {
+    if (isNaN(n)) {
+	alert('Must provide property ' + property + '!');
+	return false;
+    }
+    
+    if (n < 1) {
+	alert('The property ' + property + ' must be a positive integer!');
+	return false;
+    }
+}
+
+function validateBlock(blockType, proposedBlock) {
+    for (var property in blocks[blockType]['properties']) {
+	if (blocks[blockType]['properties']['type'] == 'num') {
+	    return numValidity(proposedBlock[property], property);
+	}
+
+	if (blocks[blockType]['properties'][property]['required']) {
+	    if (!(property in proposedBlock)) {
+		alert('Property ' + property + ' is required but not specified!');
+		return false;
+	    }
+
+	    if (proposedBlock[property] == "") {
+		alert('Property ' + property + ' is required but not specified!');
+		return false;
+	    }
+	}
+    }
+}
+
 function addBlock(blockType) {
     if (!(blockType in blocks)) {
 	console.log('ERROR: invalid block type: ' + blockType);
@@ -250,6 +282,11 @@ function addBlock(blockType) {
 	    val = $('#' + property).is(":checked");
 	} else {
 	    val = $('#' + property).val();
+	}
+
+	// convert 'none' in dropdowns to "" for consistency with other 'none's, which are represented by ""
+	if (blocks[blockType]['properties'][property]['type'] == 'dropdown' & val == 'none') {
+	    val = "";
 	}
 
 	newBlock[property] = val;
