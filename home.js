@@ -286,7 +286,7 @@ function addBlock(blockType) {
 	return;
     }
 
-    var numCopy = $('#num').val();
+    var numCopy = parseInt($('#num').val());
     if (!numValidity(numCopy, 'number of ' + blocks[blockType]['plural'])) {
 	return;
     }
@@ -296,6 +296,8 @@ function addBlock(blockType) {
 	var val = null;
 	if (blocks[blockType]['properties'][property]['type'] == 'checkbox') {
 	    val = $('#' + property).is(":checked");
+	} else if (blocks[blockType]['properties'][property]['type'] == 'num'){
+	    val = parseInt($('#' + property).val());
 	} else {
 	    val = $('#' + property).val();
 	}
@@ -306,6 +308,8 @@ function addBlock(blockType) {
     if (!validateBlock(blockType, newBlock)) {
 	return;
     }
+
+    newBlock['numCopy': numCopy];
 
     blocks[blockType]['blocks'][infix] = newBlock;
 
