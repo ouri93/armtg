@@ -309,7 +309,7 @@ function addBlock(blockType) {
 	return;
     }
 
-    newBlock['numCopy': numCopy];
+    newBlock['numCopy'] = numCopy;
 
     blocks[blockType]['blocks'][infix] = newBlock;
 
