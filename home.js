@@ -285,7 +285,7 @@ function addBlock(blockType) {
     var newBlock = {}
     for (var property in blocks[blockType]['properties']) {
 	var val = null;
-	if (property['type'] == 'checkbox') {
+	if (blocks[blockType]['properties'][property]['type'] == 'checkbox') {
 	    val = $('#' + property).is(":checked");
 	} else {
 	    val = $('#' + property).val();
