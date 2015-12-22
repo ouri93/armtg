@@ -241,6 +241,8 @@ function numValidity(n, property) {
 	alert('The property ' + property + ' must be a positive integer!');
 	return false;
     }
+
+    return true;
 }
 
 function validateBlock(blockType, proposedBlock) {
@@ -263,6 +265,8 @@ function validateBlock(blockType, proposedBlock) {
 	    }
 	}
     }
+
+    return true;
 }
 
 function addBlock(blockType) {
