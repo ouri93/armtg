@@ -246,7 +246,9 @@ function numValidity(n, property) {
 function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
 	if (blocks[blockType]['properties']['type'] == 'num') {
-	    return numValidity(proposedBlock[property], property);
+	    if (!numValidity(proposedBlock[property], property)) {
+		return false;
+	    }
 	}
 
 	if (blocks[blockType]['properties'][property]['required']) {
@@ -289,12 +291,11 @@ function addBlock(blockType) {
 	    val = $('#' + property).val();
 	}
 
-	// convert 'none' in dropdowns to "" for consistency with other 'none's, which are represented by ""
-	if (blocks[blockType]['properties'][property]['type'] == 'dropdown' & val == 'none') {
-	    val = "";
-	}
-
 	newBlock[property] = val;
+    }
+
+    if (!validateBlock(blockType, newBlock)) {
+	return;
     }
 
     blocks[blockType]['blocks'][infix] = newBlock;
