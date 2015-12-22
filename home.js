@@ -275,6 +275,11 @@ function addBlock(blockType) {
 	return;
     }
 
+    var numCopy = $('#num').val();
+    if (!numValidity(numCopy, 'number of ' + blocks[blockType]['plural'])) {
+	return;
+    }
+
     var newBlock = {}
     for (var property in blocks[blockType]['properties']) {
 	var val = null;
