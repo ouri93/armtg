@@ -260,6 +260,11 @@ function validateBlock(blockType, proposedBlock) {
 	    }
 
 	    if (proposedBlock[property] === undefined) {
+		alert('property ' + property + ' was undefined with block type ' + blockType + ' and proposedBlock ' + JSON.stringify(proposedBlock));
+		return false;
+	    }
+
+	    if (proposedBlock[property] === "") {
 		alert('Property ' + property + ' is required but not specified!');
 		return false;
 	    }
