@@ -233,12 +233,10 @@ function populateSelectors(blockType) {
 
 function numValidity(n, property) {
     if (isNaN(n)) {
-	alert('Must provide property ' + property + '!');
 	return false;
     }
     
     if (n < 1) {
-	alert('The property ' + property + ' must be a positive integer!');
 	return false;
     }
 
@@ -247,17 +245,14 @@ function numValidity(n, property) {
 
 function stringSpecified(property, proposedBlock) {
     if (!(property in proposedBlock)) {
-	alert('Property ' + property + ' is required but not specified!');
 	return false;
     }
     
     if (proposedBlock[property] === undefined) {
-	alert('property ' + property + ' was undefined with block type ' + blockType + ' and proposedBlock ' + JSON.stringify(proposedBlock));
 	return false;
     }
     
     if (proposedBlock[property] === "") {
-	alert('Property ' + property + ' is required but not specified!');
 	return false;
     }
 
@@ -292,6 +287,7 @@ function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
 	if (blocks[blockType]['properties'][property]['required']) {
 	    if (!specified(property, blockType, proposedBlock)) {
+		alert("please specify a proper value for property " + property);
 		return false;
 	    }
 	}
