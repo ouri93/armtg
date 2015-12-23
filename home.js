@@ -280,7 +280,7 @@ function allSpecified(propertyList, blockType, proposedBlock) {
     
     return specifieds.reduce(function(prev, cur, index, arr) {
 	return prev && cur;
-    });
+    }, true);
 }
 
 function validateBlock(blockType, proposedBlock) {
@@ -293,16 +293,13 @@ function validateBlock(blockType, proposedBlock) {
 	}
     }
     
-    // if cospecifications array is empty, default to true
-    var atLeastOneGroupSatisfied = true;
-
     var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
 	return allSpecified(propertyList, blockType, proposedBlock);
     });
 
-    atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
+    var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
 	return prev || cur;
-    });
+    }, true);
 
     if (!atLeastOneGroupSatisfied) {
 	groupsString = "";
