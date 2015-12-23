@@ -231,7 +231,7 @@ function populateSelectors(blockType) {
     }
 }
 
-function numValidity(n, property) {
+function numValidity(n) {
     if (isNaN(n)) {
 	return false;
     }
@@ -265,7 +265,7 @@ function specified(property, blockType, proposedBlock) {
     }
 
     if (blocks[blockType]['properties'][property]['type'] == 'num') {
-	if (!numValidity(proposedBlock[property], property)) {
+	if (!numValidity(proposedBlock[property])) {
 	    return false;
 	}
     }
@@ -331,7 +331,8 @@ function addBlock(blockType) {
     }
 
     var numCopy = parseInt($('#num').val());
-    if (!numValidity(numCopy, 'number of ' + blocks[blockType]['plural'])) {
+    if (!numValidity(numCopy)) {
+	alert('invalid number of ' + blocks[blockType]['plural'] + '!');
 	return;
     }
 
