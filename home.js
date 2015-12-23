@@ -342,12 +342,12 @@ function addBlock(blockType) {
 	return;
     }
 
-    if (newBlock['properties']['namingInfix'] in blocks[blockType]['blocks']) {
-	alert('There is already a ' + blockType + ' with naming infix "' + newBlock['properties']['namingInfix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
+    if (newBlock['namingInfix'] in blocks[blockType]['blocks']) {
+	alert('There is already a ' + blockType + ' with naming infix "' + newBlock['namingInfix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
 	return;
     }
 
-    blocks[blockType]['blocks'][newBlock['properties']['namingInfix']] = newBlock;
+    blocks[blockType]['blocks'][newBlock['namingInfix']] = newBlock;
 
     drawCurrent();
 }
