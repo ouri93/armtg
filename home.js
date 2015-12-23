@@ -297,6 +297,17 @@ function validateBlock(blockType, proposedBlock) {
 	return prev || cur;
     });
 
+    if (!atLeastOneGroupSatisfied) {
+	groupsString = "";
+	for (var group in blocks[blockType]['cospecifications']) {
+	    "[" + group.toString() + "], "
+	}
+
+	// -2 to remove excess ", " at the end
+	alert("Must specifiy all of the members of at least one of the following groups: " +
+	      groupsString.substring(0, groupsString.length-2));
+    }
+
     return atLeastOneGroupSatisfied;
 }
 
