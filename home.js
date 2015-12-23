@@ -245,7 +245,7 @@ function numValidity(n, property) {
     return true;
 }
 
-function specified(property, proposedBlock) {
+function stringSpecified(property, proposedBlock) {
     if (!(property in proposedBlock)) {
 	alert('Property ' + property + ' is required but not specified!');
 	return false;
@@ -264,6 +264,20 @@ function specified(property, proposedBlock) {
     return true;
 }
 
+function specified(property, proposedBlock) {
+    if (!stringSpecified(property, proposedBlock)) {
+	return false;
+    }
+    
+    if (blocks[blockType]['properties'][property]['type'] == 'num') {
+	if (!numValidity(proposedBlock[property], property)) {
+	    return false;
+	}
+    }
+
+    return true;
+}
+
 function allSpecified(propertyList, proposedBlock) {
     var specifieds = propertyList.map(function(property) {
 	return specified(property, proposedBlock);
@@ -276,12 +290,6 @@ function allSpecified(propertyList, proposedBlock) {
 
 function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
-	if (blocks[blockType]['properties']['type'] == 'num') {
-	    if (!numValidity(proposedBlock[property], property)) {
-		return false;
-	    }
-	}
-	
 	if (blocks[blockType]['properties'][property]['required']) {
 	    if (!specified(property, proposedBlock)) {
 		return false;
@@ -289,11 +297,14 @@ function validateBlock(blockType, proposedBlock) {
 	}
     }
     
+    // if cospecifications array is empty, default to true
+    var atLeastOneGroupSatisfied = true;
+
     var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
 	return allSpecified(propertyList, proposedBlock);
     });
 
-    var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
+    atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
 	return prev || cur;
     });
 
