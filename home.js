@@ -21,13 +21,7 @@
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 */
-var blocks = {'PARAMETER': {'plural': 'parameters',
-			    'populatableSelectors': {},
-			    'blocks': {},
-			    'properties': {},
-			    'cospecifications': []},
-	      
-	      'VNET': {'plural': 'VNETs',
+var blocks = {'VNET': {'plural': 'VNETs',
 		       'populatableSelectors': {},
 		       'blocks': {},
 		       'properties': {},
