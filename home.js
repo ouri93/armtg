@@ -306,8 +306,8 @@ function validateBlock(blockType, proposedBlock) {
 
     if (!atLeastOneGroupSatisfied) {
 	groupsString = "";
-	for (var group in blocks[blockType]['cospecifications']) {
-	    "[" + group.toString() + "], "
+	for (var index in blocks[blockType]['cospecifications']) {
+	    "[" + blocks[blockType]['cospecifications'][index].toString() + "], "
 	}
 
 	// -2 to remove excess ", " at the end
