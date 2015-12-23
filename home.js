@@ -293,26 +293,30 @@ function validateBlock(blockType, proposedBlock) {
 	}
     }
     
-    var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
-	return allSpecified(propertyList, blockType, proposedBlock);
-    });
+    if (blocks[blockType]['cospecifications'].length > 0) {
+	var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
+	    return allSpecified(propertyList, blockType, proposedBlock);
+	});
+	
+	var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
+	    return prev || cur;
+	}, false);
 
-    var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
-	return prev || cur;
-    }, true);
+	if (!atLeastOneGroupSatisfied) {
+	    groupsString = "";
+	    for (var index in blocks[blockType]['cospecifications']) {
+		groupsString += "[" + blocks[blockType]['cospecifications'][index].toString() + "], ";
+	    }
+	    
+	    // -2 to remove excess ", " at the end
+	    alert("Must specifiy all of the members of at least one of the following groups: " +
+		  groupsString.substring(0, groupsString.length-2));
 
-    if (!atLeastOneGroupSatisfied) {
-	groupsString = "";
-	for (var index in blocks[blockType]['cospecifications']) {
-	    groupsString += "[" + blocks[blockType]['cospecifications'][index].toString() + "], ";
+	    return false;
 	}
-
-	// -2 to remove excess ", " at the end
-	alert("Must specifiy all of the members of at least one of the following groups: " +
-	      groupsString.substring(0, groupsString.length-2));
     }
 
-    return atLeastOneGroupSatisfied;
+    return true;
 }
 
 function addBlock(blockType) {
