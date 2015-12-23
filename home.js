@@ -265,7 +265,7 @@ function specified(property, proposedBlock) {
 }
 
 function allSpecified(propertyList, proposedBlock) {
-    var specifieds = arr.map(function(property) {
+    var specifieds = propertyList.map(function(property) {
 	return specified(property, proposedBlock);
     });
     
