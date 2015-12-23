@@ -91,7 +91,7 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 
 // add common properties to all block types
 for (var blockType in blocks) {
-    blocks[blockType]['properties']['infix'] = {'type': 'tex', 'required': false, 'columnWidth': 6};
+    blocks[blockType]['properties']['infix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
     blocks[blockType]['properties']['numCopy'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
@@ -149,7 +149,7 @@ function getView(details, referenceId) {
 
 	    
     default:
-	console.log('invalid view type ' + viewType + ' with referenceId ' + referenceId);
+	console.log('invalid view type ' + details['type'] + ' with referenceId ' + referenceId);
     }
 }
 
