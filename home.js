@@ -92,7 +92,7 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 // add common properties to all block types
 for (var blockType in blocks) {
     blocks[blockType]['properties']['infix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
-    blocks[blockType]['properties']['numCopy'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+    blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
 function getView(details, referenceId) {
@@ -170,16 +170,7 @@ function commitsDivHtml(blockType) {
 function populateDetails(blockType) {
     var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
 
-    var blockHtml =
-	"<div class='row'>" +
-	"  <div class='col-md-6'>" + 
-	"    naming infix (distinguishes " + blocks[blockType]['plural'] + "): <input id='infix'></input>" +
-	"  </div> " +
-	"  <div class='col-md-6'>" + 
-	"    number of  " + blocks[blockType]['plural'] + ": <input id='numCopy'></input>" +
-	"  </div> " +
-	"</div>";
-
+    var blockHtml = ""
     var currentWidthUsed = 0;
     for (var property in blocks[blockType]['properties']) {
 	if (currentWidthUsed == 0) {
