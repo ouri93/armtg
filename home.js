@@ -91,7 +91,7 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 
 // add common properties to all block types
 for (var blockType in blocks) {
-    blocks[blockType]['properties']['infix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
+    blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
     blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
@@ -342,12 +342,12 @@ function addBlock(blockType) {
 	return;
     }
 
-    if (newBlock['properties']['infix'] in blocks[blockType]['blocks']) {
-	alert('There is already a ' + blockType + ' with infix "' + newBlock['properties']['infix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
+    if (newBlock['properties']['namingInfix'] in blocks[blockType]['blocks']) {
+	alert('There is already a ' + blockType + ' with naming infix "' + newBlock['properties']['namingInfix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
 	return;
     }
 
-    blocks[blockType]['blocks'][infix] = newBlock;
+    blocks[blockType]['blocks'][newBlock['properties']['namingInfix']] = newBlock;
 
     return;
 
