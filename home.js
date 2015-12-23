@@ -89,6 +89,12 @@ var blocks = {'PARAMETER': {'plural': 'parameters',
 				      'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
 		       'cospecifications': []}};
 
+// add common properties to all block types
+for (var blockType in blocks) {
+    blocks[blockType]['properties']['infix'] = {'type': 'tex', 'required': false, 'columnWidth': 6};
+    blocks[blockType]['properties']['numCopy'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+}
+
 function getView(details, referenceId) {
     switch(details['type']) {
     case 'text':
@@ -167,10 +173,10 @@ function populateDetails(blockType) {
     var blockHtml =
 	"<div class='row'>" +
 	"  <div class='col-md-6'>" + 
-	"    naming infix (distinguishes " + blocks[blockType]['plural'] + "): <input id='namingInfix'></input>" +
+	"    naming infix (distinguishes " + blocks[blockType]['plural'] + "): <input id='infix'></input>" +
 	"  </div> " +
 	"  <div class='col-md-6'>" + 
-	"    number of  " + blocks[blockType]['plural'] + ": <input id='num'></input>" +
+	"    number of  " + blocks[blockType]['plural'] + ": <input id='numCopy'></input>" +
 	"  </div> " +
 	"</div>";
 
@@ -327,18 +333,6 @@ function addBlock(blockType) {
 	return;
     }
 
-    var infix = $('#namingInfix').val();
-    if (infix in blocks[blockType]['blocks']) {
-	alert('There is already a ' + blockType + ' with infix "' + infix + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
-	return;
-    }
-
-    var numCopy = parseInt($('#num').val());
-    if (!numValidity(numCopy)) {
-	alert('invalid number of ' + blocks[blockType]['plural'] + '!');
-	return;
-    }
-
     var newBlock = {}
     for (var property in blocks[blockType]['properties']) {
 	var val = null;
@@ -357,7 +351,10 @@ function addBlock(blockType) {
 	return;
     }
 
-    newBlock['numCopy'] = numCopy;
+    if (newBlock['properties']['infix'] in blocks[blockType]['blocks']) {
+	alert('There is already a ' + blockType + ' with infix "' + newBlock['properties']['infix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
+	return;
+    }
 
     blocks[blockType]['blocks'][infix] = newBlock;
 
