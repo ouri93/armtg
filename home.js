@@ -245,6 +245,35 @@ function numValidity(n, property) {
     return true;
 }
 
+function specified(property, proposedBlock) {
+    if (!(property in proposedBlock)) {
+	alert('Property ' + property + ' is required but not specified!');
+	return false;
+    }
+    
+    if (proposedBlock[property] === undefined) {
+	alert('property ' + property + ' was undefined with block type ' + blockType + ' and proposedBlock ' + JSON.stringify(proposedBlock));
+	return false;
+    }
+    
+    if (proposedBlock[property] === "") {
+	alert('Property ' + property + ' is required but not specified!');
+	return false;
+    }
+
+    return true;
+}
+
+function allSpecified(propertyList, proposedBlock) {
+    var specifieds = arr.map(function(property) {
+	return specified(property, proposedBlock);
+    });
+    
+    return specifieds.reduce(function(prev, cur, index, arr) {
+	return prev && cur;
+    });
+}
+
 function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
 	if (blocks[blockType]['properties']['type'] == 'num') {
@@ -252,26 +281,23 @@ function validateBlock(blockType, proposedBlock) {
 		return false;
 	    }
 	}
-
+	
 	if (blocks[blockType]['properties'][property]['required']) {
-	    if (!(property in proposedBlock)) {
-		alert('Property ' + property + ' is required but not specified!');
-		return false;
-	    }
-
-	    if (proposedBlock[property] === undefined) {
-		alert('property ' + property + ' was undefined with block type ' + blockType + ' and proposedBlock ' + JSON.stringify(proposedBlock));
-		return false;
-	    }
-
-	    if (proposedBlock[property] === "") {
-		alert('Property ' + property + ' is required but not specified!');
+	    if (!specified(property, proposedBlock)) {
 		return false;
 	    }
 	}
     }
+    
+    var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
+	return allSpecified(propertyList, proposedBlock);
+    });
 
-    return true;
+    var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
+	return prev || cur;
+    });
+
+    return atLeastOneGroupSatisfied;
 }
 
 function addBlock(blockType) {
