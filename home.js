@@ -1,4 +1,6 @@
-// rev 3
+////////////////////////
+// Object Model Code //
+///////////////////////
 
 /*
   The blocks object is essentially the object model for all blocks.
@@ -21,24 +23,61 @@
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 */
+
+// apiVersion, location, name
 var blocks = {'VNET': {'plural': 'VNETs',
 		       'populatableSelectors': {},
 		       'blocks': {},
 		       'properties': {},
-		       'cospecifications': []},
-	      
+		       'cospecifications': [],
+		       'baseObject': {
+			   "type": "Microsoft.Network/virtualNetworks",
+			   "properties": {
+			       "addressSpace": {
+				   "addressPrefixes": [
+				       "10.0.0.0/16"
+				   ]
+			       },
+			       "subnets": [
+				   {
+				       "name": "",
+				       "properties": {
+					   "addressPrefix": "10.0.0.0/24"
+				       }
+				   }
+			       ]
+			   }
+		       }
+		      },
+
+	      // properties::dnsSettings::domainNameLabel
 	      'PIP': {'plural': 'PIPs',
 		      'populatableSelectors': {},
 		      'blocks': {},
 		      'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
-		      'cospecifications': []},
+		      'cospecifications': [],
+		      'baseObject': {
+			  "type": "Microsoft.Network/publicIPAddresses",
+			  "properties": {
+			      "publicIPAllocationMethod": "Dynamic"
+			  }
+		      }
+		     },
 	      
+	      // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
 	      'NIC': {'plural': 'NICs',
 		      'populatableSelectors': {'VNET': true, 'PIP': true},
 		      'blocks': {},
 		      'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 				     'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
-		      'cospecifications': []},
+		      'cospecifications': [],
+		      'baseObject': {
+			  "type": "Microsoft.Network/networkInterfaces",
+			  "properties": {
+			      "ipConfigurations": []
+			  }
+		      }
+		     },
 	      
 	      'LB': {'plural': 'LBs',
 		     'populatableSelectors': {},
@@ -88,6 +127,11 @@ for (var blockType in blocks) {
     blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
     blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
+
+
+////////////////////
+// UI (View) Code //
+////////////////////
 
 function getView(details, referenceId) {
     switch(details['type']) {
@@ -362,4 +406,50 @@ function drawCurrent() {
     }
     
     $("#current").html(currentString);
+}
+
+
+
+
+
+
+
+
+//////////////////////////////
+// Template Generation Code //
+//////////////////////////////
+
+var baseTemplateObject = {
+    "$schema":"http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+	"namingInfix": {
+	    "type": "string",
+	    "maxLength": 9,
+	    "metadata": {
+		"description": "String used as a base for naming resources (9 characters or less). A hash is prepended to this string for some resources, and resource-specific information is appended."
+	    }
+	}
+    },
+    "variables": {
+	"apiVersion": "2015-06-15",
+	"location": "[resourceGroup().location]"
+    },
+    "resources": [],
+    "outputs": {}
+}
+
+function createVnets() {
+    for (var vnet in blocks["VNET"]["blocks"]) {
+	var numCopies = blocks["VNET"]["blocks"][vnet]['numCopies'];
+	if (numCopies == 1) {
+	    blocks["VNET"]["blocks"][vnet]['name'] = "[concat(parameters('namingInfix'), '" + vnet + "')]";
+	}
+	else {
+	    blocks["VNET"]["blocks"][vnet]['name'] = "[concat(parameters('namingInfix'), '" + vnet + "', copyIndex())]";
+	    blocks["VNET"]["blocks"][vnet]['copy'] = {"name": vnet + "Loop", "count": numCopies};
+	}
+
+	baseTemplateObject["resources"].push(blocks["VNET"]["blocks"][vnet]);
+    }
 }
