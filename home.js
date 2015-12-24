@@ -444,15 +444,16 @@ function createVnets() {
     for (var vnet in blocks["VNET"]["blocks"]) {
 	var numCopies = blocks["VNET"]["blocks"][vnet]['numCopies'];
 	var vnetNamingInfix = "[concat(parameters('namingInfix'), '" + vnet + "'";
+	var deepCopy = jQuery.extend(true, {}, blocks["VNET"]["baseObject"]);
 	if (numCopies == 1) {
-	    blocks["VNET"]["blocks"][vnet]['name'] = vnetNamingInfix + ")]";
+	    deepCopy['name'] = vnetNamingInfix + ")]";
 	}
 	else {
-	    blocks["VNET"]["blocks"][vnet]['baseObject']['name'] = vnetNamingInfix + ", copyIndex())]";
-	    blocks["VNET"]["blocks"][vnet]['baseObject']['copy'] = {"name": vnet + "Loop", "count": numCopies};
+	    deepCopy['name'] = vnetNamingInfix + ", copyIndex())]";
+	    deepCopy['copy'] = {"name": vnet + "Loop", "count": numCopies};
 	}
 
-	blocks["VNET"]["blocks"][vnet]['baseObject']['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
-	baseTemplateObject["resources"].push(blocks["VNET"]["blocks"][vnet]);
+	deepCopy['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
+	baseTemplateObject["resources"].push(deepCopy);
     }
 }
