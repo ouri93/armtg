@@ -25,102 +25,103 @@
 */
 
 // apiVersion, location, name
-var blocks = {'VNET': {'plural': 'VNETs',
-		       'populatableSelectors': {},
-		       'blocks': {},
-		       'properties': {},
-		       'cospecifications': [],
-		       'baseObject': {
-			   "type": "Microsoft.Network/virtualNetworks",
-			   "properties": {
-			       "addressSpace": {
-				   "addressPrefixes": [
-				       "10.0.0.0/16"
-				   ]
-			       },
-			       "subnets": [
-				   {
-				       "name": "",
-				       "properties": {
-					   "addressPrefix": "10.0.0.0/24"
-				       }
-				   }
-			       ]
-			   }
-		       }
-		      },
+var blocks = {
+    // properties::subnets::name
+    'VNET': {'plural': 'VNETs',
+	     'populatableSelectors': {},
+	     'blocks': {},
+	     'properties': {},
+	     'cospecifications': [],
+	     'baseObject': {
+		 "type": "Microsoft.Network/virtualNetworks",
+		 "properties": {
+		     "addressSpace": {
+			 "addressPrefixes": [
+			     "10.0.0.0/16"
+			 ]
+		     },
+		     "subnets": [
+			 {
+			     "properties": {
+				 "addressPrefix": "10.0.0.0/24"
+			     }
+			 }
+		     ]
+		 }
+	     }
+	    },
 
-	      // properties::dnsSettings::domainNameLabel
-	      'PIP': {'plural': 'PIPs',
-		      'populatableSelectors': {},
-		      'blocks': {},
-		      'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
-		      'cospecifications': [],
-		      'baseObject': {
-			  "type": "Microsoft.Network/publicIPAddresses",
-			  "properties": {
-			      "publicIPAllocationMethod": "Dynamic"
-			  }
-		      }
-		     },
-	      
-	      // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
-	      'NIC': {'plural': 'NICs',
-		      'populatableSelectors': {'VNET': true, 'PIP': true},
-		      'blocks': {},
-		      'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-				     'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
-		      'cospecifications': [],
-		      'baseObject': {
-			  "type": "Microsoft.Network/networkInterfaces",
-			  "properties": {
-			      "ipConfigurations": []
-			  }
-		      }
-		     },
-	      
-	      'LB': {'plural': 'LBs',
-		     'populatableSelectors': {},
-		     'blocks': {},
-		     'properties': {'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				    'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				    'roundRobinProbePort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				    'NATFrontEndStartingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				    'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
-				    'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
-		     'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
-					  ['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
-	      
-	      'SA': {'plural': 'SAs',
-		     'populatableSelectors': {},
-		     'blocks': {},
-		     'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
-		     'cospecifications': []},
-	      
-	      'VM': {'plural': 'VMs',
-		     'populatableSelectors': {'NIC': true, 'SA': true},
-		     'blocks': {},
-		     'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
-				    'os': {'type': 'os', 'required': true, 'columnWidth': 6},
-				    'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
-				    'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-				    'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				    'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				    'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
-		     'cospecifications': []},
-	      
-	      'VMSS': {'plural': 'VMSSes',
-		       'populatableSelectors': {'VNET': true, 'LB': true, 'SA': true},
-		       'blocks': {},
-		       'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
-				      'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
-				      'os': {'type': 'os', 'required': true, 'columnWidth': 4},
-				      'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
-				      'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-				      'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-				      'LB': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
-				      'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
-		       'cospecifications': []}};
+    // properties::dnsSettings::domainNameLabel
+    'PIP': {'plural': 'PIPs',
+	    'populatableSelectors': {},
+	    'blocks': {},
+	    'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
+	    'cospecifications': [],
+	    'baseObject': {
+		"type": "Microsoft.Network/publicIPAddresses",
+		"properties": {
+		    "publicIPAllocationMethod": "Dynamic"
+		}
+	    }
+	   },
+    
+    // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
+    'NIC': {'plural': 'NICs',
+	    'populatableSelectors': {'VNET': true, 'PIP': true},
+	    'blocks': {},
+	    'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			   'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
+	    'cospecifications': [],
+	    'baseObject': {
+		"type": "Microsoft.Network/networkInterfaces",
+		"properties": {
+		    "ipConfigurations": []
+		}
+	    }
+	   },
+    
+    'LB': {'plural': 'LBs',
+	   'populatableSelectors': {},
+	   'blocks': {},
+	   'properties': {'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+			  'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+			  'roundRobinProbePort': {'type': 'num', 'required': false, 'columnWidth': 4},
+			  'NATFrontEndStartingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+			  'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
+			  'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
+	   'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
+				['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
+    
+    'SA': {'plural': 'SAs',
+	   'populatableSelectors': {},
+	   'blocks': {},
+	   'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
+	   'cospecifications': []},
+    
+    'VM': {'plural': 'VMs',
+	   'populatableSelectors': {'NIC': true, 'SA': true},
+	   'blocks': {},
+	   'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
+			  'os': {'type': 'os', 'required': true, 'columnWidth': 6},
+			  'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
+			  'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
+			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+			  'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
+	   'cospecifications': []},
+    
+    'VMSS': {'plural': 'VMSSes',
+	     'populatableSelectors': {'VNET': true, 'LB': true, 'SA': true},
+	     'blocks': {},
+	     'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
+			    'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
+			    'os': {'type': 'os', 'required': true, 'columnWidth': 4},
+			    'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
+			    'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
+			    'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+			    'LB': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
+			    'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
+	     'cospecifications': []}};
 
 // add common properties to all block types
 for (var blockType in blocks) {
@@ -442,14 +443,16 @@ var baseTemplateObject = {
 function createVnets() {
     for (var vnet in blocks["VNET"]["blocks"]) {
 	var numCopies = blocks["VNET"]["blocks"][vnet]['numCopies'];
+	var vnetNamingInfix = "[concat(parameters('namingInfix'), '" + vnet + "'";
 	if (numCopies == 1) {
-	    blocks["VNET"]["blocks"][vnet]['name'] = "[concat(parameters('namingInfix'), '" + vnet + "')]";
+	    blocks["VNET"]["blocks"][vnet]['name'] = vnetNamingInfix + ")]";
 	}
 	else {
-	    blocks["VNET"]["blocks"][vnet]['name'] = "[concat(parameters('namingInfix'), '" + vnet + "', copyIndex())]";
-	    blocks["VNET"]["blocks"][vnet]['copy'] = {"name": vnet + "Loop", "count": numCopies};
+	    blocks["VNET"]["blocks"][vnet]['baseObject']['name'] = vnetNamingInfix + ", copyIndex())]";
+	    blocks["VNET"]["blocks"][vnet]['baseObject']['copy'] = {"name": vnet + "Loop", "count": numCopies};
 	}
 
+	blocks["VNET"]["blocks"][vnet]['baseObject']['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
 	baseTemplateObject["resources"].push(blocks["VNET"]["blocks"][vnet]);
     }
 }
