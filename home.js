@@ -443,14 +443,15 @@ var baseTemplateObject = {
 function createVnets() {
     for (var vnet in blocks["VNET"]["blocks"]) {
 	var numCopies = blocks["VNET"]["blocks"][vnet]['numCopies'];
-	var vnetNamingInfix = "[concat(parameters('namingInfix'), '" + vnet + "'";
+	var vnetName = getBlockName("VNET", vnet);
+	var vnetNamingInfix = "[concat(parameters('namingInfix'), '" + vnetName + "'";
 	var deepCopy = jQuery.extend(true, {}, blocks["VNET"]["baseObject"]);
 	if (numCopies == 1) {
 	    deepCopy['name'] = vnetNamingInfix + ")]";
 	}
 	else {
 	    deepCopy['name'] = vnetNamingInfix + ", copyIndex())]";
-	    deepCopy['copy'] = {"name": vnet + "Loop", "count": numCopies};
+	    deepCopy['copy'] = {"name": vnetName + "Loop", "count": numCopies};
 	}
 
 	deepCopy['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
