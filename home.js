@@ -440,21 +440,26 @@ var baseTemplateObject = {
     "outputs": {}
 }
 
+function createBlock(blockType, blockInfix) {
+    var numCopies = blocks[blockType]["blocks"][blockInfix]['numCopies'];
+    var blockName = getBlockName(blockType, blockInfix);
+    var blockNamingInfix = "[concat(parameters('namingInfix'), '" + blockName + "'";
+    var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
+    if (numCopies == 1) {
+	deepCopy['name'] = blockNamingInfix + ")]";
+    }
+    else {
+	deepCopy['name'] = blockNamingInfix + ", copyIndex())]";
+	deepCopy['copy'] = {"name": blockName + "Loop", "count": numCopies};
+    }
+
+    return deepCopy;
+}
+
 function createVnets() {
     for (var vnet in blocks["VNET"]["blocks"]) {
-	var numCopies = blocks["VNET"]["blocks"][vnet]['numCopies'];
-	var vnetName = getBlockName("VNET", vnet);
-	var vnetNamingInfix = "[concat(parameters('namingInfix'), '" + vnetName + "'";
-	var deepCopy = jQuery.extend(true, {}, blocks["VNET"]["baseObject"]);
-	if (numCopies == 1) {
-	    deepCopy['name'] = vnetNamingInfix + ")]";
-	}
-	else {
-	    deepCopy['name'] = vnetNamingInfix + ", copyIndex())]";
-	    deepCopy['copy'] = {"name": vnetName + "Loop", "count": numCopies};
-	}
-
-	deepCopy['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
-	baseTemplateObject["resources"].push(deepCopy);
+	var vnetBlock = createBlock("VNET", vnet);
+	vnetBlock['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
+	baseTemplateObject["resources"].push(vnetBlock);
     }
 }
