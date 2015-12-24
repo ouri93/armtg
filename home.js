@@ -440,10 +440,14 @@ var baseTemplateObject = {
     "outputs": {}
 }
 
+function getBlockNamingInfix(blockName) {
+    return "[concat(parameters('namingInfix'), '" + blockName + "'";
+}
+
 function createBlock(blockType, blockInfix) {
     var numCopies = blocks[blockType]["blocks"][blockInfix]['numCopies'];
     var blockName = getBlockName(blockType, blockInfix);
-    var blockNamingInfix = "[concat(parameters('namingInfix'), '" + blockName + "'";
+    var blockNamingInfix = getBlockNamingInfix(blockName);
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
     if (numCopies == 1) {
 	deepCopy['name'] = blockNamingInfix + ")]";
@@ -459,7 +463,7 @@ function createBlock(blockType, blockInfix) {
 function createVnets() {
     for (var vnet in blocks["VNET"]["blocks"]) {
 	var vnetBlock = createBlock("VNET", vnet);
-	vnetBlock['properties']['subnets']['name'] = vnetNamingInfix + ", 'subnet')]";
+	vnetBlock['properties']['subnets']['name'] = getBlockNamingInfix(getBlockName("VNET", vnet)) + ", 'subnet')]";
 	baseTemplateObject["resources"].push(vnetBlock);
     }
 }
