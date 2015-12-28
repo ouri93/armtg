@@ -101,15 +101,15 @@ var blocks = {
 	    'customization': function(block, blockInfix) {
 		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("NIC", blockInfix)) + ", 'ipconfig')]";
 		if (blocks["NIC"]["blocks"][blockInfix]["PIP"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', '" + getPartialNamingInfix(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + "')]");
-		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + getPartialTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + "')]"};
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]");
+		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]"};
 		}
 		
 		vnet = blocks["NIC"]["blocks"][blockInfix]["VNET"];
 		vnetInfix = getInfixFromBlockName(vnet);
 		
-		block["dependsOn"].push("Microsoft.Network/virtualNetworks/" + getBlockTemplateName(vnet));
-		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + getPartialTemplateName(vnet) + "'), '/subnets/', '" + getPartialNamingInfix(vnet) + "', 'subnet')]"};
+		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
+		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', '" + getPartialNamingInfix(vnet) + ", 'subnet')]"};
 		
 		return block;
 	    }
