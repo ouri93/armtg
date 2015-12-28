@@ -12,10 +12,10 @@ for resources:
 
 
 TODO
-> "make parameter" option
-> populate <select> options
 > VM sizes should have better selection of sizes
 > script extensions
+> "make parameter" option
+> add "generateForMe"
 > multiple subnets per vnet
 > copyIndex on all resources
 > multiple LB rules

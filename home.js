@@ -88,7 +88,13 @@ var blocks = {
 	    'baseObject': {
 		"type": "Microsoft.Network/networkInterfaces",
 		"properties": {
-		    "ipConfigurations": []
+		    "ipConfigurations": [
+			{
+			    "properties": {
+				"privateIPAllocationMethod": "Dynamic"
+			    }
+			}
+		    ]
 		}
 	    }
 	   },
@@ -159,7 +165,8 @@ function getView(details, referenceId) {
 	return "<input id='" + referenceId + "' type='password'></input>";
 
     case 'dropdown':
-	ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
+	// !!! TODO should have generateForMe option
+	//ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
 
 	if (!(details['required'])) {
 	    ret += "<option value='none'>none</option>";
@@ -482,5 +489,4 @@ function createResources() {
 	}
     }
 }
-
 
