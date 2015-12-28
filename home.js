@@ -166,7 +166,8 @@ function getView(details, referenceId) {
 
     case 'dropdown':
 	// !!! TODO should have generateForMe option
-	//ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
+	//var ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
+	var ret = "<select id='" + referenceId + "'>";
 
 	if (!(details['required'])) {
 	    ret += "<option value='none'>none</option>";
