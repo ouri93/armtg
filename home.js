@@ -23,7 +23,7 @@
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 
-  'customizations': a function for customizing a block based on user input (e.g. for filling in optional arguments if provided); takes in a base block populated by baseObject and returns the customized block
+  'customizations': a function for customizing a block based on user input (e.g. for filling in optional arguments if provided); takes in a base block populated by baseObject and the block infix; returns the customized block
 */
 
 // apiVersion, location, name
@@ -51,8 +51,8 @@ var blocks = {
 		     ]
 		 }
 	     },
-	     'customization': function(block) {
-		 block['properties']['subnets']['name'] = getBlockNamingInfix(getBlockName("VNET", vnet)) + ", 'subnet')]";
+	     'customization': function(block, blockInfix) {
+		 block['properties']['subnets']['name'] = getBlockNamingInfix(getBlockName("VNET", blockInfix)) + ", 'subnet')]";
 		 return block;
 	     }
 	    },
@@ -69,7 +69,7 @@ var blocks = {
 		    "publicIPAllocationMethod": "Dynamic"
 		}
 	    },
-	    'customization': function(block) {
+	    'customization': function(block, blockInfix) {
 		if (block["domainLabel"] != "") {
 		    block["properties"]["dnsSettings"] = {"domainNameLabel": block["domainLabel"]};
 		}
@@ -477,7 +477,7 @@ function createResources() {
     for (var blockType in blocks) {
 	for (var blockInfix in blocks[blockType]["blocks"]) {
 	    var curBlock = createBlock(blockType, blockInfix);
-	    var finalForm = blocks[blockType].customization(curBlock);
+	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
 	    baseTemplateObject["resources"].push(finalForm);
 	}
     }
