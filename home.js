@@ -307,7 +307,7 @@ function stringSpecified(property, proposedBlock) {
 	return false;
     }
     
-    if (proposedBlock[property] === undefined) {
+    if (proposedBlock[property] == undefined) {
 	return false;
     }
     
