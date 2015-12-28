@@ -475,8 +475,8 @@ function createBlock(blockType, blockInfix) {
 
 function createResources() {
     for (var blockType in blocks) {
-	for (var block in blocks[blockType]["blocks"]) {
-	    var curBlock = createBlock(block);
+	for (var blockInfix in blocks[blockType]["blocks"]) {
+	    var curBlock = createBlock(blockType, blockInfix);
 	    var finalForm = blocks[blockType].customization(curBlock);
 	    baseTemplateObject["resources"].push(finalForm);
 	}
