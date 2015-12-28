@@ -508,6 +508,8 @@ function getBlockTemplateName(blockName) {
 function createBlock(blockType, blockInfix) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
     deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
+    deepCopy['apiVersion'] = "[variables('apiVersion')]";
+    deepCopy['location'] = "[variables('location')]";
 
     return deepCopy;
 }
