@@ -99,17 +99,17 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		block["properties"]["ipConfigurations"][0]["name"] = getBlockName("NIC", blockInfix) + "ipconfig";
+		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("NIC", blockInfix)) + ", 'ipconfig')]";
 		if (blocks["NIC"]["blocks"][blockInfix]["PIP"] != "none") {
-		    block["dependsOn"].push("Microsoft.Network/publicIPAddresses/" + blocks["NIC"]["blocks"][blockInfix]["PIP"]);
-		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + blocks["NIC"]["blocks"][blockInfix]["PIP"] + "')]"};
+		    block["dependsOn"].push("Microsoft.Network/publicIPAddresses/" + getBlockTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]));
+		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + getBlockTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + "')]"};
 		}
 		
 		vnet = blocks["NIC"]["blocks"][blockInfix]["VNET"];
 		vnetInfix = getInfixFromBlockName(vnet);
 		
-		block["dependsOn"].push("Microsoft.Network/virtualNetworks/" + vnet);
-		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + vnet + "'), '/subnets/', '" + blocks["VNET"]["blocks"][vnetInfix]["properties"]["subnets"]["name"] + "')]"};
+		block["dependsOn"].push("Microsoft.Network/virtualNetworks/" + getBlockTemplateName(vnet));
+		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + getBlockTemplateName(vnet) + "'), '/subnets/', '" + vnetInfix + ", 'subnet')]"};
 		
 		return block;
 	    }
@@ -161,7 +161,7 @@ var blocks = {
 // add common properties to all block types
 for (var blockType in blocks) {
     blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
-    blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+    //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
 
@@ -493,18 +493,13 @@ function getBlockNamingInfix(blockName) {
     return "[concat(parameters('namingInfix'), '" + blockName + "'";
 }
 
+function getBlockTemplateName(blockName) {
+    return getBlockNamingInfix(blockName) + ")]";
+}
+
 function createBlock(blockType, blockInfix) {
-    var numCopies = blocks[blockType]["blocks"][blockInfix]['numCopies'];
-    var blockName = getBlockName(blockType, blockInfix);
-    var blockNamingInfix = getBlockNamingInfix(blockName);
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
-    if (numCopies == 1) {
-	deepCopy['name'] = blockNamingInfix + ")]";
-    }
-    else {
-	deepCopy['name'] = blockNamingInfix + ", copyIndex())]";
-	deepCopy['copy'] = {"name": blockName + "Loop", "count": numCopies};
-    }
+    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
 
     return deepCopy;
 }
