@@ -61,7 +61,7 @@ var blocks = {
     'PIP': {'plural': 'PIPs',
 	    'populatableSelectors': {},
 	    'blocks': {},
-	    'properties': {'domainLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
+	    'properties': {'domainNameLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/publicIPAddresses",
@@ -70,8 +70,8 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		if (block["domainLabel"] != "") {
-		    block["properties"]["dnsSettings"] = {"domainNameLabel": block["domainLabel"]};
+		if (block["domainNameLabel"] != "") {
+		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["PIP"][blockInfix]["domainNameLabel"]};
 		}
 
 		return block;
