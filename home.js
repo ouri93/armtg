@@ -71,7 +71,7 @@ var blocks = {
 	    },
 	    'customization': function(block, blockInfix) {
 		if (block["domainNameLabel"] != "") {
-		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["PIP"][blockInfix]["domainNameLabel"]};
+		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["PIP"]["block"][blockInfix]["domainNameLabel"]};
 		}
 
 		return block;
