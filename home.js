@@ -23,7 +23,7 @@
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 
-  'customizations': a function for customizing a block based on user input (e.g. for filling in optional arguments if provided); takes in a base block populated by baseObject and the block infix; returns the customized block
+  'customizations': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
 */
 
 // apiVersion, location, name
@@ -87,6 +87,7 @@ var blocks = {
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/networkInterfaces",
+		"dependsOn": [],
 		"properties": {
 		    "ipConfigurations": [
 			{
@@ -96,6 +97,21 @@ var blocks = {
 			}
 		    ]
 		}
+	    },
+	    'customization': function(block, blockInfix) {
+		block["properties"]["ipConfigurations"][0]["name"] = getBlockName("NIC", blockInfix) + "ipconfig";
+		if (blocks["NIC"]["blocks"][blockInfix]["PIP"] != "none") {
+		    block["dependsOn"].push("Microsoft.Network/publicIPAddresses/" + blocks["NIC"]["blocks"][blockInfix]["PIP"]);
+		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + blocks["NIC"]["blocks"][blockInfix]["PIP"] + "')]"};
+		}
+		
+		vnet = blocks["NIC"]["blocks"][blockInfix]["VNET"];
+		vnetInfix = getInfixFromBlockName(vnet);
+		
+		block["dependsOn"].push("Microsoft.Network/virtualNetworks/" + vnet);
+		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + vnet + "'), '/subnets/', '" + blocks["VNET"]["blocks"][vnetInfix]["properties"]["subnets"]["name"] + "')]"};
+		
+		return block;
 	    }
 	   },
     
@@ -261,6 +277,7 @@ function populateDetails(blockType) {
     populateSelectors(blockType);
 }
 
+
 function getBlockName(blockType, blockName) {
     if (!(blockType in blocks)) {
 	console.log('ERROR: invalid block type: ' + blockType);
@@ -273,6 +290,17 @@ function getBlockName(blockType, blockName) {
 
     return blockType + '-' + blockName;
 }
+
+
+function getInfixFromBlockName(blockName) {
+    index = blockName.indexOf('-');
+    if (index < 0) {
+	return "";
+    }
+
+    return blockName.slice(index+1);
+}
+
 
 function populateSelectors(blockType) {
     if (!(blockType in blocks)) {

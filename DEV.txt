@@ -36,3 +36,5 @@ TODO
   > ports adhere to inequality constraints (start < end for nat rules, etc.)
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
 
+> storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
+
