@@ -109,7 +109,7 @@ var blocks = {
 		vnetInfix = getInfixFromBlockName(vnet);
 		
 		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
-		block["properties"]["ipConfigurations"][0]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(vnet) + ", 'subnet')]"};
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(vnet) + ", 'subnet')]"};
 		
 		return block;
 	    }
