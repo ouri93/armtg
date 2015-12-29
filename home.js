@@ -52,7 +52,7 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
-		 block['properties']['subnets']['name'] = getBlockNamingInfix(getBlockName("VNET", blockInfix)) + ", 'subnet')]";
+		 block['properties']['subnets'][0]['name'] = getBlockNamingInfix(getBlockName("VNET", blockInfix)) + ", 'subnet')]";
 		 return block;
 	     }
 	    },
