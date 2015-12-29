@@ -160,7 +160,7 @@ var blocks = {
 
 // add common properties to all block types
 for (var blockType in blocks) {
-    blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 6};
+    blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 12};
     //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 

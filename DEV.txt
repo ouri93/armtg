@@ -13,6 +13,8 @@ for resources:
 
 TODO
 > VM sizes should have better selection of sizes
+> should choose good order of keys in template
+> should choose good order of options in dropdowns (e.g. if have an option, don't default to 'none')
 > script extensions
 > "make parameter" option
 > add "generateForMe"
@@ -35,6 +37,8 @@ TODO
   > e.g. that ports are real numbers, etc.
   > ports adhere to inequality constraints (start < end for nat rules, etc.)
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
+
+
 
 > storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
 
