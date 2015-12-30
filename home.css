@@ -1,18 +1,26 @@
 h1#title {
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
+    text-align: center;
+    font-family: 'Raleway', sans-serif;
 }
 
 div#control {
-  text-align: center;
+    text-align: center;
 }
 
 div#details {
-  text-align: center;
+    text-align: center;
 }
 
 div#currentTitle {
-  text-align: center;
+    text-align: center;
+}
+
+div#generateControl {
+    text-align: center;
+}
+
+div#output {
+    text-align: center;
 }
 
 .subtitle {

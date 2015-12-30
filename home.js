@@ -267,6 +267,7 @@ $(document).ready(function() {
 	numBlockTypes += 1;
 
 	if (currentWidthUsed == 0) {
+	    controlHtml += "<br/>"
 	    controlHtml += "<div class='row'>";
 	}
 
