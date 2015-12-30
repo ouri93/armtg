@@ -23,7 +23,7 @@
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
 
-  'customizations': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
+  'customization': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
 */
 
 // apiVersion, location, name
@@ -160,7 +160,7 @@ var blocks = {
 	   },
 	   'customization': function(block, blockInfix) {
 	       oldBlockName = block["name"];
-	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(parameters('namingInfix')), toLower('" + oldBlockName + "'))), toLower('" + oldBlockName + "'))]";
+	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(parameters('namingInfix')), toLower(" + oldBlockName + "))), toLower(" + oldBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},
