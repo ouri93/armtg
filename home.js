@@ -587,7 +587,7 @@ function createResources() {
 
 function generateTemplate() {
     createResources();
-    $('#output').html(baseTemplateObject.toString());
+    $('#output').html(JSON.stringify(baseTemplateObject));
 }
 
 function deployToAzure() {
