@@ -14,16 +14,18 @@ for resources:
 TODO
 P0
 ==
-> SA
-> test substring and use it on uniqueString for SA
+> multiple subnets per vnet (& referencable as such)
 > VM
+> VM boot diagnostics (requires changing 'properties' of blockTypes to have a displayName ("VM boot diagnostics SA") in addition to the property blockType ("SA"), which is already there)
 > VM sizes should have better selection of sizes
+> test substring and use it on uniqueString for SA
 > should choose good order of keys in template
 > should choose good order of options in dropdowns (e.g. if have an option, don't default to 'none')
 > script extensions
-> multiple subnets per vnet (& referencable as such)
+> refactor customization code (should be able to handle dependsOn's and property gathering generically)
 > availability set
 > storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
+> delete whole resources
 
 P1
 ==
@@ -37,12 +39,15 @@ P1
 > UI for doing concats
 > multiple LB rules
 > validation (e.g. boot diagnostics can't use Premium storage)
+> LB probe options (port, interval, number, probe url?, multiple probes)
+> edit or delete both entire resources and individual properties of resources
 
 P2
 ==
-> LB probe options (port, interval, number, probe url?, multiple probes)
 > tcp/udp (LB, nsg's)
 > copyIndex on all resources
+> custom VM images
+
 > add "generateForMe"
 > make template variables instead of just plopping same value hard-coded in template
 

@@ -22,6 +22,8 @@
   'properties::columnWidth': width of the column for that property; a single row has width of 12 (really belongs in a view of some sort but is convenient to have here); EACH ROW MUST ADD UP TO 12; THE VIEW-GENERATION CODE ASSUMES THIS; IF THE LAST ROW DOES NOT ADD UP TO 12, THE CLOSING </div> WON'T BE ADDED
 
   'cospecifications': a list of lists; adds validation that at least one of the sublists has all of its entries specified
+  
+  'baseObject': the base JSON object used to create the block of that type; if this is missing, the button to add this object to the template won't appear
 
   'customization': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
 */
@@ -172,10 +174,31 @@ var blocks = {
 			  'os': {'type': 'os', 'required': true, 'columnWidth': 6},
 			  'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
 			  'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
-			  'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
-	   'cospecifications': []}
+			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  /*'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}*/},
+	   'cospecifications': [],
+	   // properties::networkProfile::networkInterfaces::0::id, dependsOn SA and NIC, properties::hardwareProfile::vmSize, osProfile::computerName/adminUsername/adminPassword, properties::storageProfile::imageReference, properties::storageProfile::osDisk::name/vhd
+	   'baseObject': {
+	       "type": "Microsoft.Compute/virtualMachines",
+	       "dependsOn": [],
+	       "properties": {
+		   "hardwareProfile": {},
+		   "osProfile": {},
+		   "storageProfile": {
+		       "imageReference": {},
+		       "osDisk": {
+			   "vhd": {},
+			   "caching": "ReadWrite",
+			   "createOption": "FromImage"
+		       }
+		   },
+		   "networkProfile": {
+		       "networkInterfaces": [{}]
+		   }
+	       }
+	   }
+	  }
 
     /*,
     
@@ -277,6 +300,10 @@ $(document).ready(function() {
     var currentWidthUsed = 0;
     numBlockTypes = 0;
     for (var blockType in blocks) {
+	if (!('baseObject' in blocks[blockType])) {
+	    continue;
+	}
+
 	numBlockTypes += 1;
 
 	if (currentWidthUsed == 0) {
