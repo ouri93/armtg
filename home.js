@@ -114,7 +114,9 @@ var blocks = {
 		return block;
 	    }
 	   },
-    
+
+    /*
+    // depends on optional vnet and optional pip; properties::frontEndIPConfigurations::0::name, properties::frontEndIPConfigurations::0::properties::subnet::id (ref), properties::backendAddressPools::0::name, optional LB rules, optional NAT rules, properties::probes::properties::port, properties::probes::properties::name
     'LB': {'plural': 'LBs',
 	   'populatableSelectors': {'VNET': true, 'PIP': true},
 	   'blocks': {},
@@ -127,7 +129,23 @@ var blocks = {
 			  'NATFrontEndEndingPort': {'type': 'num', 'required': false, 'columnWidth': 4},
 			  'NATBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4}},
 	   'cospecifications': [['roundRobinFrontEndPort', 'roundRobinBackEndPort', 'roundRobinProbePort'],
-				['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']]},
+				['NATFrontEndStartingPort', 'NATFrontEndEndingPort', 'NATBackEndPort']],
+	   'baseObject': {
+	       "type": "Microsoft.Network/loadBalancers",
+	       "properties": {
+		   "frontendIPConfigurations": [{}],
+		   "backendAddressPools": [{}],
+		   "probes": [
+		       {
+			   "properties": {
+			       "protocol": "Tcp",
+			       "intervalInSeconds": 15,
+			       "numberOfProbes": 2
+			   }
+		       }
+		   ]
+	       }},
+    */
     
     'SA': {'plural': 'SAs',
 	   'populatableSelectors': {},
@@ -145,7 +163,9 @@ var blocks = {
 			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
 			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
 			  'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}},
-	   'cospecifications': []},
+	   'cospecifications': []}
+
+    /*,
     
     'VMSS': {'plural': 'VMSSes',
 	     'populatableSelectors': {'VNET': true, 'LB': true, 'SA': true},
@@ -158,7 +178,11 @@ var blocks = {
 			    'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
 			    'LB': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
 			    'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
-	     'cospecifications': []}};
+	     'cospecifications': []}
+
+    */
+
+};
 
 // add common properties to all block types
 for (var blockType in blocks) {
