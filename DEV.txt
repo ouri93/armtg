@@ -15,6 +15,7 @@ TODO
 P0
 ==
 > SA
+> test substring and use it on uniqueString for SA
 > VM
 > VM sizes should have better selection of sizes
 > should choose good order of keys in template

@@ -367,7 +367,7 @@ function getInfixFromBlockName(blockName) {
     for (var blockType in blocks) {
 	typeLen = blockType.length;
 	relevantPart = blockName.slice(0, typeLen);
-	if (blockName == relevantPart) {
+	if (blockType == relevantPart) {
 	    return blockName.slice(typeLen);
 	}
     }
