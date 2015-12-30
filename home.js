@@ -599,7 +599,7 @@ function createResources(templateObject) {
 }
 
 function generateTemplate() {
-    var freshCopy = jQuery.extend(true, {}, baseTemplateObjectCopy);
+    var freshCopy = jQuery.extend(true, {}, baseTemplateObject);
     createResources(freshCopy);
     $('#output').html(JSON.stringify(freshCopy));
 }
