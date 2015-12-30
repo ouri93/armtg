@@ -159,7 +159,7 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
-	       block["properties"]["accountType"] = blocks["SA"][blockInfix]["accountType"];
+	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},
     
