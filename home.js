@@ -159,8 +159,8 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
-	       oldBlockName = block["name"];
-	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(parameters('namingInfix')), toLower(" + oldBlockName + "))), toLower(" + oldBlockName + "))]";
+	       partialBlockName = getPartialTemplateName(getBlockName("SA", blockInfix));
+	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(parameters('namingInfix')), toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},

@@ -31,7 +31,8 @@ P1
 > NIC should reference LB backend address pools
 > VMSS
 > should have subnets as reference-able thing; necessary if have more than 1 per vnet
-> "make parameter" option
+> "make parameter" option and way to use parameters
+> UI for doing concats
 > multiple LB rules
 
 P2
@@ -40,6 +41,7 @@ P2
 > tcp/udp (LB, nsg's)
 > copyIndex on all resources
 > add "generateForMe"
+> make template variables instead of just plopping same value hard-coded in template
 
 P3
 ==
