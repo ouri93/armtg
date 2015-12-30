@@ -358,21 +358,23 @@ function getBlockName(blockType, blockName) {
 	return;
     }
 
-    if (blockName == "") {
-	return blockType;
-    }
-
-    return blockType + '-' + blockName;
+    return blockType + blockName;
 }
 
 
 function getInfixFromBlockName(blockName) {
-    index = blockName.indexOf('-');
-    if (index < 0) {
-	return "";
+    var index = -1;
+    for (var blockType in blocks) {
+	typeLen = blockType.length;
+	relevantPart = blockName.slice(0, typeLen);
+	if (blockName == relevantPart) {
+	    return blockName.slice(typeLen);
+	}
     }
 
-    return blockName.slice(index+1);
+    console.log('ERROR: could not getInfixFromBlockName(' + blockName + ')');
+
+    return;
 }
 
 
