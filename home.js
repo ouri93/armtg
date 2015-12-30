@@ -256,8 +256,42 @@ function getView(details, referenceId) {
 }
 
 var properRowWidth = 12;
+var controlButtonWidth = 3;
+var numControlButtonsPerRow = properRowWidth / controlButtonWidth;
 
-$(document).ready(drawCurrent);
+$(document).ready(function() {
+    var controlHtml = "";
+    var currentWidthUsed = 0;
+    numBlockTypes = 0;
+    for (var blockType in blocks) {
+	numBlockTypes += 1;
+
+	if (currentWidthUsed == 0) {
+	    controlHtml += "<div class='row'>";
+	}
+
+	controlHtml += "<div class='col-md-" + controlButtonWidth.toString() + "'><button class='btn btn-default' onclick='javascript:populateDetails(\"" + blockType + "\");'>+ " + blockType + "</button></div>";
+
+	currentWidthUsed += numControlButtonsPerRow;
+
+	if (currentWidthUsed == properRowWidth) {
+	    controlHtml += "</div>";
+	    currentWidthUsed = 0;
+
+	} else if (currentWidthUsed > properRowWidth) {
+	    console.log("CONTROL BUTTONS: row width (" + currentWidthUsed.toString() + ") for for blockType " + blockType + " was over max of " + properRowWidth.toString());
+	}
+    }
+
+    // close last row if necessary
+    if ((numBlockTypes % numControlButtonsPerRow) != 0) {
+	controlHtml += "</div>";
+    }
+
+    $("#control").html(controlHtml);
+
+    drawCurrent();
+});
 
 function commitsDivHtml(blockType) {
     var ret =
@@ -272,7 +306,7 @@ function commitsDivHtml(blockType) {
 function populateDetails(blockType) {
     var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
 
-    var blockHtml = ""
+    var blockHtml = "";
     var currentWidthUsed = 0;
     for (var property in blocks[blockType]['properties']) {
 	if (currentWidthUsed == 0) {
