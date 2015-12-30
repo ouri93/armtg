@@ -45,7 +45,7 @@ var blocks = {
 		     "subnets": [
 			 {
 			     "properties": {
-				 "addressPrefix": "10.0.0.0/24"
+				 "addressPrefix": "10.0.0.0/16"
 			     }
 			 }
 		     ]
