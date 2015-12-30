@@ -15,7 +15,7 @@
 
   'properties': the user-specified aspects of blocks of this type
 
-  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
 
   'properties::required': true if required, false if not
 
@@ -150,8 +150,18 @@ var blocks = {
     'SA': {'plural': 'SAs',
 	   'populatableSelectors': {},
 	   'blocks': {},
-	   'properties': {'storageType': {'type': 'storageType', 'required': true, 'columnWidth': 12}},
-	   'cospecifications': []},
+	   'properties': {'accountType': {'type': 'storageAccountType', 'required': true, 'columnWidth': 12}},
+	   'cospecifications': [],
+	   'baseObject': {
+	       "type": "Microsoft.Storage/storageAccounts",
+	       "properties": {
+		   "accountType": "Standard_LRS"
+	       }
+	   },
+	   'customization': function(block, blockInfix) {
+	       block["properties"]["accountType"] = blocks["SA"][blockInfix]["accountType"];
+	       return block;
+	   }},
     
     'VM': {'plural': 'VMs',
 	   'populatableSelectors': {'NIC': true, 'SA': true},
@@ -219,11 +229,12 @@ function getView(details, referenceId) {
 
 	return ret;
 
-    case 'storageType':
+    case 'storageAccountType':
 	return "<select id='" + referenceId + "'>" +
 	    "<option value='Standard_LRS'>Standard_LRS</option>" +
 	    "<option value='Standard_GRS'>Standard_GRS</option>" +
 	    "<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
+	    "<option value='Standard_RAGRS'>Standard_ZRS</option>" +
 	    "<option value='Premium_LRS'>Premium_LRS</option>" +
 	    "</select>";
 
