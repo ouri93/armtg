@@ -12,27 +12,39 @@ for resources:
 
 
 TODO
+P0
+==
+> SA
+> VM
 > VM sizes should have better selection of sizes
 > should choose good order of keys in template
 > should choose good order of options in dropdowns (e.g. if have an option, don't default to 'none')
-> NIC should reference LB backend address pools
 > script extensions
+> multiple subnets per vnet
+> availability set
+> network security groups
+> storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
+
+P1
+==
+> LB
+> NIC should reference LB backend address pools
+> VMSS
 > should have subnets as reference-able thing; necessary if have more than 1 per vnet
 > "make parameter" option
-> add "generateForMe"
-> multiple subnets per vnet
-> copyIndex on all resources
 > multiple LB rules
-> validation: all dependencies are satisfied
-> more informative names or some instructions (e.g. multiple resources will round-robin, etc.)
 
+P2
+==
+> LB probe options (port, interval, number, probe url?, multiple probes)
+> tcp/udp (LB, nsg's)
+> copyIndex on all resources
+> add "generateForMe"
+
+P3
+==
 > VMSS boot diagnostics?
-> availability set?
-> probe url?
-> multiple probes
-> network security groups
 
-> tcp/udp? (LB, nsg's, etc.)
 > other things in templates?
   > paas things?
 > error checking
@@ -42,5 +54,5 @@ TODO
 
 
 
-> storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
+
 
