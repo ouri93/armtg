@@ -21,9 +21,8 @@ P0
 > should choose good order of keys in template
 > should choose good order of options in dropdowns (e.g. if have an option, don't default to 'none')
 > script extensions
-> multiple subnets per vnet
+> multiple subnets per vnet (& referencable as such)
 > availability set
-> network security groups
 > storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
 
 P1
@@ -31,10 +30,13 @@ P1
 > LB
 > NIC should reference LB backend address pools
 > VMSS
-> should have subnets as reference-able thing; necessary if have more than 1 per vnet
+> Data Disks on VMs
+> ARM functions for passing into script extensions
+> network security groups
 > "make parameter" option and way to use parameters
 > UI for doing concats
 > multiple LB rules
+> validation (e.g. boot diagnostics can't use Premium storage)
 
 P2
 ==
