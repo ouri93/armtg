@@ -588,19 +588,20 @@ function createBlock(blockType, blockInfix) {
     return deepCopy;
 }
 
-function createResources() {
+function createResources(templateObject) {
     for (var blockType in blocks) {
 	for (var blockInfix in blocks[blockType]["blocks"]) {
 	    var curBlock = createBlock(blockType, blockInfix);
 	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
-	    baseTemplateObject["resources"].push(finalForm);
+	    templateObject["resources"].push(finalForm);
 	}
     }
 }
 
 function generateTemplate() {
-    createResources();
-    $('#output').html(JSON.stringify(baseTemplateObject));
+    var freshCopy = jQuery.extend(true, {}, baseTemplateObjectCopy);
+    createResources(freshCopy);
+    $('#output').html(JSON.stringify(freshCopy));
 }
 
 function deployToAzure() {
