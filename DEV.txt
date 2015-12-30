@@ -15,7 +15,9 @@ TODO
 > VM sizes should have better selection of sizes
 > should choose good order of keys in template
 > should choose good order of options in dropdowns (e.g. if have an option, don't default to 'none')
+> NIC should reference LB backend address pools
 > script extensions
+> should have subnets as reference-able thing; necessary if have more than 1 per vnet
 > "make parameter" option
 > add "generateForMe"
 > multiple subnets per vnet
