@@ -116,7 +116,7 @@ var blocks = {
 	   },
     
     'LB': {'plural': 'LBs',
-	   'populatableSelectors': {},
+	   'populatableSelectors': {'VNET': true, 'PIP': true},
 	   'blocks': {},
 	   'properties': {'VNET': {'type': 'dropdown', 'required': false, 'columnWidth': 6},
 			  'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6},
