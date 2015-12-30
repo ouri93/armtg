@@ -584,3 +584,11 @@ function createResources() {
     }
 }
 
+function generateTemplate() {
+    createResources();
+    $('#output').html(baseTemplateObject.toString());
+}
+
+function deployToAzure() {
+    alert("TODO!");
+}
