@@ -160,7 +160,7 @@ var blocks = {
 	   },
 	   'customization': function(block, blockInfix) {
 	       partialBlockName = getPartialTemplateName(getBlockName("SA", blockInfix));
-	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(parameters('namingInfix')), toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
+	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},
