@@ -44,7 +44,7 @@ P1
 > "make parameter" option and way to use parameters
 > UI for doing concats
 > multiple LB rules
-> validation (e.g. boot diagnostics can't use Premium storage; SA storage name can only contain lowercase letters and numbers, endPort >= startPort, password is strong enough (add to password type isValid) etc.)
+> validation (e.g. boot diagnostics can't use Premium storage; SA storage name can only contain lowercase letters and numbers, endPort >= startPort, password is strong enough (add to password type isValid), domainNameLabel is actually a label and not a FQDN, etc.)
 > LB probe options (port, interval, number, probe url?, multiple probes)
 > edit or delete both entire resources and individual properties of resources
 
