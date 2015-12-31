@@ -65,7 +65,7 @@ var blocks = {
 	       'customization': function(block, blockInfix) {
 		   return block;
 	       }
-	      }
+	      },
 
 
     // properties::dnsSettings::domainNameLabel
