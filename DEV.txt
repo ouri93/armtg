@@ -30,6 +30,7 @@ P0
 > delete whole resources
 > placeholders to suggest to user what to put
 > replace strings with algebraic types (if they exist in JS) so get errors automatically instead of having to check everywhere (e.g. if write wrong string, have to catch that with error checking; if write wrong algebraic type, will auto-error)
+> could probably move 'required' to a property of types (it only really does anything for adding *'s (everywhere) and for adding 'none' as option in dropdown)
 
 
 P1

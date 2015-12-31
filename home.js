@@ -72,7 +72,7 @@ var blocks = {
     'PIP': {'plural': 'PIPs',
 	    'populatableSelectors': {},
 	    'blocks': {},
-	    'properties': {'domainNameLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
+	    'properties': {'domainNameLabel': {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12}},
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/publicIPAddresses",
@@ -230,7 +230,7 @@ var blocks = {
 
 // add common properties to all block types
 for (var blockType in blocks) {
-    blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 12};
+    blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
     //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
