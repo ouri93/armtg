@@ -15,7 +15,7 @@
 
   'properties': the user-specified aspects of blocks of this type
 
-  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', 'checkbox', or 'subnets'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
 
   'properties::required': true if required, false if not
 
@@ -34,7 +34,7 @@ var blocks = {
     'VNET': {'plural': 'VNETs',
 	     'populatableSelectors': {},
 	     'blocks': {},
-	     'properties': {},
+	     'properties': {'subnets': {'type': 'subnets', 'required': true, 'columnWidth': 12}},
 	     'cospecifications': [],
 	     'baseObject': {
 		 "type": "Microsoft.Network/virtualNetworks",
@@ -284,6 +284,8 @@ function getView(details, referenceId) {
     case 'checkbox':
 	return "<input type='checkbox' id='" + referenceId + "'></input>";
 
+    case 'subnet':
+	alert('TODO!');
 
 	    
     default:
