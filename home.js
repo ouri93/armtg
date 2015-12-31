@@ -15,7 +15,7 @@
 
   'properties': the user-specified aspects of blocks of this type
 
-  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', 'checkbox', or 'subnets'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
 
   'properties::required': true if required, false if not
 
@@ -30,27 +30,19 @@
 
 // apiVersion, location, name
 var blocks = {
-    // properties::subnets::name
+    // properties::subnets, //properties::addressSpace::addressPrefixes
     'VNET': {'plural': 'VNETs',
 	     'populatableSelectors': {},
 	     'blocks': {},
-	     'properties': {'subnets': {'type': 'subnets', 'required': true, 'columnWidth': 12}},
+	     'properties': {'addressPrefix': {'type': 'text', 'required': true, 'columnWidth': 12}},
 	     'cospecifications': [],
 	     'baseObject': {
 		 "type": "Microsoft.Network/virtualNetworks",
 		 "properties": {
 		     "addressSpace": {
-			 "addressPrefixes": [
-			     "10.0.0.0/16"
-			 ]
+			 "addressPrefixes": []
 		     },
-		     "subnets": [
-			 {
-			     "properties": {
-				 "addressPrefix": "10.0.0.0/16"
-			     }
-			 }
-		     ]
+		     "subnets": []
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
@@ -58,6 +50,23 @@ var blocks = {
 		 return block;
 	     }
 	    },
+
+    // properties::addressPrefix
+    'SUBNET': {'plural': 'SUBNETs',
+	       'populatableSelectors': {'VNET': true},
+	       'blocks': {},
+	       'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			      'addressPrefix': {'type': 'text', 'required': true, 'columnWidth': 6}},
+	       'cospecifications': [],
+	       'baseObject': {
+		   "properties": {
+		   }
+	       },
+	       'customization': function(block, blockInfix) {
+		   return block;
+	       }
+	      }
+
 
     // properties::dnsSettings::domainNameLabel
     'PIP': {'plural': 'PIPs',
@@ -225,15 +234,83 @@ for (var blockType in blocks) {
     //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
 }
 
+var types = {
+    'text': {'getView': function(details, referenceId) {
+	return "<input id='" + referenceId + "'></input>";
+    }
+	    },
+
+    'num': {'getView': function(details, referenceId) {
+	return "<input id='" + referenceId + "' type='number'></input>";
+    }
+	   },
+
+    'password': {'getView': function(details, referenceId) {
+	return "<input id='" + referenceId + "' type='password'></input>";
+    }
+		},
+
+    'dropdown': {'getView': function(details, referenceId) {
+	var ret = "<select id='" + referenceId + "'>";
+	
+	if (!(details['required'])) {
+	    ret += "<option value='none'>none</option>";
+	}
+	
+	ret += "</select>";
+	
+	return ret;
+    }
+		},
+
+    'storageAccountType': {'getView': function(details, referenceId) {
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Standard_LRS'>Standard_LRS</option>" +
+	    "<option value='Standard_GRS'>Standard_GRS</option>" +
+	    "<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
+	    "<option value='Standard_RAGRS'>Standard_ZRS</option>" +
+	    "<option value='Premium_LRS'>Premium_LRS</option>" +
+	    "</select>";
+    }
+			  },
+
+    'vmSize': {'getView': function(details, referenceId) {
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Standard_A1'>Standard_A1</option>" +
+	    "<option value='Standard_A2'>Standard_A2</option>" +
+	    "<option value='Standard_A3'>Standard_A3</option>" +
+	    "<option value='Standard_A4'>Standard_A4</option>" +
+	    "<option value='Standard_D1'>Standard_D1</option>" +
+	    "<option value='Standard_D2'>Standard_D2</option>" +
+	    "<option value='Standard_D3'>Standard_D3</option>" +
+	    "<option value='Standard_D4'>Standard_D4</option>" +
+	    "</select>";
+    }
+	      },
+    'os': {'getView': function(details, referenceId) {
+	return "<select id='" + referenceId + "'>" +
+	    "<option value='Linux'>Linux</option>" +
+	    "<option value='Windows'>Windows</option>" +
+	    "</select>";
+    }
+	  },
+
+    'checkbox': {'getView': function(details, referenceId) {
+	return "<input type='checkbox' id='" + referenceId + "'></input>";
+    }
+		}
+};
 
 ////////////////////
 // UI (View) Code //
 ////////////////////
 
+
+/*
 function getView(details, referenceId) {
     switch(details['type']) {
     case 'text':
-	return "<input id='" + referenceId + "'></input>"
+	return "<input id='" + referenceId + "'></input>";
 
     case 'num':
 	return "<input id='" + referenceId + "' type='number'></input>";
@@ -284,14 +361,12 @@ function getView(details, referenceId) {
     case 'checkbox':
 	return "<input type='checkbox' id='" + referenceId + "'></input>";
 
-    case 'subnet':
-	alert('TODO!');
-
 	    
     default:
 	console.log('invalid view type ' + details['type'] + ' with referenceId ' + referenceId);
     }
 }
+*/
 
 var properRowWidth = 12;
 var controlButtonWidth = 3;
@@ -360,7 +435,7 @@ function populateDetails(blockType) {
 	var requiredString = blocks[blockType]['properties'][property]['required'] ? "*" : "";
 
 	blockHtml += "<div class='col-md-" + blocks[blockType]['properties'][property]['columnWidth'].toString() + "'>" +
-	    property + requiredString + ": " + getView(blocks[blockType]['properties'][property], property) + "</div>";
+	    property + requiredString + ": " + types[blockType].getView(blocks[blockType]['properties'][property], property) + "</div>";
 
 	currentWidthUsed += blocks[blockType]['properties'][property]['columnWidth'];
 

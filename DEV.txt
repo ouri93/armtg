@@ -14,7 +14,9 @@ for resources:
 TODO
 P0
 ==
+> refactor types to have their own object
 > multiple subnets per vnet (& referencable as such)
+> addressPrefix should have its own type and should do validation on the format
 > VM
 > VM boot diagnostics (requires changing 'properties' of blockTypes to have a displayName ("VM boot diagnostics SA") in addition to the property blockType ("SA"), which is already there)
 > VM sizes should have better selection of sizes
@@ -26,6 +28,8 @@ P0
 > availability set
 > storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
 > delete whole resources
+> placeholders to suggest to user what to put
+
 
 P1
 ==
@@ -38,15 +42,17 @@ P1
 > "make parameter" option and way to use parameters
 > UI for doing concats
 > multiple LB rules
-> validation (e.g. boot diagnostics can't use Premium storage)
+> validation (e.g. boot diagnostics can't use Premium storage; SA storage name can only contain lowercase letters and numbers, endPort >= startPort, etc.)
 > LB probe options (port, interval, number, probe url?, multiple probes)
 > edit or delete both entire resources and individual properties of resources
+
 
 P2
 ==
 > tcp/udp (LB, nsg's)
 > copyIndex on all resources
 > custom VM images
+> multiple addressPrefixes per vnet
 
 > add "generateForMe"
 > make template variables instead of just plopping same value hard-coded in template
