@@ -435,7 +435,7 @@ function populateDetails(blockType) {
 	var requiredString = blocks[blockType]['properties'][property]['required'] ? "*" : "";
 
 	blockHtml += "<div class='col-md-" + blocks[blockType]['properties'][property]['columnWidth'].toString() + "'>" +
-	    property + requiredString + ": " + types[blockType]['properties'][property]['type'].getView(blocks[blockType]['properties'][property], property) + "</div>";
+	    property + requiredString + ": " + types[blocks[blockType]['properties'][property]['type']].getView(blocks[blockType]['properties'][property], property) + "</div>";
 
 	currentWidthUsed += blocks[blockType]['properties'][property]['columnWidth'];
 
