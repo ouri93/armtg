@@ -540,9 +540,9 @@ function specified(property, proposedBlock) {
     return true;
 }
 
-function allSpecified(propertyList, blockType, proposedBlock) {
+function allSpecified(propertyList, proposedBlock) {
     var specifieds = propertyList.map(function(property) {
-	return specified(property, blockType, proposedBlock);
+	return specified(property, proposedBlock);
     });
     
     return specifieds.reduce(function(prev, cur, index, arr) {
@@ -552,7 +552,7 @@ function allSpecified(propertyList, blockType, proposedBlock) {
 
 function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
-	var spec = specified(property, blockType, proposedBlock);
+	var spec = specified(property, proposedBlock);
 	if (blocks[blockType]['properties'][property]['required']) {
 	    if (!spec) {
 		alert("please specify a value for " + property + "!");
@@ -570,7 +570,7 @@ function validateBlock(blockType, proposedBlock) {
     
     if (blocks[blockType]['cospecifications'].length > 0) {
 	var satisfiedGroups = blocks[blockType]['cospecifications'].map(function(propertyList) {
-	    return allSpecified(propertyList, blockType, proposedBlock);
+	    return allSpecified(propertyList, proposedBlock);
 	});
 	
 	var atLeastOneGroupSatisfied = satisfiedGroups.reduce(function(prev, cur, index, arr) {
