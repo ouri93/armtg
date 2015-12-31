@@ -46,7 +46,6 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
-		 block['properties']['subnets'][0]['name'] = getBlockNamingInfix(getBlockName("VNET", blockInfix)) + ", 'subnet')]";
 		 return block;
 	     }
 	    },
@@ -91,9 +90,9 @@ var blocks = {
     
     // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
     'NIC': {'plural': 'NICs',
-	    'populatableSelectors': {'VNET': true, 'PIP': true},
+	    'populatableSelectors': {'SUBNET': true, 'PIP': true},
 	    'blocks': {},
-	    'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+	    'properties': {'SUBNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			   'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
 	    'cospecifications': [],
 	    'baseObject': {
@@ -116,6 +115,7 @@ var blocks = {
 		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]"};
 		}
 		
+		alert('FIX NIC VNET!');
 		vnet = blocks["NIC"]["blocks"][blockInfix]["VNET"];
 		vnetInfix = getInfixFromBlockName(vnet);
 		
@@ -129,9 +129,9 @@ var blocks = {
     /*
     // depends on optional vnet and optional pip; properties::frontEndIPConfigurations::0::name, properties::frontEndIPConfigurations::0::properties::subnet::id (ref), properties::backendAddressPools::0::name, optional LB rules, optional NAT rules, properties::probes::properties::port, properties::probes::properties::name
     'LB': {'plural': 'LBs',
-	   'populatableSelectors': {'VNET': true, 'PIP': true},
+	   'populatableSelectors': {'SUBNET': true, 'PIP': true},
 	   'blocks': {},
-	   'properties': {'VNET': {'type': 'dropdown', 'required': false, 'columnWidth': 6},
+	   'properties': {'SUBNET': {'type': 'dropdown', 'required': false, 'columnWidth': 6},
 			  'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6},
 			  'roundRobinFrontEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
 			  'roundRobinBackEndPort': {'type': 'num', 'required': false, 'columnWidth': 4},
@@ -212,14 +212,14 @@ var blocks = {
     /*,
     
     'VMSS': {'plural': 'VMSSes',
-	     'populatableSelectors': {'VNET': true, 'LB': true, 'SA': true},
+	     'populatableSelectors': {'SUBNET': true, 'LB': true, 'SA': true},
 	     'blocks': {},
 	     'properties': {'capacity': {'type': 'num', 'required': true, 'columnWidth': 4},
 			    'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 4},
 			    'os': {'type': 'os', 'required': true, 'columnWidth': 4},
 			    'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
 			    'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-			    'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
+			    'SUBNET': {'type': 'dropdown', 'required': true, 'columnWidth': 4},
 			    'LB': {'type': 'dropdown', 'required': false, 'columnWidth': 4},
 			    'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 4}},
 	     'cospecifications': []}
