@@ -364,18 +364,21 @@ var types = {
 	    }
 
 	    // re tests if we get a start-line, a dotted-quad of numbers,
-	    // then a '/', then another number, then the end-line;
+	    // then a '/', then another number, then the end-line,
+	    // capturing the numbers for later use;
 	    // re doesn't check that the numbers are the proper size
-	    var re = new RegExp("^\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+$");
+	    var re = new RegExp("^(\\d+)\\.(\\d+)\\.(\\d+)\\.(\\d+)/(\\d+)$");
 	    res = re.exec(input);
 	    
 	    if (res === null) {
 		return false;
 	    }
 
-	    // now check that the numbers are the proper size
+	    // now check that the numbers are the proper size;
+	    // start at i=1 because this is where the remembered values start;
+	    // 0 is the full string;
 	    var n = 0;
-	    for (var i = 0; i < 5; i++) {
+	    for (var i = 1; i <= 5; i++) {
 		n = parseInt(res[i]);
 		if (isNaN(n)) {
 		    return false;
