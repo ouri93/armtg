@@ -352,7 +352,7 @@ var types = {
 	'isValid': function(input) {
 	    return true;
 	}
-    }
+    },
 
     'addressPrefix': {
 	'getView': function(details, referenceId) {
