@@ -55,6 +55,7 @@ P2
 > copyIndex on all resources
 > custom VM images
 > multiple addressPrefixes per vnet
+> subnets really shouldn't be a separate block; they should be a part of vnets with some nice UI; this is both an end-experience thing and a namespace issue; for instance, in an ARM template, you can have subnets with the same names as long as they are in different vnets; this tool won't be able to generate this, though, becasue it checks the subnet infix as if subnets were in the top-level namespace and refuses to make duplicates even if they are in different vnets
 
 > add "generateForMe"
 > make template variables instead of just plopping same value hard-coded in template
