@@ -43,7 +43,7 @@ P1
 > "make parameter" option and way to use parameters
 > UI for doing concats
 > multiple LB rules
-> validation (e.g. boot diagnostics can't use Premium storage; SA storage name can only contain lowercase letters and numbers, endPort >= startPort, etc.)
+> validation (e.g. boot diagnostics can't use Premium storage; SA storage name can only contain lowercase letters and numbers, endPort >= startPort, password is strong enough (add to password type isValid) etc.)
 > LB probe options (port, interval, number, probe url?, multiple probes)
 > edit or delete both entire resources and individual properties of resources
 
@@ -72,3 +72,4 @@ P3
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
 
 
+> assumes IPv4 for addressPrefixes; expand to IPv6?

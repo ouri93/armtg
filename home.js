@@ -15,7 +15,7 @@
 
   'properties': the user-specified aspects of blocks of this type
 
-  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties[property][type]': 'num', 'dropdown', 'text', 'potentiallyEmptyText', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
 
   'properties::required': true if required, false if not
 
@@ -34,7 +34,7 @@ var blocks = {
     'VNET': {'plural': 'VNETs',
 	     'populatableSelectors': {},
 	     'blocks': {},
-	     'properties': {'addressPrefix': {'type': 'text', 'required': true, 'columnWidth': 12}},
+	     'properties': {'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 12}},
 	     'cospecifications': [],
 	     'baseObject': {
 		 "type": "Microsoft.Network/virtualNetworks",
@@ -56,7 +56,7 @@ var blocks = {
 	       'populatableSelectors': {'VNET': true},
 	       'blocks': {},
 	       'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			      'addressPrefix': {'type': 'text', 'required': true, 'columnWidth': 6}},
+			      'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 6}},
 	       'cospecifications': [],
 	       'baseObject': {
 		   "properties": {
@@ -235,70 +235,160 @@ for (var blockType in blocks) {
 }
 
 var types = {
-    'text': {'getView': function(details, referenceId) {
-	return "<input id='" + referenceId + "'></input>";
-    }
-	    },
+    'text': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "'></input>";
+	},
+	'isValid': function(input) {
+            if (input === "") {
+		return false;
+	    }
 
-    'num': {'getView': function(details, referenceId) {
-	return "<input id='" + referenceId + "' type='number'></input>";
-    }
-	   },
-
-    'password': {'getView': function(details, referenceId) {
-	return "<input id='" + referenceId + "' type='password'></input>";
-    }
-		},
-
-    'dropdown': {'getView': function(details, referenceId) {
-	var ret = "<select id='" + referenceId + "'>";
-	
-	if (!(details['required'])) {
-	    ret += "<option value='none'>none</option>";
+	    return true;
 	}
-	
-	ret += "</select>";
-	
-	return ret;
-    }
-		},
+    },
 
-    'storageAccountType': {'getView': function(details, referenceId) {
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Standard_LRS'>Standard_LRS</option>" +
-	    "<option value='Standard_GRS'>Standard_GRS</option>" +
-	    "<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
-	    "<option value='Standard_RAGRS'>Standard_ZRS</option>" +
-	    "<option value='Premium_LRS'>Premium_LRS</option>" +
-	    "</select>";
-    }
-			  },
+    'potentiallyEmptyText': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "'></input>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
+    
+    'num': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "' type='number'></input>";
+	},
+	'isValid': function(input) {
+	    if (isNaN(input)) {
+		return false;
+	    }
+	    
+	    if (input < 1) {
+		return false;
+	    }
+	    
+	    return true;
+	}
+    },
+    
+    'password': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "' type='password'></input>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
+    
+    'dropdown': {
+	'getView': function(details, referenceId) {
+	    var ret = "<select id='" + referenceId + "'>";
+	    
+	    if (!(details['required'])) {
+		ret += "<option value='none'>none</option>";
+	    }
+	    
+	    ret += "</select>";
+	    
+	    return ret;
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
+    
+    'storageAccountType': {
+	'getView': function(details, referenceId) {
+	    return "<select id='" + referenceId + "'>" +
+		"<option value='Standard_LRS'>Standard_LRS</option>" +
+		"<option value='Standard_GRS'>Standard_GRS</option>" +
+		"<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
+		"<option value='Standard_RAGRS'>Standard_ZRS</option>" +
+		"<option value='Premium_LRS'>Premium_LRS</option>" +
+		"</select>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
+    
+    'vmSize': {
+	'getView': function(details, referenceId) {
+	    return "<select id='" + referenceId + "'>" +
+		"<option value='Standard_A1'>Standard_A1</option>" +
+		"<option value='Standard_A2'>Standard_A2</option>" +
+		"<option value='Standard_A3'>Standard_A3</option>" +
+		"<option value='Standard_A4'>Standard_A4</option>" +
+		"<option value='Standard_D1'>Standard_D1</option>" +
+		"<option value='Standard_D2'>Standard_D2</option>" +
+		"<option value='Standard_D3'>Standard_D3</option>" +
+		"<option value='Standard_D4'>Standard_D4</option>" +
+		"</select>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
 
-    'vmSize': {'getView': function(details, referenceId) {
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Standard_A1'>Standard_A1</option>" +
-	    "<option value='Standard_A2'>Standard_A2</option>" +
-	    "<option value='Standard_A3'>Standard_A3</option>" +
-	    "<option value='Standard_A4'>Standard_A4</option>" +
-	    "<option value='Standard_D1'>Standard_D1</option>" +
-	    "<option value='Standard_D2'>Standard_D2</option>" +
-	    "<option value='Standard_D3'>Standard_D3</option>" +
-	    "<option value='Standard_D4'>Standard_D4</option>" +
-	    "</select>";
+    'os': {
+	'getView': function(details, referenceId) {
+	    return "<select id='" + referenceId + "'>" +
+		"<option value='Linux'>Linux</option>" +
+		"<option value='Windows'>Windows</option>" +
+		"</select>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
+    },
+    
+    'checkbox': {
+	'getView': function(details, referenceId) {
+	    return "<input type='checkbox' id='" + referenceId + "'></input>";
+	},
+	'isValid': function(input) {
+	    return true;
+	}
     }
-	      },
-    'os': {'getView': function(details, referenceId) {
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Linux'>Linux</option>" +
-	    "<option value='Windows'>Windows</option>" +
-	    "</select>";
-    }
-	  },
 
-    'checkbox': {'getView': function(details, referenceId) {
-	return "<input type='checkbox' id='" + referenceId + "'></input>";
-    }
+    'addressPrefix': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "'></input>";
+	},
+	'isValid': function(input) {
+            if (input === "") {
+		return false;
+	    }
+
+	    // re tests if we get a start-line, a dotted-quad of numbers,
+	    // then a '/', then another number, then the end-line;
+	    // re doesn't check that the numbers are the proper size
+	    var re = new RegExp("^\\d+\\.\\d+\\.\\d+\\.\\d+/\\d+$");
+	    res = re.exec(input);
+	    
+	    if (res === null) {
+		return false;
+	    }
+
+	    // now check that the numbers are the proper size
+	    var n = 0;
+	    for (var i = 0; i < 5; i++) {
+		n = parseInt(res[i]);
+		if (isNaN(n)) {
+		    return false;
 		}
+
+		if (n < 0 || n > 255) {
+		    return false;
+		}
+	    }
+
+	    return true;
+	}
+    }
 };
 
 
@@ -437,43 +527,14 @@ function populateSelectors(blockType) {
     }
 }
 
-function numValidity(n) {
-    if (isNaN(n)) {
-	return false;
-    }
-    
-    if (n < 1) {
-	return false;
-    }
 
-    return true;
-}
-
-function stringSpecified(property, proposedBlock) {
+function specified(property, proposedBlock) {
     if (!(property in proposedBlock)) {
 	return false;
     }
     
     if (proposedBlock[property] == undefined) {
 	return false;
-    }
-    
-    if (proposedBlock[property] === "") {
-	return false;
-    }
-
-    return true;
-}
-
-function specified(property, blockType, proposedBlock) {
-    if (!stringSpecified(property, proposedBlock)) {
-	return false;
-    }
-
-    if (blocks[blockType]['properties'][property]['type'] == 'num') {
-	if (!numValidity(proposedBlock[property])) {
-	    return false;
-	}
     }
 
     return true;
@@ -491,9 +552,17 @@ function allSpecified(propertyList, blockType, proposedBlock) {
 
 function validateBlock(blockType, proposedBlock) {
     for (var property in blocks[blockType]['properties']) {
+	var spec = specified(property, blockType, proposedBlock);
 	if (blocks[blockType]['properties'][property]['required']) {
-	    if (!specified(property, blockType, proposedBlock)) {
-		alert("please specify a proper value for property " + property);
+	    if (!spec) {
+		alert("please specify a value for " + property + "!");
+		return false;
+	    }
+	}
+
+	if (spec) {
+	    if (!(types[blocks[blockType]['properties'][property]['type']].isValid(proposedBlock[property]))) {
+		alert(property + " is invalid!");
 		return false;
 	    }
 	}
