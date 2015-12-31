@@ -29,6 +29,7 @@ P0
 > storing infixes but displaying full names; is mildly confusing in the code since in some places we need to convert between the two (e.g. getInfixFromBlockName); should have one canonical representation ideally
 > delete whole resources
 > placeholders to suggest to user what to put
+> replace strings with algebraic types (if they exist in JS) so get errors automatically instead of having to check everywhere (e.g. if write wrong string, have to catch that with error checking; if write wrong algebraic type, will auto-error)
 
 
 P1

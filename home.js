@@ -301,72 +301,11 @@ var types = {
 		}
 };
 
+
+
 ////////////////////
 // UI (View) Code //
 ////////////////////
-
-
-/*
-function getView(details, referenceId) {
-    switch(details['type']) {
-    case 'text':
-	return "<input id='" + referenceId + "'></input>";
-
-    case 'num':
-	return "<input id='" + referenceId + "' type='number'></input>";
-
-    case 'password':
-	return "<input id='" + referenceId + "' type='password'></input>";
-
-    case 'dropdown':
-	// !!! TODO should have generateForMe option
-	//var ret = "<select id='" + referenceId + "'><option value='generateForMe'>generateForMe</option>";
-	var ret = "<select id='" + referenceId + "'>";
-
-	if (!(details['required'])) {
-	    ret += "<option value='none'>none</option>";
-	}
-	
-	ret += "</select>";
-
-	return ret;
-
-    case 'storageAccountType':
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Standard_LRS'>Standard_LRS</option>" +
-	    "<option value='Standard_GRS'>Standard_GRS</option>" +
-	    "<option value='Standard_RAGRS'>Standard_RAGRS</option>" +
-	    "<option value='Standard_RAGRS'>Standard_ZRS</option>" +
-	    "<option value='Premium_LRS'>Premium_LRS</option>" +
-	    "</select>";
-
-    case 'vmSize':
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Standard_A1'>Standard_A1</option>" +
-	    "<option value='Standard_A2'>Standard_A2</option>" +
-	    "<option value='Standard_A3'>Standard_A3</option>" +
-	    "<option value='Standard_A4'>Standard_A4</option>" +
-	    "<option value='Standard_D1'>Standard_D1</option>" +
-	    "<option value='Standard_D2'>Standard_D2</option>" +
-	    "<option value='Standard_D3'>Standard_D3</option>" +
-	    "<option value='Standard_D4'>Standard_D4</option>" +
-	    "</select>";
-
-    case 'os':
-	return "<select id='" + referenceId + "'>" +
-	    "<option value='Linux'>Linux</option>" +
-	    "<option value='Windows'>Windows</option>" +
-	    "</select>";
-
-    case 'checkbox':
-	return "<input type='checkbox' id='" + referenceId + "'></input>";
-
-	    
-    default:
-	console.log('invalid view type ' + details['type'] + ' with referenceId ' + referenceId);
-    }
-}
-*/
 
 var properRowWidth = 12;
 var controlButtonWidth = 3;
