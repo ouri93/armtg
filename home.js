@@ -26,6 +26,10 @@
   'baseObject': the base JSON object used to create the block of that type; if this is missing, the button to add this object to the template won't appear
 
   'customization': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
+
+  Misc
+  ----
+  Subnets are treated as "first-class blocks", making the code below easier, with some consequences. For instance, users must specify subnets separately from vnets. Additionally, there is some special-case code to embed subnets within vnets when generating the template.
 */
 
 // apiVersion, location, name
@@ -46,15 +50,12 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
-		 console.log(blockInfix);
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
-		     console.log(subnetInfix);
-		     console.log(blocks["SUBNET"]["blocks"][subnetInfix]["VNET"]);
-		     console.log(blockInfix);
-
-		     if (blocks["SUBNET"]["blocks"][subnetInfix]["VNET"] == blockInfix) {
-			 block["properties"]["subnets"].push(createSubBlock("SUBNET", subnetInfix));
+		     if (getInfixFromBlockName(blocks["SUBNET"]["blocks"][subnetInfix]["VNET"]) == blockInfix) {
+			 var subnetBlock = createSubBlock("SUBNET", subnetInfix);
+			 subnetBlock["properties"] = {"addressPrefix": blocks["SUBNET"]["blocks"][subnetInfix]["addressPrefix"]};
+			 block["properties"]["subnets"].push();
 		     }
 		 }
 
@@ -372,7 +373,7 @@ var types = {
 
     'addressPrefix': {
 	'getView': function(details, referenceId) {
-	    return "<input placeholder='10.0.0.0/16' id='" + referenceId + "'></input>";
+	    return "<input id='" + referenceId + "'>10.0.0.0/16</input>";
 	},
 	'isValid': function(input) {
             if (input === "") {
