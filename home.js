@@ -46,8 +46,10 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
+		 console.log(blockInfix);
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
+		     console.log(subnetInfix);
 		     if (blocks["SUBNET"]["blocks"][subnetInfix]["VNET"] == blockInfix) {
 			 block["properties"]["subnets"].push(createSubBlock("SUBNET", subnetInfix));
 		     }
@@ -69,9 +71,9 @@ var blocks = {
 		   }
 	       },
 	       'customization': function(block, blockInfix) {
-		   // don't actually want subnets as their own top-level resource, so return empty string
+		   // don't actually want subnets as their own top-level resource, so return null
 		   // subnets are dealt with in the 'customization' section of vnets
-		   return "";
+		   return null;
 	       }
 	      },
 
@@ -729,7 +731,9 @@ function createResources(templateObject) {
 	for (var blockInfix in blocks[blockType]["blocks"]) {
 	    var curBlock = createBlock(blockType, blockInfix);
 	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
-	    templateObject["resources"].push(finalForm);
+	    if (finalForm != null) {
+		templateObject["resources"].push(finalForm);
+	    }
 	}
     }
 }
