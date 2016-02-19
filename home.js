@@ -50,12 +50,14 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
+		 // (*** TODO ***) addressSpace::addressPrefixes
+
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
 		     if (getInfixFromBlockName(blocks["SUBNET"]["blocks"][subnetInfix]["VNET"]) == blockInfix) {
 			 var subnetBlock = createSubBlock("SUBNET", subnetInfix);
 			 subnetBlock["properties"] = {"addressPrefix": blocks["SUBNET"]["blocks"][subnetInfix]["addressPrefix"]};
-			 block["properties"]["subnets"].push();
+			 block["properties"]["subnets"].push(subnetBlock);
 		     }
 		 }
 
