@@ -46,6 +46,13 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
+		 // add subnets to this vnet
+		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
+		     if (blocks["SUBNET"]["blocks"][subnetInfix]["VNET"] == blockInfix) {
+			 block["properties"]["subnets"].push(createSubBlock("SUBNET", subnetInfix));
+		     }
+		 }
+
 		 return block;
 	     }
 	    },
@@ -62,7 +69,9 @@ var blocks = {
 		   }
 	       },
 	       'customization': function(block, blockInfix) {
-		   return block;
+		   // don't actually want subnets as their own top-level resource, so return empty string
+		   // subnets are dealt with in the 'customization' section of vnets
+		   return "";
 	       }
 	      },
 
@@ -698,9 +707,17 @@ function getBlockTemplateName(blockName) {
     return getBlockNamingInfix(blockName) + ")]";
 }
 
-function createBlock(blockType, blockInfix) {
+// mostly here to re-use some block creation code for subnets,
+// which are special-cased because we treat them like top-level
+// blocks for convenience, but they are really subBlocks
+function createSubBlock(blockType, blockInfix) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
     deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
+    return deepCopy;
+}
+
+function createBlock(blockType, blockInfix) {
+    var deepCopy = createSubBlock(blockType, blockInfix);
     deepCopy['apiVersion'] = "[variables('apiVersion')]";
     deepCopy['location'] = "[variables('location')]";
 
