@@ -718,7 +718,7 @@ function createResources(templateObject) {
 function generateTemplate() {
     var freshCopy = jQuery.extend(true, {}, baseTemplateObject);
     createResources(freshCopy);
-    $('#output').html(JSON.stringify(freshCopy));
+    $('#output').html(JSON.stringify(freshCopy, null, 2));
 }
 
 function deployToAzure() {
