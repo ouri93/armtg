@@ -74,5 +74,6 @@ P3
   > don't have overlapping subnets within a vnet
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
 
+> make 10.0.0.0/24 default value for subnets
 
 > assumes IPv4 for addressPrefixes; expand to IPv6?

@@ -50,7 +50,8 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
-		 // (*** TODO ***) addressSpace::addressPrefixes
+		 // add addressPrefix to this vnet
+		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["VNET"]["blocks"][blockInfix]["addressPrefix"]);
 
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
