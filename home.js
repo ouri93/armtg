@@ -50,6 +50,9 @@ var blocks = {
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
 		     console.log(subnetInfix);
+		     console.log(blocks["SUBNET"]["blocks"][subnetInfix]["VNET"]);
+		     console.log(blockInfix);
+
 		     if (blocks["SUBNET"]["blocks"][subnetInfix]["VNET"] == blockInfix) {
 			 block["properties"]["subnets"].push(createSubBlock("SUBNET", subnetInfix));
 		     }
