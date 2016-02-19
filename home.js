@@ -373,7 +373,7 @@ var types = {
 
     'addressPrefix': {
 	'getView': function(details, referenceId) {
-	    return "<input id='" + referenceId + "'>10.0.0.0/16</input>";
+	    return "<input id='" + referenceId + "' value='10.0.0.0/16'></input>";
 	},
 	'isValid': function(input) {
             if (input === "") {
