@@ -117,16 +117,12 @@ var blocks = {
 		
 		subnet = blocks["NIC"]["blocks"][blockInfix]["SUBNET"];
 		subnetInfix = getInfixFromBlockName(subnet);
-		console.log(subnet);
-		console.log(subnetInfix);
 
 		vnet = blocks["SUBNET"]["blocks"][subnetInfix]["VNET"];
 		vnetInfix = getInfixFromBlockName(vnet);
-		console.log(vnet);
-		console.log(vnetInfix);
 		
 		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
-		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(vnet) + ", 'subnet')]"};
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(subnet) + ", 'subnet')]"};
 		
 		return block;
 	    }
