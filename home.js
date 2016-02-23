@@ -743,13 +743,25 @@ function createBlock(blockType, blockInfix) {
     return deepCopy;
 }
 
+function sortKeys(obj) {
+    keys = Object.keys(obj);
+    keys.sort();
+    ret = {};
+    for (var key in keys) {
+	ret[key] = obj[key];
+    }
+
+    return ret;
+}
+
 function createResources(templateObject) {
     for (var blockType in blocks) {
 	for (var blockInfix in blocks[blockType]["blocks"]) {
 	    var curBlock = createBlock(blockType, blockInfix);
 	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
 	    if (finalForm != null) {
-		templateObject["resources"].push(finalForm);
+		var sortedFinalForm = sortKeys(finalForm);
+		templateObject["resources"].push(sortedFinalForm);
 	    }
 	}
     }
