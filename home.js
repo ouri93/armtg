@@ -55,8 +55,8 @@ var blocks = {
 
 		 // add subnets to this vnet
 		 for (var subnetInfix in blocks["subnet"]["blocks"]) {
-		     if (getInfixFromBlockName(blocks["subnet"]["blocks"][subnetInfix]["subnet"]) == blockInfix) {
-			 var subnetBlock = createSubBlock("SUBNET", subnetInfix);
+		     if (getInfixFromBlockName(blocks["subnet"]["blocks"][subnetInfix]["vnet"]) == blockInfix) {
+			 var subnetBlock = createSubBlock("subnet", subnetInfix);
 			 subnetBlock["properties"] = {"addressPrefix": blocks["subnet"]["blocks"][subnetInfix]["addressPrefix"]};
 			 block["properties"]["subnets"].push(subnetBlock);
 		     }
