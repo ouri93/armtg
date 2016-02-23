@@ -730,7 +730,8 @@ function getBlockTemplateName(blockName) {
 // blocks for convenience, but they are really subBlocks
 function createSubBlock(blockType, blockInfix) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
-    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
+    // lowercase name because storage requires it
+    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix.toLowerCase()));
     return deepCopy;
 }
 
