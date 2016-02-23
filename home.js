@@ -748,11 +748,7 @@ function sortKeys(obj) {
     keys.sort();
     ret = {};
     for (var keyIndex in keys) {
-	if (typeof(obj[keys[keyIndex]]) == "object") {
-	    ret[keys[keyIndex]] = sortKeys(obj[keys[keyIndex]]);
-	} else {
-	    ret[keys[keyIndex]] = obj[keys[keyIndex]];
-	}
+	ret[keys[keyIndex]] = obj[keys[keyIndex]];
     }
 
     return ret;
