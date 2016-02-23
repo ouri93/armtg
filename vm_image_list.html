@@ -1,3 +1,25 @@
+<!DOCTYPE html><html><head><title>Azure VM Image List</title></head>
+<body>
+To deploy a platform image in Azure, you need to specify the Publisher, Offer, Sku, and Version. We recommend using 'latest' for version, but it's difficult to know what are valid values for these properties. Below is a list in the form:
+
+<pre>
+Publisher
+  Offer
+    Sku
+      Version
+.
+.
+.
+</pre>
+
+It was generated using my subscription in West US, so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like:
+
+<code>azure vm image list-publishers -l "West US"
+azure vm image list-offers -l "West US" -p <publisher>
+azure vm image list-offers -l "West US" -p <publisher> -o <offer>
+</code>
+
+This is a list of publishers, offers, skus, and versions generated 2016-02-23 22:10:36.048570<br/><pre>
 4psa
   voipnow
     vnp360-single
@@ -3426,3 +3448,4 @@ zoomdata
       1.0.1
     server-trial
       1.0.1
+</pre></body></html>
