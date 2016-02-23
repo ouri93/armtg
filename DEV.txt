@@ -14,7 +14,8 @@ for resources:
 TODO
 P0
 ==
-> refactor types to have their own object
+> refactor types to have their own object?
+> allow custom VM images?
 > multiple subnets per vnet (& referencable as such)
 > addressPrefix should have its own type and should do validation on the format
 > VM

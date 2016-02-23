@@ -71,7 +71,7 @@ var blocks = {
 	       'populatableSelectors': {'VNET': true},
 	       'blocks': {},
 	       'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			      'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 6}},
+			      'addressPrefix': {'type': 'smallAddressPrefix', 'required': true, 'columnWidth': 6}},
 	       'cospecifications': [],
 	       'baseObject': {
 		   "properties": {
@@ -411,6 +411,14 @@ var types = {
 
 	    return true;
 	}
+    },
+
+    'smallAddressPrefix': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "' value='10.0.0.0/24'></input>";
+	},
+	'isValid': function(input) {
+	    return types['addressPrefix'].isValid(input);
     }
 };
 
