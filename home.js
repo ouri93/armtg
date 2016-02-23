@@ -420,7 +420,7 @@ var types = {
 	'isValid': function(input) {
 	    return types['addressPrefix'].isValid(input);
     }
-};
+}
 
 
 
