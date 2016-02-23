@@ -747,8 +747,8 @@ function sortKeys(obj) {
     keys = Object.keys(obj);
     keys.sort();
     ret = {};
-    for (var key in keys) {
-	ret[key] = obj[key];
+    for (var keyIndex in keys) {
+	ret[keys[keyIndex]] = obj[keys[keyIndex]];
     }
 
     return ret;
