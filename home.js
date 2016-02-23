@@ -35,7 +35,7 @@
 // apiVersion, location, name
 var blocks = {
     // properties::subnets, //properties::addressSpace::addressPrefixes
-    'VNET': {'plural': 'VNETs',
+    'vnet': {'plural': 'VNETs',
 	     'populatableSelectors': {},
 	     'blocks': {},
 	     'properties': {'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 12}},
@@ -51,13 +51,13 @@ var blocks = {
 	     },
 	     'customization': function(block, blockInfix) {
 		 // add addressPrefix to this vnet
-		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["VNET"]["blocks"][blockInfix]["addressPrefix"]);
+		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["vnet"]["blocks"][blockInfix]["addressPrefix"]);
 
 		 // add subnets to this vnet
-		 for (var subnetInfix in blocks["SUBNET"]["blocks"]) {
-		     if (getInfixFromBlockName(blocks["SUBNET"]["blocks"][subnetInfix]["VNET"]) == blockInfix) {
+		 for (var subnetInfix in blocks["subnet"]["blocks"]) {
+		     if (getInfixFromBlockName(blocks["subnet"]["blocks"][subnetInfix]["subnet"]) == blockInfix) {
 			 var subnetBlock = createSubBlock("SUBNET", subnetInfix);
-			 subnetBlock["properties"] = {"addressPrefix": blocks["SUBNET"]["blocks"][subnetInfix]["addressPrefix"]};
+			 subnetBlock["properties"] = {"addressPrefix": blocks["subnet"]["blocks"][subnetInfix]["addressPrefix"]};
 			 block["properties"]["subnets"].push(subnetBlock);
 		     }
 		 }
@@ -67,10 +67,10 @@ var blocks = {
 	    },
 
     // properties::addressPrefix
-    'SUBNET': {'plural': 'SUBNETs',
-	       'populatableSelectors': {'VNET': true},
+    'subnet': {'plural': 'SUBNETs',
+	       'populatableSelectors': {'vnet': true},
 	       'blocks': {},
-	       'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+	       'properties': {'vnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			      'addressPrefix': {'type': 'smallAddressPrefix', 'required': true, 'columnWidth': 6}},
 	       'cospecifications': [],
 	       'baseObject': {
@@ -86,7 +86,7 @@ var blocks = {
 
 
     // properties::dnsSettings::domainNameLabel
-    'PIP': {'plural': 'PIPs',
+    'pip': {'plural': 'PIPs',
 	    'populatableSelectors': {},
 	    'blocks': {},
 	    'properties': {'domainNameLabel': {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12}},
@@ -98,8 +98,8 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		if (blocks["PIP"]["blocks"][blockInfix]["domainNameLabel"] != "") {
-		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["PIP"]["blocks"][blockInfix]["domainNameLabel"]};
+		if (blocks["pip"]["blocks"][blockInfix]["domainNameLabel"] != "") {
+		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["pip"]["blocks"][blockInfix]["domainNameLabel"]};
 		}
 
 		return block;
@@ -107,11 +107,11 @@ var blocks = {
 	   },
     
     // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
-    'NIC': {'plural': 'NICs',
-	    'populatableSelectors': {'SUBNET': true, 'PIP': true},
+    'nic': {'plural': 'NICs',
+	    'populatableSelectors': {'subnet': true, 'pip': true},
 	    'blocks': {},
-	    'properties': {'SUBNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			   'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
+	    'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			   'pip': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/networkInterfaces",
@@ -127,16 +127,16 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("NIC", blockInfix)) + ", 'ipconfig')]";
-		if (blocks["NIC"]["blocks"][blockInfix]["PIP"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]");
-		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]"};
+		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("nic", blockInfix)) + ", 'ipconfig')]";
+		if (blocks["nic"]["blocks"][blockInfix]["pip"] != "none") {
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]");
+		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]"};
 		}
 		
-		subnet = blocks["NIC"]["blocks"][blockInfix]["SUBNET"];
+		subnet = blocks["nic"]["blocks"][blockInfix]["subnet"];
 		subnetInfix = getInfixFromBlockName(subnet);
 
-		vnet = blocks["SUBNET"]["blocks"][subnetInfix]["VNET"];
+		vnet = blocks["subnet"]["blocks"][subnetInfix]["vnet"];
 		vnetInfix = getInfixFromBlockName(vnet);
 		
 		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
@@ -178,7 +178,7 @@ var blocks = {
 	       }},
     */
     
-    'SA': {'plural': 'SAs',
+    'sa': {'plural': 'SAs',
 	   'populatableSelectors': {},
 	   'blocks': {},
 	   'properties': {'accountType': {'type': 'storageAccountType', 'required': true, 'columnWidth': 12}},
@@ -190,21 +190,21 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
-	       partialBlockName = getPartialTemplateName(getBlockName("SA", blockInfix));
+	       partialBlockName = getPartialTemplateName(getBlockName("sa", blockInfix));
 	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
-	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
+	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},
     
-    'VM': {'plural': 'VMs',
-	   'populatableSelectors': {'NIC': true, 'SA': true},
+    'vm': {'plural': 'VMs',
+	   'populatableSelectors': {'nic': true, 'sa': true},
 	   'blocks': {},
 	   'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
 			  'os': {'type': 'os', 'required': true, 'columnWidth': 6},
 			  'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
 			  'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			  /*'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}*/},
 	   'cospecifications': [],
 	   // properties::networkProfile::networkInterfaces::0::id, dependsOn SA and NIC, properties::hardwareProfile::vmSize, osProfile::computerName/adminUsername/adminPassword, properties::storageProfile::imageReference, properties::storageProfile::osDisk::name/vhd
@@ -731,7 +731,7 @@ function getBlockTemplateName(blockName) {
 function createSubBlock(blockType, blockInfix) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
     // lowercase name because storage requires it
-    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix.toLowerCase()));
+    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
     return deepCopy;
 }
 
