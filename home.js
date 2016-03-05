@@ -485,7 +485,7 @@ function commitsDivHtml(blockType) {
 }
 
 function populateDetails(blockType) {
-    var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
+    var detailsHtml = "<hr/><div class='subtitle'>" + "new " + blockType + "</div><br/><br/>";
 
     var blockHtml = "";
     var currentWidthUsed = 0;
