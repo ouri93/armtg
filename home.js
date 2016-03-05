@@ -248,6 +248,8 @@ var blocks = {
 
 };
 
+var blockCopy = jQuery.extend(true, {}, blocks);
+
 // add common properties to all block types
 for (var blockType in blocks) {
     blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
@@ -771,6 +773,12 @@ function generateTemplate() {
     var freshCopy = jQuery.extend(true, {}, baseTemplateObject);
     createResources(freshCopy);
     $('#output').html("<pre>" + JSON.stringify(freshCopy, null, 2) + "</pre>");
+}
+
+function restartTemplate() {
+    var freshCopy = jQuery.extend(true, {}, blocksCopy);
+    drawCurrent();
+    $('#output').html("");
 }
 
 function deployToAzure() {
