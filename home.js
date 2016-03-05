@@ -420,7 +420,7 @@ $(document).ready(function() {
 	    controlHtml += "<div class='row'>";
 	}
 
-	controlHtml += "<div class='col-md-" + controlButtonWidth.toString() + "'><button class='btn btn-default' onclick='javascript:populateDetails(\"" + blockType + "\");'>+ " + blockType + "</button></div>";
+	controlHtml += "<div class='col-md-" + controlButtonWidth.toString() + "'><button id='" + blockType + "' class='btn btn-default' onclick='javascript:populateDetails(\"" + blockType + "\");'>+ " + blockType + "</button></div>";
 
 	currentWidthUsed += controlButtonWidth;
 
