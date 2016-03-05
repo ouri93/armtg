@@ -777,6 +777,7 @@ function generateTemplate() {
 
 function restartTemplate() {
     var freshCopy = jQuery.extend(true, {}, blocksCopy);
+    blocks = freshCopy;
     drawCurrent();
     $('#output').html("");
 }
