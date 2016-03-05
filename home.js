@@ -248,13 +248,21 @@ var blocks = {
 
 };
 
-var blocksCopy = jQuery.extend(true, {}, blocks);
+var blocksCopy = null;
 
-// add common properties to all block types
-for (var blockType in blocks) {
-    blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
-    //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+function initializeBlocks() {
+    blocksCopy = jQuery.extend(true, {}, blocks);
+
+    // add common properties to all block types
+    for (var blockType in blocks) {
+	blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
+	//blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+    }
 }
+
+
+
+
 
 var types = {
     'text': {
@@ -436,6 +444,8 @@ var controlButtonWidth = 3;
 var numControlButtonsPerRow = properRowWidth / controlButtonWidth;
 
 $(document).ready(function() {
+    initializeBlocks();
+
     var controlHtml = "";
     var currentWidthUsed = 0;
     numBlockTypes = 0;
@@ -778,6 +788,7 @@ function generateTemplate() {
 function restartTemplate() {
     var freshCopy = jQuery.extend(true, {}, blocksCopy);
     blocks = freshCopy;
+    initializeBlocks();
     drawCurrent();
     $('#output').html("");
 }
