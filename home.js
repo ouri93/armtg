@@ -248,7 +248,7 @@ var blocks = {
 
 };
 
-var blockCopy = jQuery.extend(true, {}, blocks);
+var blocksCopy = jQuery.extend(true, {}, blocks);
 
 // add common properties to all block types
 for (var blockType in blocks) {
