@@ -487,8 +487,8 @@ $(document).ready(function() {
 function commitsDivHtml(blockType) {
     var ret =
 	'<div id="commits">' +
-	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
-	'  <button class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
+	'  <button id="addBlockButton" class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
+	'  <button id="nixBlockButton" class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
 	'</div>';
 
     return ret;
