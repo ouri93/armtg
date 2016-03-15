@@ -1,0 +1,4035 @@
+<!DOCTYPE html><html><head><title>Azure VM Image List</title></head>
+<body>
+To deploy a platform image in Azure, you need to specify the Publisher, Offer, Sku, and Version. We recommend using 'latest' for version, but it's difficult to know what are valid values for these properties. Below is a list in the form:
+
+<pre>
+Publisher
+  Offer
+    Sku
+      Version
+.
+.
+.
+</pre>
+
+It was generated using my subscription in West US (2016-03-15 22:18:38.638464 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like:
+
+<br/>
+
+<code>azure vm image list-publishers -l "West US"<br/>
+azure vm image list-offers -l "West US" -p &lt;publisher&gt;<br/>
+azure vm image list-skus -l "West US" -p &lt;publisher&gt; -o &lt;offer&gt;
+</code>
+
+<br/><hr/><pre>
+4psa
+  voipnow
+    vnp360-single
+      3.6.0
+4ward365
+  4ward365
+    4ward365_base
+      1.0.3
+      1.5.201530
+7isolutions
+  sapp
+    sapp1510-ubuntu1404
+      15.10.1
+  sapp-project-server-2015-05
+    sapp-project-server-2015-06
+      15.06.0
+a10networks
+  a10-vthunder-adc
+    vthunder_100mbps
+      1.0.2
+    vthunder_10mbps
+      1.0.2
+    vthunder_200mbps
+      1.0.2
+    vthunder_500mbps
+      1.0.2
+    vthunder_50mbps
+      1.0.2
+    vthunder_byol
+      1.0.2
+abiquo
+  abiquo-hybrid-cloud-34
+    abiquo-340-monolithic
+      4.0.1
+Acronis
+Acronis.Abokov.Backup
+Acronis.Backup
+Acronis2
+actian_matrix
+  actian_matrix
+    actian_matrix_compute
+      1.0.0
+    actian_matrix_leader
+      1.0.0
+active-navigation
+  an_discovery_center_azure_starter
+    an_disc_msaz_starter
+      1.0.1
+activeeon
+  activeeon-workload-scheduler
+    free
+      1.0.0
+adam-software
+  adam
+    adamsoftware
+      1.1.0
+adatao
+adobe
+  adobe_aem
+    adobeaem
+      1.0.0
+  adobe_campaign_test
+    adobe_camp_test
+      1.0.0
+adobe_test
+adra-match
+  accounts
+    accounts_on_azure
+      1.0.0
+advantech
+  rmm31_for_windows
+    standard
+      1.0.0
+  susiaccess30
+    std
+      1.0.0
+advantech-webaccess
+  webaccess-8_0_1
+    1500tags
+      1.0.0
+    ver8_0_0626
+      1.0.1
+aerospike
+  aerospike-database-vm
+    aerospikedb001
+      1.0.0
+aimsinnovation
+  aims-for-biztalk
+    aimsforbiztalkenterprise
+      1.0.0
+      1.1.0
+    aimsforbiztalkprofessional
+      1.0.0
+      1.1.0
+aiscaler-cache-control-ddos-and-url-rewriting-
+  aimobile-site-acceleration
+    byol
+      1.0.0
+    hourly
+      1.0.0
+  aiprotect-ddos-firewall
+    byol
+      1.0.0
+    hourly
+      1.0.0
+  aiscaler-traffic-manager-caching
+    byol
+      1.0.0
+    hourly
+      1.0.0
+alachisoft
+  ncache-opensource
+    ncache-opensource
+      1.0.0
+alertlogic
+  alert-logic-tm
+    20215000100-tmpbyol
+      1.1.0
+      1.2.0
+  alert-logic-wsm
+    20216000100-wsmpbyl
+      1.0.0
+AlertLogic.Extension
+algebraix-data
+  algebraix-analytics
+    algebraixanalytics_std
+      1.0.0
+  algebraix-analytics-enterprise
+    algebraixanalytics_ent
+      1.0.0
+alldigital-brevity
+  alldigital-brevity-microsoft-media-services
+    brevity-uploader-with-microsoft-media-services
+      1.0.0
+  alldigital-brevity-uploader
+    brevity-uploader
+      1.0.0
+alteryx
+altiar
+  ecm
+    enterprise
+      3.8.4
+      3.9.3
+appcelerator
+  appcelerator-arrow-azure-vm
+    arrowazurevm
+      1.0.0
+appcitoinc
+  appcito-pep-marketplace
+    apcto-pep-azure
+      1.0.2
+      1.10.0
+      1.11.0
+appex-networks
+  cloudexpress
+    standard-byol
+      1.0.0
+appistry
+  genomepilot
+    onebox-genome-pilot
+      1.0.0
+      1.0.7
+apprenda
+  win2k12r2_dcenter_apprenda_5_5_exp_sql_2012_exp
+    apprenda_paas_5-5_express
+      5.5.1
+appveyorci
+  appveyor-ci
+    express
+      1.0.1
+appzero
+  appzero
+    appzero
+      6.0.2
+arangodb
+  arangodb
+    arangodb254
+      2.5.4
+aras
+  aras-innovator-plm-suite
+    aras_innovator_plm_suite
+      11.0.6073
+array_networks
+  array-networks-vapv
+    array-vapv-azure-byol
+      1.0.0
+aspera
+  aspera-faspex-ondemand100
+    aspera_fod100
+      1.0.0
+aspex-managed-cloud
+attunity_cloudbeam
+  cloudbeam-dw-byol
+    attunity-cloudbeam-for-microsoft-azure-dw-byol
+      1.0.0
+auriq-systems
+  essentia
+    data-viewer
+      3.0.9
+avepoint
+  docave-for-office365
+    docavemgr_6_6_0
+      6.6.0001
+aviatrix-systems
+  aviatrix-cloud-services
+    av-csg-10-tunnels
+      1.0.0
+      1.2.0
+      1.3.0
+    av-csg-25-tunnels
+      1.0.0
+      1.2.0
+      1.3.0
+    av-csg-5-tunnels
+      1.0.0
+      1.2.0
+      1.3.0
+    av-csg-50-tunnels
+      1.0.0
+      1.2.0
+      1.3.0
+    av-csg-byol
+      1.0.0
+      1.2.0
+      1.3.0
+awingu
+  awingu
+    az0-000c-01c
+      2.3.1
+      2.4.0
+      3.0.0
+      3.0.2
+axway
+azul
+  zulu-enterprise-ondemand-ub1404
+    azul-zulu-ub1404
+      15.05.0
+AzureRT.Test
+azuresyncfusion
+balabit
+  balabit-shell-control-box
+    scb
+      1.0.9
+Barracuda.Azure.ConnectivityAgent
+barracudanetworks
+  barracuda-message-archiver
+    byol
+      4.0.102300
+      4.0.102301
+      4.0.102302
+  barracuda-ng-cc
+    byol
+      6.2.105700
+  barracuda-ng-firewall
+    byol
+      6.1.107500
+      6.2.105700
+    hourly
+      6.1.107500
+      6.2.105700
+  barracuda-spam-firewall
+    byol
+      7.0.000400
+      7.0.000401
+      7.1.100300
+    hourly
+      7.0.000400
+      7.0.000401
+      7.1.100300
+  waf
+    byol
+      8.0.001300
+      8.0.001301
+      8.0.100500
+      8.0.100700
+      8.0.100800
+    hourly
+      8.0.001300
+      8.0.001301
+      8.0.100500
+      8.0.100700
+      8.0.100800
+basho
+  riak-2-0-1
+    rs201-o
+      1.0.0
+Bitnami
+  3-4
+    3-4
+      3.4.8
+  abantecart
+    1-2
+      1.2.5
+  activemq
+    5-13
+      5.13.1
+  akeneo
+    1-4
+      1.4.18
+  alfrescocommunity
+    201602
+      201602.0.0
+  ametys
+    3-7
+      3.7.3
+  apachesolr
+    5-4
+      5.4.1
+  artifactory
+    4-4
+      4.4.2
+  canvaslms
+    2016-02
+      2016.2.20
+  chyrp
+    2-5
+      2.5.2
+  civicrm
+    4-6
+      4.6.11
+  cmsmadesimple
+    2-1
+      2.1.2
+  codiad
+    2-7
+      2.7.0
+  concrete5
+    5-7
+      5.7.5
+  coppermine
+    1-5
+      1.5.40
+  diaspora
+    0-5
+      0.5.6
+  discourse
+    1-4
+      1.4.5
+  djangostack
+    1-8
+      1.8.9
+  dokuwiki
+    20150810a
+      20150810.0.0
+  dolibarr
+    3-8
+      3.8.2
+  DreamFactory
+    1.6
+      1.6.10
+    1.7
+      1.7.8
+    2-1
+      2.1.0
+  drupal
+    8-0
+      8.0.4
+  elastic-search
+    2-2
+      2.2.0
+  enanocms
+    1-1
+      1.1.8
+  erpnext
+    6-21
+      6.21.6
+  espocrm
+    3-9
+      3.9.2
+  eXo-Platform
+    Express-4
+      4.0.7
+  exoplatformenterprise
+    4-2
+      4.2.0
+      4.2.1
+  ezpublish
+    2014-11
+      2014.11.0
+  fatfreecrm
+    0-13
+      0.13.6
+  ghost
+    0-7
+      0.7.5
+  gitlab
+    8-4
+      8.4.2
+  hhvmstack
+    3-9
+      3.9.1
+  hordegroupwarewebmail
+    5-2
+      5.2.12
+  invoiceninja
+    2-5
+      2.5.0
+  jasperreports
+    6-2
+      6.2.0
+  jbossas
+    7-2
+      7.2.0
+  jenkins
+    1-650
+      1.650.0
+  jrubystack
+    9-0
+      9.0.5
+  lampstack
+    5-6
+      5.6.18
+  lappstack
+    5-6
+      5.6.18
+  letschat
+    0-4
+      0.4.6
+  liferay
+    6-2
+      6.2.5
+  limesurvey
+    20160228
+      20160228.0.0
+  livehelperchat
+    2-44v
+      2.44.0
+  magento
+    2-0
+      2.0.2
+  mahara
+    15-10
+      15.10.1
+  mantis
+    1-2
+      1.2.19
+  mautic
+    1-2
+      1.2.4
+  mean
+    3-2
+      3.2.3
+  mediawiki
+    1-26
+      1.26.2
+  memcached
+    1-4
+      1.4.25
+  modx
+    2-4
+      2.4.3
+  mongodb
+    3-2
+      3.2.1
+  moodle
+    3-0
+      3.0.2
+  mybb
+    1-8
+      1.8.6
+  mysql
+    5-6
+      5.6.29
+  neos
+    2-0
+      2.0.6
+  nginxstack
+    1-9
+      1.9.10
+  noalyss
+    6-9
+      6.9.0
+  nodejs
+    4-3
+      4.3.1
+  ocportal
+    9-0
+      9.0.24
+  odoo
+    9-0
+      9.0.0
+  openatrium
+    2-54
+      2.54.0
+  opencart
+    2-1
+      2.1.0
+  openedx
+    cypress
+      1.0.0
+      3.0.0
+  openerp
+    7-0
+      7.0.0
+  openproject
+    5-0
+      5.0.7
+  orangehrm
+    3-3
+      3.3.1
+  orocrm
+    1-9
+      1.9.0
+  osclass
+    3-6
+      3.6.1
+  osqa
+    1-0rc
+      1.0.0
+  owncloud
+    8-2
+      8.2.2
+  oxid-eshop
+    4-9
+      4.9.6
+  parseserver
+    2-0-6
+      2.0.6
+  phabricator
+    20160208
+      20160208.0.0
+  phpbb
+    3-1
+      3.1.7
+  phplist
+    3-2
+      3.2.4
+  pimcore
+    3-1
+      3.1.1
+  piwik
+    2-16
+      2.16.0
+  plone
+    5-0
+      5.0.2
+  pootle
+    2-7
+      2.7.3
+  prestashop
+    1-6-1
+      1.6.1
+  processmakeropensourceedition
+    3-0
+      3.0.1
+  processwire
+    2-7
+      2.7.2
+  publify
+    8-2
+      8.2.0
+  railo
+    4-2
+      4.2.1
+  redmine
+    3
+      3.1.0
+      3.1.2
+  refinerycms
+    2-1
+      2.1.5
+  reportserver
+    2-2
+      2.2.2
+  resourcespace
+    7-5
+      7.5.0
+  reviewboard
+    2-5
+      2.5.3
+  roller
+    5-1
+      5.1.2
+  roundcube
+    1-1
+      1.1.4
+  rubystack
+    2-0
+      2.0.0
+  seopanel
+    3-8
+      3.8.0
+  sharelock
+    0-1
+      0.1.0
+  silverstripe
+    3-2
+      3.2.1
+  simpleinvoices
+    2013-1
+      2013.1.0
+  simplemachinesforum
+    2-0
+      2.0.11
+  sitecake
+    2-2
+      2.2.9
+  spree
+    3-0
+      3.0.4
+  squash
+    20151209
+      20151209.0.0
+  subversion
+    1-8
+      1.8.13
+  sugarcrm
+    6-5
+      6.5.22
+  suitecrm
+    7-4
+      7.4.3
+  testlink
+    1-9
+      1.9.14
+  thinkup
+    2-0
+      2.0.0
+  tikiwikicmsgroupware
+    14-2
+      14.2.0
+  tinytinyrss
+    20160220
+      20160220.0.0
+  tom-cat
+    7-0
+      7.0.68
+  trac
+    1-0
+      1.0.9
+  tracks
+    2-3
+      2.3.0
+  typo3
+    7-6
+      7.6.4
+  weblate
+    2-4
+      2.4.0
+  wildfly
+    10-0
+      10.0.0
+  wordpress
+    4-2
+      4.2.4
+    4-3
+      4.3.1
+  xoops
+    2-5
+      2.5.7
+  zurmo
+    3-1
+      3.1.0
+bizagi
+  bizagibpms
+    bizagi106
+      1.0.0
+      1.1.0
+biztalk360
+blackberry
+  bes12-v12-4
+    production_1_vm
+      1.0.0
+  bes12-v12-4devtesttrial
+    bes12-v12-4devtesttrial
+      1.0.0
+  bes12devtesttrial
+    besdevtrial
+      1.0.0
+  production_1_vm
+    production_1_vm
+      1.0.0
+bluetalon
+  bluetalon
+    bluetalon
+      1.0.0
+boundlessgeo
+  opengeosuite
+    opengeosuite_postgis_tomcat
+      1.0.0
+boxless
+  boxless
+    boxless
+      1.0.0
+brocade_communications
+  brocade-virtual-traffic-manager
+    stm_dev_64_byol
+      1.0.0
+bryte
+  bryteflow-cdc-free-trial
+    bryteflowcdc
+      1.0.0
+bssw
+  bluestripe-factfinder
+    factfinder-win-ms-4-azure
+      8.0.0
+buddhalabs
+  sles_12_pci
+    sles12-pci
+      1.0.0
+bwappengine
+  boardwalk
+    boardwalk
+      1.0.0
+Canonical
+  Ubuntu15.04Snappy
+    15.04-Snappy
+  Ubuntu15.04SnappyDocker
+    15.04-SnappyDocker
+  UbunturollingSnappy
+    99.99-Snappy
+  UbuntuServer
+    12.04.2-LTS
+    12.04.3-LTS
+      12.04.201401270
+      12.04.201401300
+    12.04.4-LTS
+      12.04.201402270
+      12.04.201404080
+      12.04.201404280
+      12.04.201405140
+      12.04.201406060
+      12.04.201406190
+      12.04.201407020
+      12.04.201407170
+    12.04.5-DAILY-LTS
+      12.04.201602160
+      12.04.201602171
+      12.04.201602172
+      12.04.201602180
+      12.04.201602220
+      12.04.201602240
+      12.04.201603010
+      12.04.201603020
+      12.04.201603110
+      12.04.201603150
+    12.04.5-LTS
+      12.04.201408060
+      12.04.201408292
+      12.04.201409092
+      12.04.201409231
+      12.04.201409244
+      12.04.201409251
+      12.04.201409252
+      12.04.201409270
+      12.04.201501190
+      12.04.201501270
+      12.04.201502040
+      12.04.201503090
+      12.04.201504010
+      12.04.201504130
+      12.04.201505120
+      12.04.201505221
+      12.04.201506100
+      12.04.201506150
+      12.04.201506160
+      12.04.201507070
+      12.04.201507280
+      12.04.201507301
+      12.04.201507311
+      12.04.201508190
+      12.04.201509060
+      12.04.201509090
+      12.04.201510200
+      12.04.201511170
+      12.04.201511300
+      12.04.201512180
+      12.04.201601140
+      12.04.201602010
+      12.04.201602172
+      12.04.201602220
+    12.10
+      12.10.201212180
+    14.04-beta
+    14.04.0-LTS
+      14.04.201404140
+      14.04.201404142
+      14.04.201404161
+      14.04.201405280
+      14.04.201406061
+      14.04.201406181
+      14.04.201407240
+    14.04.1-LTS
+      14.04.201409090
+      14.04.201409240
+      14.04.201409260
+      14.04.201409270
+      14.04.201411250
+      14.04.201501230
+    14.04.2-LTS
+      14.04.201503090
+      14.04.201505060
+      14.04.201506100
+      14.04.201507060
+    14.04.3-DAILY-LTS
+      14.04.201602171
+    14.04.3-LTS
+      14.04.201508050
+      14.04.201509080
+      14.04.201510150
+      14.04.201510190
+      14.04.201510200
+      14.04.201511050
+      14.04.201511170
+      14.04.201512032
+      14.04.201512170
+      14.04.201512180
+      14.04.201601145
+      14.04.201601190
+      14.04.201602010
+      14.04.201602171
+    14.04.4-DAILY-LTS
+      14.04.201603010
+      14.04.201603021
+      14.04.201603030
+      14.04.201603040
+      14.04.201603080
+      14.04.201603110
+      14.04.201603140
+    14.04.4-LTS
+      14.04.201602220
+      14.04.201603140
+    14.10
+    14.10-beta
+    14.10-DAILY
+    15.04
+    15.04-beta
+    15.04-DAILY
+    15.10
+      15.10.201511111
+      15.10.201511161
+      15.10.201512030
+      15.10.201512160
+      15.10.201512190
+      15.10.201601060
+      15.10.201601140
+      15.10.201601230
+      15.10.201602040
+      15.10.201602171
+      15.10.201602220
+      15.10.201602260
+      15.10.201603150
+    15.10-alpha
+    15.10-beta
+    15.10-DAILY
+      15.10.201602150
+      15.10.201602171
+      15.10.201602172
+      15.10.201602180
+      15.10.201602220
+      15.10.201602250
+      15.10.201602260
+      15.10.201603020
+      15.10.201603050
+      15.10.201603150
+    16.04-alpha
+    16.04-beta
+      16.04.201602231
+    16.04.0-DAILY-LTS
+      16.04.201603010
+      16.04.201603020
+      16.04.201603030
+      16.04.201603040
+      16.04.201603041
+      16.04.201603050
+      16.04.201603080
+      16.04.201603081
+      16.04.201603120
+      16.04.201603150
+  Ubuntu_Snappy_Core
+    15.04
+      2015.0829.0653
+      2015.0924.1855
+      2016.0202.1555
+      2016.0204.2312
+      2016.0224.1653
+      2016.0225.2253
+      2016.0229.2053
+    Rolling
+  Ubuntu_Snappy_Core_Docker
+    15.04
+      2015.0708.1917
+      2015.0828.2346
+caringo
+catechnologies
+  ca-service-virtualization-8-1
+    casvbyol90
+      9.0.0
+    casvondemand81
+      8.0.1
+      9.0.0
+    casvondemand90
+      9.0.0
+cautelalabs
+  log_management
+    cautela_labs_log_management_and_soc
+cds
+  cds-data-migration-solution-for-legacy-to-cloud
+    dms-9000msaz
+      1.0.0
+      1.0.1
+certivox
+  sso-test
+    sso
+      1.0.1
+checkpoint
+  check-point-r77-10
+    r7710-byol
+      77.10.0044007
+      77.10.44007
+    r7710-ngtp-payg
+      77.10.0044007
+      77.10.44007
+    sg-byol
+      77.30.005016
+      77.30.7035
+      77.30.8009039
+      77.30.8009040
+    sg-ngtp
+      77.30.005016
+      77.30.7035
+      77.30.8009039
+      77.30.8009040
+checkpointsystems
+  oatsystems-oatxpress-82-base
+    oatsystems-oatxpress-82-sku
+      8.2.0
+chef-software
+  chef-compliance
+    azure_marketplace_100
+      2.0.1
+    azure_marketplace_150
+      2.0.1
+    azure_marketplace_200
+      2.0.1
+    azure_marketplace_25
+      2.0.1
+    azure_marketplace_250
+      2.0.1
+    azure_marketplace_5
+      2.0.1
+    azure_marketplace_50
+      2.0.1
+  chef-server
+    azure_marketplace_100
+      1.1.1
+      2.0.0
+      3.0.2
+    azure_marketplace_150
+      1.1.1
+      2.0.0
+      3.0.2
+    azure_marketplace_200
+      1.1.1
+      2.0.0
+      3.0.2
+    azure_marketplace_25
+      1.1.1
+      2.0.0
+      3.0.2
+    azure_marketplace_250
+      1.1.1
+      2.0.0
+      3.0.2
+    azure_marketplace_50
+      1.1.1
+      2.0.0
+      3.0.2
+    chefbyol
+      1.0.0
+      1.1.1
+      2.0.0
+      3.0.2
+Chef.Bootstrap.WindowsAzure
+cherwell
+  cherwell-service-management
+    cherwell_service_management
+      1.0.0
+circleci
+  circleci-enterprise
+    circleci-builder-base
+      1.0.0
+    circleci-enterprise-byol
+      1.0.1
+cires21
+  c21l-enc
+    c21l-enc-byol
+      1.0.3
+  c21l-mos
+    c21l-mos-byol
+      1.0.5
+cisco
+  cisco-asav
+    asav-azure-byol
+      9.5.2200
+      9.5.2203
+  cisco-csr-1000v
+    csr-azure-byol
+      3.16.0
+citrix
+  xenapp-controller
+    xenappddcbyol
+      1.0.0
+  xenapp-director
+    xenappdirector
+      1.0.1
+  xenapp-license-server
+    xenapplicense
+      1.0.1
+  xenapp-server
+    bladeserver
+      1.0.0
+    xenappserver
+      1.0.1
+  xenapp-storefront
+    xenappstorefront
+      1.0.0
+  xenapp-vda-rdsh
+    bladevdardsh
+      1.0.0
+    xenappvdardsh
+      1.0.1
+  xenapp-vda-vdi
+    bladevdavdi
+      1.0.0
+    xenappvdavdi
+      1.0.1
+clickberry
+  clickberry-encoder
+    clickberry-encoder-core
+      1.1.4
+cloud-cruiser
+  cloud-cruiser-for-public-cloud
+    cloud-cruiser-for-azure
+      1.0.0
+      2.2.0
+      2.3.1
+      2.3.2
+      2.3.4
+cloudbees
+  jenkins-enterprise
+    jenkins-enterprise
+      15.11.3
+  jenkins-operations-center
+    jenkins-operations-center
+      15.11.3
+      15.11.4
+cloudbees-enterprise-jenkins
+  cloudbees-jenkins-enterprise
+    cloudbees-jenkins-enterprise-14-11
+      15.05.02001
+      15.05.02002
+      15.05.02003
+      15.11.02001
+      15.11.02002
+  cloudbees-jenkins-operations-center
+    cloudbees-jenkins-operations-center-14-11
+      15.05.02001
+      15.05.02002
+      15.05.02003
+      15.11.02001
+      15.11.02002
+cloudbolt-software
+  cloudbolt
+    cb-125pack-1
+      1.0.0
+    cb-lab25-1
+      1.0.0
+cloudboost
+  cloudboost
+    cloudboost-enterprise
+      1.0.0
+cloudera
+  cloudera-centos-6
+    cloudera-centos-6
+      1.0.0
+      6.7.0
+cloudera1qaz2wsx
+cloudhouse
+  applicationanywhere
+    applications-anywhere
+      1.0.0
+    applications-anywhere-1000
+      1.0.0
+    applications-anywhere-125
+      1.0.0
+    applications-anywhere-25
+      1.0.0
+    applications-anywhere-250
+      1.0.0
+    applications-anywhere-500
+      1.0.0
+    applications-anywhere-byol
+      1.0.0
+cloudlink
+  cloudlink-securevm
+    cloudlink-securevm-50-byol
+      5.0.1
+    cloudlink-securevm-byol
+      4.0.1
+CloudLink.SecureVM
+CloudLinkEMC.SecureVM
+CloudLinkEMC.SecureVM.Test
+cloudsoft
+  cloudsoft-amp
+    amp-in-azure
+      1.0.1
+    cloudsoft-amp
+      1.0.0
+clustrix
+  clustrixdb
+    clxnode_byol
+      6.0.11563
+codelathe
+  codelathe-filecloud-win2012r2
+    filecloud_byol
+      1.0.0
+      1.1.0
+codenvy
+  codenvy-on-prem
+    code-enterprise-op-byol
+      1.0.1
+    code-team-op-byol
+      1.0.1
+cohesive
+  cohesiveft-vns3-for-azure
+    cohesive-vns3-free
+      3.507.20150131
+      3.5113.20151230
+    cohesive-vns3-lite
+      3.507.20150131
+      3.5113.20151230
+commvault
+  commvault
+    csmav10
+      1.0.1
+companyname-short
+Confer
+Confer.TestSensor
+consensys
+  blockapps-strato
+    blockapps-strato
+      1.0.0
+cordis
+  myfidoc
+    myfidoc
+      1.0.0
+corent-technology-pvt
+  surpaas-analyzer-marketplace
+    corent_surpaas_analyzer
+      3.55.0
+      3.56.0
+      3.58.0
+      3.62.0
+CoreOS
+  CoreOS
+    Alpha
+      475.1.0
+      490.0.0
+      509.1.0
+      522.0.0
+      522.1.0
+      522.2.0
+      547.0.0
+      554.0.0
+      557.0.0
+      561.0.0
+      575.0.0
+      584.0.0
+      591.0.0
+      592.0.0
+      593.0.0
+      598.0.0
+      604.0.0
+      607.0.0
+      612.0.0
+      612.1.0
+      618.0.0
+      626.0.0
+      633.1.0
+      640.0.0
+      647.0.0
+      653.0.0
+      660.0.0
+      668.2.0
+      675.0.0
+      681.0.0
+      695.0.0
+      709.0.0
+      717.0.0
+      723.0.0
+      723.1.0
+      735.0.0
+      738.1.0
+      745.1.0
+      752.1.0
+      758.1.0
+      766.0.0
+      774.0.0
+      779.0.0
+      788.0.0
+      789.0.0
+      794.0.0
+      801.0.0
+      808.0.0
+      815.0.0
+      835.1.0
+      845.0.0
+      870.2.0
+      870.3.0
+      877.1.0
+      884.0.0
+      891.0.0
+      899.1.0
+      921.0.0
+      926.0.0
+      928.0.0
+      933.0.0
+      935.0.0
+      942.0.0
+      949.0.0
+      955.0.0
+      960.0.0
+      962.0.0
+      969.0.0
+      970.1.0
+      976.0.0
+      983.0.0
+    Beta
+      494.0.0
+      494.1.0
+      494.4.0
+      494.5.0
+      522.2.0
+      522.3.0
+      522.4.0
+      522.5.0
+      557.0.0
+      557.1.0
+      557.2.0
+      584.0.0
+      607.0.0
+      612.1.0
+      633.1.0
+      647.0.0
+      668.3.0
+      681.0.0
+      695.0.0
+      695.2.0
+      717.1.0
+      723.1.0
+      723.3.0
+      766.1.0
+      766.3.0
+      766.4.0
+      835.1.0
+      835.4.0
+      835.5.0
+      835.7.0
+      877.1.0
+      899.1.0
+      899.10.0
+      899.2.0
+      899.3.0
+      899.4.0
+      899.6.0
+      899.7.0
+      899.8.0
+      899.9.0
+    Stable
+      494.3.0
+      494.4.0
+      494.5.0
+      522.5.0
+      522.6.0
+      557.2.0
+      607.0.0
+      633.1.0
+      647.0.0
+      647.2.0
+      681.0.0
+      681.1.0
+      681.2.0
+      717.1.0
+      717.3.0
+      723.3.0
+      766.3.0
+      766.4.0
+      766.5.0
+      835.10.0
+      835.11.0
+      835.12.0
+      835.13.0
+      835.8.0
+      835.9.0
+cortical-io
+  cortical-io-retinaservice-eng-gen
+    cortical_io_api_eng_gen
+      2.2.1
+couchbase
+  couchbase-server-30-community
+    cbs_30_ce
+      1.0.0
+  couchbase-server-30-enterprise
+    cbs_30_ee_gold
+      1.0.2
+      1.0.3
+    cbs_30_ee_silver
+      1.0.2
+      1.0.3
+  couchbase-server-40-community
+    cbs_40_ce
+      1.0.0
+  couchbase-server-40-enterprise
+    cbs_40_ee_gold
+      1.0.1
+      1.1.0
+    cbs_40_ee_silver
+      1.0.1
+      1.1.0
+credativ
+  Debian
+    7
+      7.0.201602010
+      7.0.201603020
+    7-DAILY
+      7.0.201602290
+      7.0.201603010
+      7.0.201603020
+      7.0.201603030
+      7.0.201603040
+      7.0.201603060
+      7.0.201603070
+      7.0.201603080
+      7.0.201603090
+      7.0.201603100
+      7.0.201603110
+      7.0.201603120
+      7.0.201603130
+      7.0.201603150
+    8
+      8.0.201602010
+      8.0.201603020
+    8-DAILY
+      8.0.201603010
+      8.0.201603020
+      8.0.201603030
+      8.0.201603040
+      8.0.201603050
+      8.0.201603060
+      8.0.201603070
+      8.0.201603080
+      8.0.201603090
+      8.0.201603100
+      8.0.201603110
+      8.0.201603120
+      8.0.201603130
+      8.0.201603140
+      8.0.201603150
+    9-DAILY
+      9.0.201603010
+      9.0.201603020
+      9.0.201603030
+      9.0.201603040
+      9.0.201603050
+      9.0.201603060
+      9.0.201603070
+      9.0.201603080
+      9.0.201603090
+      9.0.201603100
+      9.0.201603110
+      9.0.201603120
+      9.0.201603130
+      9.0.201603140
+      9.0.201603150
+Dans.Windows.App
+Dans2.Windows.App
+Dans3.Windows.App
+dataart
+  devicehive
+    devicehivestandard
+      2.0.1
+datacastle
+  datacastle-red
+    dcredvault01
+      1.0.0
+Datadog.Agent
+dataexpeditioninc
+  expedat
+    expedat-windows-byol
+      1.0.0
+dataiku
+  dataiku-data-science-studio
+    dataiku-data-science-studio-linux
+      2.2.2
+      2.3.0
+datalayer
+  datalayer-notebook
+    spark-hadoop-r-python
+      1.0.0
+dataliberation
+  instant-intelligence-top-line-reporter
+    dl_tlr_01
+      1.0.1
+datastax
+  datastax
+    enterprise
+      1.0.0
+      1.0.1
+  datastax-enterprise-non-production-use-only
+    dse-nonproduction-use-single-datacenter-20core-max
+      1.0.0
+    sandbox_single-node
+      1.0.0
+datasunrise
+  datasunrise-database-security-suite
+    datasunrise_database_security_suite
+      1.0.0
+defacto_global_
+  defacto_modeler_w2012_sql2014_ssas2014_sampleapp01
+    defacto_business_modeler_byol_01
+      1.0.0
+dell-software
+dell_software
+  appassure-replication-target-for-azure
+    appassure_replication_target_for_azure
+      1.0.0
+  changebase-6
+    changebasebyol
+      1.0.0
+      1.0.1
+  migration-manager-for-enterprise-social
+    mmes
+      1.0.0
+  migration_suite_sharepoint
+    migration_suite_sharepoint_win2008r2
+      1.0.0
+  site_admin_for_sharepoint
+    site_admin_for_sharepoint_w2k8r2
+  spotlight-on-sqlserver-enterprise
+    spotlight-on-sql-server-enterprise
+      11.2.1001
+  statistica-data-miner
+    dell-statistica-data-miner-rental
+      1.0.0
+      1.0.1
+  toad-intelligence-central
+    toad_intelligence_central_24
+      1.0.0
+  uccs
+    uccs
+      1.0.1
+      1.1.0
+  vworkspace-azure-trial
+    wyse_vworkspace_broker
+      1.1.0
+      1.2.0
+      1.3.0
+denyall
+  denyall-rweb
+    denyall-rweb
+      4.2.0
+  denyall-vulnerability-manager
+    denyall-vulnerability-manager
+      6.0.0
+  denyall-web-application-firewall
+    denyall-waf-wsf-wam
+      6.0.0
+derdack
+  enterprisealert
+    enterprisealert-2015-datacenter-10users
+      1.0.1
+      2.0.0
+    enterprisealert-2015-datacenter-15users
+      1.0.1
+      2.0.0
+    enterprisealert-2015-datacenter-20users
+      1.0.1
+      2.0.0
+    enterprisealert-2015-datacenter-25users
+      1.0.1
+      2.0.0
+    enterprisealert-2015-datacenter-50users
+      1.0.0
+      2.0.0
+    enterprisealert-2016-datacenter-10users
+      1.0.0
+    enterprisealert-2016-datacenter-15users
+      1.0.0
+    enterprisealert-2016-datacenter-20users
+      1.0.0
+    enterprisealert-2016-datacenter-25users
+      1.0.0
+    enterprisealert-2016-datacenter-50users
+      1.0.0
+dgsecure
+  dgsecure
+    dgsecure_byol
+      1.0.0
+docker
+  docker-subscription-for-azure
+    dse-subem1y-000001
+      1.2.0
+      1.3.0
+      1.3.3
+docscorp-us
+  contentcrawler-for-netdocuments
+    contentcrawler_byol
+      1.0.5
+  contentcrawler-for-sharepoint
+    contentcrawler_byol
+      1.0.10
+      1.0.9
+dolbydeveloper
+  dolby-encoding-azure-freetool
+    dolby_encoder_free
+      1.0.0
+      1.0.1
+dome9
+  dome9ubuntu
+    dome9ubuntu
+      1.0.0
+  dome9winserver
+    dome9windows
+      1.0.0
+      1.0.1
+      1.0.2
+donovapub
+  domino2go
+    domino2go1
+      1.0.2
+  domino2go-byol
+    domino2go-byol
+      1.0.0
+drone
+  drone
+    free
+      1.0.0
+dundas
+  dundas-bi
+    dbi1
+      1.0.7
+    dbi2
+      2.0.1
+    dbi25
+      2.5.1
+dynatrace.ruxit
+easyterritory
+  easyterritory
+    easyterritory_enterprise_en
+      1.0.1
+edevtech
+  integreat4tfs2015u2
+    integreat4tfs2015u2
+      1.0.0
+egress
+  egress-switch-gateway
+    shsg-azu-0001
+      1.0.0
+eip
+  eipower-cloud-services
+    eipower-cloud-services-1000-consumption
+      1.1.71
+    eipower-cloud-services-1000-consumption-edu
+      1.1.71
+    eipower-cloud-services-10000-consumption
+      1.1.71
+    eipower-cloud-services-10000-consumption-edu
+      1.1.71
+    eipower-cloud-services-100000-consumption-edu
+      1.1.71
+    eipower-cloud-services-2000-consumption
+      1.1.71
+    eipower-cloud-services-2000-consumption-edu
+      1.0.0
+    eipower-cloud-services-20000-consumption
+      1.1.71
+    eipower-cloud-services-20000-consumption-edu
+      1.1.71
+    eipower-cloud-services-3000-consumption
+      1.1.71
+    eipower-cloud-services-3000-consumption-edu
+      1.1.71
+    eipower-cloud-services-500-consumption
+      1.1.71
+    eipower-cloud-services-500-consumption-edu
+      1.1.71
+    eipower-cloud-services-5000-consumption
+      1.1.71
+    eipower-cloud-services-5000-consumption-edu
+      1.1.71
+    eipower-cloud-services-50000-consumption
+      1.1.71
+    eipower-cloud-services-50000-consumption-edu
+      1.0.0
+    eipower-clousd-services-100000-consumption
+      1.1.71
+eip-eipower
+elastacloud
+  brisk
+    briskengine
+      1.0.1
+elasticbox
+  elasticbox-enterprise
+    byol-single-instance
+      4.0.0
+elfiqnetworks
+  cloud-connector
+    cloud-connector-azure
+      3.8.114763
+      3.8.115335
+eloquera
+  eloqueradb
+    eloqueradb
+      1.0.0
+eperi
+  eperi-gateway-for-cloud-apps
+    egfca
+      3.0.20150624
+equilibrium
+  mediarich-all-media-server
+    404115az
+      4.0.2
+  mediarich-hot-folder
+    402000az
+      4.0.21
+ESET
+ESET.FileSecurity
+esri
+  arcgis-10-4-for-server
+    cloud
+      10.4.5524
+  arcgis-for-server
+    cloud
+      0.9.1
+eurotech
+  ec-smallbiz-2015
+    everyware_cloud_lite
+      1.0.0
+exasol
+  exasolution-analytic-database
+    exasolution_database
+      1.0.0
+exit-games
+  photon-server-vm
+    photon-vm
+      1.0.1
+expertime
+  magento-pimcore-as
+    vm_magento_pimcore_v0
+      1.1.0
+f5-networks
+  f5-big-ip
+    f5-bigip-virtual-edition-best-byol
+      12.0.606
+    f5-bigip-virtual-edition-better-byol
+      12.0.606
+    f5-bigip-virtual-edition-good-byol
+      12.0.606
+  f5-waf-evaluation
+    bigip-waf-byol-preview
+      12.0.606
+    bigip-waf-byol-preview-2
+      12.0.606
+      12.0.628
+filebridge
+  azure
+    10tb
+      1.0.0
+    20tb
+      1.0.0
+    50tb
+      1.0.0
+firehost
+  firehost_armor
+    byol_centos6
+      1.0.1
+  firehost_armor_ubuntu
+    byol_ubuntu
+      1.0.0
+  firehost_armor_windows
+    byol_windows2012r2
+      1.0.0
+flexerasoftware
+  flexera-software-licensing
+    software-monetization
+      1.0.0
+foghorn-systems
+  foghorn-edge-device-manager
+    foghorn-edm
+      0.8.0
+forscene
+  forscene-edgeserver-20151203
+    forscene-edgeserver-20151203
+      1.0.0
+fortinet
+  fortinet_fortigate-vm_v5
+    fortinet_fg-vm
+      5.2.3
+  fortinet_fortiweb-vm_v5
+    fortinet_fw-vm
+      5.4.0
+fortycloud
+  fortycloud-gw
+    fcgwentbyol
+      2.6.29
+fw
+  digital-asset-management
+    fwam-dam80-byol
+      1.0.0
+g-data-software
+  g-data-management
+    gdata-managemend-server
+      1.0.0
+gemalto-safenet
+  safenet-protectv
+    100_protectv_clients
+      1.0.0
+    200_protectv_clients
+      1.0.0
+    50_protectv_clients
+      1.0.0
+Gemalto.SafeNet.ProtectV
+Gemalto.SafeNet.ProtectV.Azure
+GitHub
+  GitHub-Enterprise
+    GitHub-Enterprise
+      2.2.10
+      2.2.12
+      2.2.13
+      2.2.14
+      2.2.15
+      2.2.7
+      2.3.1
+      2.3.4
+      2.3.6
+      2.3.7
+      2.3.8
+      2.3.9
+      2.4.0
+      2.4.2
+      2.4.3
+      2.4.4
+      2.4.5
+      2.5.0
+      2.5.1
+greathorn
+  greathorn-security-platform
+    greathorn
+      1.0.0
+greensql
+  greensql-database-security
+    greensql_database_security_azure
+      1.0.0
+haivision
+  haivision-media-gateway-1-2
+    mi-mg-azu-1-2-byol
+      1.2.1685
+  media-gateway
+    mi-mg-azu-1-1-byol
+      1.1.0
+halobicloud
+  halo-paas2
+    halopaas02
+      1.7.0
+hanu
+  hanu-insight
+    enterprise
+      1.3.0
+      1.4.0
+      1.5.0
+    enterprise-byol
+      1.3.0
+      1.4.0
+      1.5.0
+    standard
+      1.2.0
+      1.3.0
+      1.5.0
+    standard-byol
+      1.2.0
+      1.3.0
+      1.5.0
+hewlett-packard
+  hp-loadrunner
+    lr_12_02_ga_2012r2
+      1.0.0
+  hp-quality-center
+    hp_qc_community_edition
+      1.0.0
+hortonworks
+  hdpimage
+    hdpimage
+      2.3.2
+      2.3.4
+  hortonworks
+    dataplatform
+      1.0.0
+      1.0.1
+  hortonworks-data-platform-240
+    hdp-240-ambari-221
+      1.0.0
+  hortonworks-sandbox
+    sandbox22
+      1.0.1
+      2.3.0
+      2.3.2
+      2.3.4
+      2.4.2
+humanlogic
+  emadastudentinformationsystem
+    emada
+      1.0.1
+iaansys
+  iaansys-magento
+    iaansys-magento-ubuntu
+      1.9.1
+iamcloud
+  university-for-life
+    university-for-life
+      1.0.0
+ibabs-eu
+  ibabs-server
+    ibabs-server-15-users-hourly
+      1.0.1
+imaginecommunications
+  cloudxtream-cdvr
+    telurio-packager-jitp
+      1.0.0
+    telurio-record-recorder
+      1.0.0
+    telurio-record-recording-manager
+      1.0.0
+  selenioflex-live
+    selenioflex-live-transcoder
+      1.0.0
+    selenioflexlive-manager
+      1.0.0
+  telurio-aim
+    telurio-aim-awe
+      1.0.2
+    telurio-aim-origin
+      1.0.0
+    telurio-aim-ps
+      1.0.0
+  versio-3-0
+    versio
+      1.0.7
+imc
+  imc-process-guidance-suite
+    imc_pgs41_l
+      4.1.1020141105
+    imc_pgs41_m
+      4.1.1020141105
+    imc_pgs41_s
+      4.1.1020141105
+    imc_pgs41_xs
+      4.1.1020141105
+imperva
+  securesphere-waf-for-azr
+    imperva-securesphere-waf-for-azr-v1
+      11.5.800002
+incredibuild
+  incredibuild
+    incredibuild
+      1.0.0
+infolibrarian
+  infolibrarian-metadata-management-server
+    infolibrarian-metadata-windows-64-bit-hourly
+      1.0.0
+informatica
+  dataquality_961hf3_se_byol
+    dataquality961hf3_byol
+      1.0.1
+  powercenter-v10-domain-image-ubuntu14-04-3
+    byol_ubuntu_for_pc_10
+      1.0.0
+  powercenter_10_multi_node_domain_image_byol
+    byol_win2012_for_pc_10
+      10.0.0
+  powercenter_961hf3_se_byol
+    powercenter_byol
+      9.6.2
+  sqlserver-2014-image
+    sqlserver-2014-image-for-pc-bdm
+      1.0.0
+informatica-cloud
+  informatica-cloud
+    informatica_cloud_secure_agent_32_bit
+      1.0.0
+    informatica_cloud_secure_agent_32_bit_linux
+      1.0.0
+infostrat
+  portvue
+    infostratportvuev1
+      1.0.0
+intel
+  lustre-cloud-edition-cv-image
+    eval-lustre-2-7
+      1.0.0
+intelligent-plant-ltd
+  intelligent-plant-gestalt
+    gestalt_suite
+      2.1.0
+iquest
+  meeting-rooms
+    enterprise-byol
+      1.0.0
+      1.0.1
+  meeting-rooms-10-public
+    public-license-10-rooms
+      1.0.2
+ishlangu-load-balancer-adc
+  ishlangu-load-balancer-byol
+    ishlangu-load-balancer-adc-byol
+      3.2.0
+  ishlangu-load-balancer-is10
+    ishlangu-load-balancer-is-10
+      3.1.0
+      3.2.0
+  ishlangu-load-balancer-is100
+    ishlangu-load-balancer-is-100
+      3.1.0
+      3.2.0
+  ishlangu-load-balancer-is1000
+    ishlangu-load-balancer-is-1000
+      3.1.0
+      3.2.0
+  ishlangu-load-balancer-is200
+    ishlangu-load-balancer-is-200
+      3.1.0
+      3.2.0
+  ishlangu-load-balancer-is5000
+    ishlangu-load-balancer-is-5000
+      3.1.0
+      3.2.0
+  ishlangu-load-balancer-isbfg
+    ishlangu-load-balancer-is-bfg
+      3.1.0
+      3.2.0
+itelios
+  magento2-on-zendserver
+    magento2-0-74-0-beta14-demo
+      1.0.0
+jedox
+  jedox-for-azure
+    jedox_5_1_sr5_lin_byol
+      1.0.0
+      1.0.1
+    jedox_6_0_lin_byol
+      1.0.0
+    jedox_6_0_sr1_lin_byol
+      1.0.0
+    jedox_6_0_sr2_lin_byol
+      1.0.2
+jelastic
+  jelastic-hybrid-paas-standard
+    jelastic_azure_hybrid_basic
+      1.0.0
+jetnexus
+  jetnexus-application-load-balancer
+    jnxalbx-azure-byol
+      4.2.5
+      4.2.6
+      4.2.7
+    jnxalbx-azure-va-10g
+      4.2.5
+      4.2.6
+      4.2.7
+    jnxalbx-azure-va-1g
+      4.2.5
+      4.2.6
+      4.2.7
+    jnxalbx-azure-va-3g
+      4.2.5
+      4.2.6
+      4.2.7
+    jnxalbx-azure-va-500m
+      4.2.5
+      4.2.6
+      4.2.7
+    jnxalbx-azure-va-5g
+      4.2.5
+      4.2.6
+      4.2.7
+jfrog
+  artifactory
+    artifactory-3-7-0
+      3.7.0
+    artifactory-3-8-0
+      3.8.0
+    artifactory-3-9-2
+      3.9.2
+    jfrog-artifactory-4-2-0
+      4.2.0
+jitterbit_integration
+  jitterbit-harmony-agent
+    linux-agent-byol
+      1.0.0
+    windows-agent-byol
+      1.0.0
+kaazing
+  kaazing-kwic
+    activedirectory-free
+      1.0.9
+    activedirectory-silver-support
+      1.0.9
+  kaazing-vpa
+    activedirectory-free
+      1.0.4
+    activedirectory-silver-support
+      1.0.4
+kaspersky_lab
+  kaspersky-security-center-10_2_434
+    ksc_byol1
+      1.0.0
+  kaspersky_secure_mail_gateway
+    ksg
+      1.0.67
+      1.0.68
+  kav_for_lfs
+    kav_for_lfs
+      1.0.0
+  kav_for_wsee
+    kav_for_wsee
+      1.0.0
+kemptech
+  vlm-azure
+    basic-byol
+      7.1.280053
+      7.1.280066
+      7.1.300075
+      7.1.32106
+    vlm-10g-hrl
+      7.1.280053
+      7.1.280066
+      7.1.300075
+      7.1.320106
+    vlm-200-hrl
+      7.1.280053
+      7.1.280066
+      7.1.300075
+      7.1.320106
+    vlm-2000-hrl
+      7.1.280053
+      7.1.280066
+      7.1.300075
+      7.1.320106
+    vlm-5000-hrl
+      7.1.280053
+      7.1.28066
+      7.1.300075
+      7.1.320106
+kepion
+  kepioncloud
+    kepioncloud
+      6.0.341
+kollective
+  ecdn-license-vm
+    ecdn-license-server
+      1.0.0
+  sd-ecdn-test-flight-vm
+    kollectiveecdntestflight
+      1.0.0
+      1.0.2
+le
+  logentries-datahub
+    azuredh
+      1.0.0
+lieberlieber
+  lieberlieber-web-collaborator
+    llweb4ea01
+      1.0.0
+liebsoft
+  enterprise_random_password_manager
+    erpm
+      4.83.8
+      5.01.0
+literatu
+  literatu
+    lit-az-vir
+      1.0.0
+loadbalancer
+  loadbalancer-org-load-balancer-for-azure
+    loadbalancer_org_azure
+      1.0.0
+      8.0.2
+LocalTest.TrendMicro.DeepSecurity
+logi-analytics
+  logi-info-11
+    logi-info-v11-byol
+      11.0.0
+  logi-vision-1
+    logi-vision-hourly
+      1.0.0
+  logi-vision-1_4-byol
+    logi-vision-byol
+      1.4.0
+loginpeople
+  digital-dna-authentication-server
+    enterprise
+      5.8.2
+    enterprise-plus
+      5.8.2
+    small-business
+      5.8.2
+    small-business-plus
+      5.8.2
+logtrust
+  logtrust-log-management
+    lmrelay
+      1.0.0
+looker
+  looker-analytics-platform
+    looker-analytics-platform-sqldb-10users
+      1.0.0
+  looker-analytics-platform-326
+    looker-analytics-platform-sqldb-10users
+      1.0.1
+      3.40.9
+    looker-analytics-platform-sqldb-25users
+      1.0.1
+      3.40.9
+    looker-analytics-platform-sqldw-10users
+      3.40.9
+    looker-analytics-platform-sqldw-25users
+      3.40.9
+luxoft
+magelia
+  magelia-webstore-professional
+    magelia-webstore-professional-edition
+      1.0.0
+manageengine
+  creatorplatform
+    zohocreator
+      1.0.0
+  passwordmanagerpro-windows
+    14116_2s
+      8.3.0
+  servicedeskplus
+    sdp-50tech
+      1.0.0
+mapr-technologies
+  mapr-sandbox-vm
+    mapr-sandbox-500-community
+      1.0.6
+mariadb
+  mdbec-ha-node
+    mdbec-data-node
+      1.0.0
+      1.11.1
+massiveanalytic-
+  oscarap
+    oscarap
+      0.6.2
+McAfee.EndpointSecurity
+McAfee.EndpointSecurity.test3
+meanio
+  meanio-050-vm
+    meanio-050-vm
+      0.5.01
+mediazenie
+  datazenie
+    standard
+      1.0.0
+    standard-byol
+      1.0.0
+  mediazenie
+    standard
+      1.0.1
+memsql
+  memsql-community-single-vm
+    memsql-community-single-vm
+      4.0.2
+  memsql-enterprise-single-vm
+    memsql-enterprise-single-vm
+      4.0.2
+mendix
+  mendix-pro
+    mendix_pro_100_users
+      1.0.0
+    mendix_pro_250_users
+      1.0.0
+    mendix_pro_50_users
+      1.0.0
+    mendix_pro_byol
+      1.0.0
+mentalnotes
+  mental-notes-vm
+    mn01
+      1.0.2
+  testmentalnotes
+    mn001
+      1.0.2
+mesosphere
+metavistech
+  metavis-office365-suite
+    mv-office365-ste-azure-1
+      1.0.0
+mfiles
+  standard
+    byol
+      1.0.201412
+      2.0.201512
+    sku1
+      1.0.201412
+      2.0.201512
+    sku2
+      1.0.201412
+      2.0.201512
+    sku3
+      1.0.201412
+      2.0.201512
+Microsoft
+  IBM
+    IBM_DB2
+    IBM_MQ8
+  JDK
+    JDK_6
+      1.0.15
+      1.0.17
+      2016.03.15
+    JDK_7
+      1.0.12
+      1.0.18
+      2016.03.15
+    JDK_8
+      1.0.12
+      1.0.17
+      2016.03.15
+  Oracle_Database_11g_R2
+    Oracle_Database_11g_R2_Enterprise_Edition
+      2016.03.15
+    Oracle_WebLogic_Server_11g_R2_Standard_Edition
+      2016.03.15
+  Oracle_Database_11g_R2_and_WebLogic_Server_11g
+    Oracle_Database_11gR2_and_WebLogic_Server_11g_Enterprise_Edition
+      1.0.17
+      2016.03.15
+    Oracle_Database_11gR2_and_WebLogic_Server_11g_Standard_Edition
+      1.0.17
+      2016.03.15
+  Oracle_Database_12c
+    Oracle_Database_12c_Enterprise_Edition
+      1.0.12
+      1.0.17
+      2016.03.15
+    Oracle_Database_12c_Standard_Edition
+      1.0.12
+      2016.03.16
+  Oracle_Database_12c_and_WebLogic_Server_12c
+    Oracle_Database_12c_and_WebLogic_Server_12c_Enterprise_Edition
+      1.0.12
+      1.0.17
+      2016.03.15
+    Oracle_Database_12c_and_WebLogic_Server_12c_Standard_Edition
+      1.0.12
+      1.0.17
+      2016.03.16
+  Oracle_WebLogic_Server_11g
+    Oracle_WebLogic_Server_11g_Enterprise_Edition
+      1.0.19
+      2016.03.15
+    Oracle_WebLogic_Server_11g_R2_Standard_Edition
+      1.0.19
+      2016.03.15
+  Oracle_WebLogic_Server_12c
+    Oracle_WebLogic_Server_12c_Enterprise_Edition
+      1.0.12
+      1.0.17
+      2016.03.15
+    Oracle_WebLogic_Server_12c_Standard_Edition
+      1.0.12
+      1.0.17
+      2016.03.15
+microsoft-ads
+  standard-data-science-vm
+    standard-data-science-vm
+      1.1.0
+      1.2.0
+microsoft-r-products
+  microsoft-r-server
+    msr80-centos65
+      1.0.2
+    msr80-win2012r2
+      1.0.1
+Microsoft.Azure.Applications
+Microsoft.Azure.Backup.Test
+Microsoft.Azure.Diagnostics
+Microsoft.Azure.Extensions
+Microsoft.Azure.RecoveryServices
+Microsoft.Azure.Security
+Microsoft.Azure.Security.Internal
+Microsoft.Azure.SiteRecovery.Test
+Microsoft.Azure.WindowsFabric.Test
+Microsoft.AzureCAT.AzureEnhancedMonitoring
+Microsoft.AzureCAT.AzureEnhancedMonitoringTest
+Microsoft.Compute
+Microsoft.EnterpriseCloud.Monitoring
+Microsoft.EnterpriseCloud.Monitoring.Test
+Microsoft.HpcCompute
+Microsoft.HpcPack
+Microsoft.OSTCExtensions
+Microsoft.OSTCExtensions.Test
+Microsoft.Powershell
+Microsoft.Powershell.CMD
+Microsoft.Powershell.Install
+Microsoft.Powershell.Internal
+Microsoft.Powershell.Internal.Telemetry
+Microsoft.Powershell.PaaS
+Microsoft.Powershell.Preview
+Microsoft.Powershell.Release.Test
+Microsoft.Powershell.Telemetry
+Microsoft.Powershell.Test
+Microsoft.Powershell.Test.0
+Microsoft.Powershell.Test.1
+Microsoft.Powershell.Test2
+Microsoft.Powershell.UpgradeTest
+Microsoft.Powershell.UtcTest
+Microsoft.Powershell.Wmf
+Microsoft.Powershell.Wmf4Test
+Microsoft.Powershell.Wmf5
+Microsoft.Powershell.WmfRTM
+Microsoft.SqlServer.Managability.IaaS.Test
+Microsoft.SqlServer.Management
+Microsoft.SystemCenter
+Microsoft.VisualStudio
+Microsoft.VisualStudio.Azure.ETWTraceListenerService
+Microsoft.VisualStudio.Azure.RemoteDebug
+Microsoft.VisualStudio.Azure.RemoteDebug.Json
+Microsoft.VisualStudio.ServiceProfiler
+Microsoft.VisualStudio.ServiceProfiler.Test
+Microsoft.VisualStudio.Test
+Microsoft.Windows.AzureRemoteApp.Test
+Microsoft.Windows.RemoteDesktop
+Microsoft.WindowsAzure.Compute
+MicrosoftAzureSiteRecovery
+  ASR-Hydration-VMs
+    Windows-2012-R2-Datacenter
+  Configuration-Server
+    Windows-2012-R2-Datacenter
+      2015.03.06
+      2015.03.08
+      201507.02.00
+  Configuration-Server-Non-VPN
+    Windows-2012-R2-Datacenter
+      201507.03.00
+      201507.04.00
+      201507.05.00
+      201507.06.00
+      201601.01.00
+  Configuration-Server-V2
+    Windows-2012-R2-Datacenter
+      201601.01.00
+  Configuration-Server-VPN
+    Windows-2012-R2-Datacenter
+      201507.03.00
+      201507.04.00
+      201507.05.00
+      201507.06.00
+  Master-Target-Server
+    Windows-2012-R2-Datacenter
+      2015.03.06
+      2015.03.08
+      201507.02.00
+      201507.04.00
+      201507.05.00
+      201507.06.00
+  Process-Server
+    Windows-2012-R2-Datacenter
+      2015.03.06
+      2015.03.08
+      201507.02.00
+      201507.04.00
+      201507.05.00
+      201507.06.00
+      201601.01.00
+MicrosoftBizTalkServer
+  BizTalk-Server
+    2013-Developer
+      2.0.201405
+    2013-Enterprise
+      1.0.201405
+    2013-R2-Developer
+      2.0.201602
+    2013-R2-Enterprise
+      2.0.201411
+    2013-R2-Standard
+      2.0.201411
+    2013-Standard
+      1.0.201405
+    2016-Test
+MicrosoftDynamicsAX
+  Dynamics
+    Pre-Req-AX6-ARA
+      6.3.20151026
+    Pre-Req-AX7-AOS
+      7.0.20150728
+      7.0.20150820
+      7.0.20150821
+      7.0.20150911
+      7.0.20150916
+      7.0.201509802
+      7.0.20151029
+      7.0.20151105
+      7.0.20151116
+      7.0.20151202
+      7.0.20160121
+    Pre-Req-AX7-BI
+      7.0.20150728
+      7.0.20150820
+      7.0.20150827
+      7.0.20150911
+      7.0.20151029
+      7.0.20151105
+      7.0.20151109
+      7.0.20151111
+      7.0.20151116
+      7.0.20151201
+      7.0.20151208
+      7.0.20151210
+      7.0.20160121
+    Pre-Req-AX7-OneBox
+      7.0.201507
+      7.0.20150726
+      7.0.20150728
+      7.0.20150820
+      7.0.20150911
+      7.0.20151013
+      7.0.20151029
+      7.0.20151113
+      7.0.20151119
+      7.0.20151125
+      7.0.20151203
+      7.0.20160108
+      7.0.20160112
+      7.0.20160125
+      7.0.20160203
+      7.0.20160204
+      7.0.20160217
+    Pre-Req-AX7-Onebox-VSENT
+      7.0.20151029
+      7.0.20151113
+      7.0.20151119
+      7.0.20151125
+      7.0.20160108
+      7.0.20160113
+      7.0.20160125
+      7.0.20160203
+      7.0.20160217
+  DynamicsAX
+    Pre-Req-2012-R3-AOS-Test
+      6.3.201503
+      6.3.201504
+    Pre-Req-2012-R3-AXOneBox
+      6.3.201504
+    Pre-Req-2012-R3-Client-Test
+      6.3.201503
+      6.3.201504
+    Pre-Req-2012-R3-DatabaseServer
+      6.3.201503
+      6.3.201504
+    Pre-Req-2012-R3-EnterprisePortal
+      6.3.201503
+      6.3.201504
+    Pre-Req-2012-R3-RetailE-Commerce
+      6.3.201504
+    Pre-Req-2012-R3-RetailEssentials
+      6.3.201504
+MicrosoftDynamicsGP
+  Dynamics-GP
+    2013-Developer
+      1.0.201403
+    2013-R2-Developer
+      2.0.201408
+    2015-Developer
+      3.0.201501
+MicrosoftDynamicsNAV
+  DynamicsNAV
+    2015
+      8.0.39663
+      8.0.40262
+      8.0.40459
+      8.0.40938
+      8.0.41370
+      8.0.42603
+    2016
+      9.0.42815
+      9.0.43402
+      9.0.43897
+      9.0.44365
+      9.0.44974
+MicrosoftHybridCloudStorage
+  NA
+    1
+      6.3.9600
+  PremiumSVATesting
+    1.0.0
+      6.3.9600
+  StorSimple
+    StorSimple-8000-Series-Release
+      9600.17312.20140710
+    StorSimple-8000-Series-Update-0.3
+      9600.17361.141206
+  StorSimpleVA
+    StorSimpleUpdate2RC
+      9600.17642.151126
+      9600.17642.151129
+      9600.17651.151203
+      9600.17651.151215
+      9600.17673.151224
+  StorSimpleVANovember
+    StorSimpleUpdate2RC1
+      9600.17642.151120
+  TestingOnlyToBeRemoved
+    1
+      6.3.9600
+  TestingPrivateBakedVHDPremiumStorage
+    2
+      6.3.9600
+MicrosoftSharePoint
+  MicrosoftSharePointServer
+    2013
+      15.1.4569
+    2016
+      16.0.4316
+MicrosoftSQLServer
+  SQL2008R2SP3-WS2008R2SP1
+    Enterprise
+      10.50.4021
+      10.50.4319
+      10.50.6000
+    Standard
+      10.50.4021
+      10.50.4319
+      10.50.6000
+    Web
+      10.50.4021
+      10.50.4319
+      10.50.6000
+  SQL2008R2SP3-WS2012
+    Express
+      10.50.6000
+  SQL2012SP2-WS2012
+    Enterprise
+      11.0.5537
+      11.0.5569
+      11.0.5570
+    Enterprise-Optimized-for-DW
+      11.0.5537
+      11.0.5569
+    Enterprise-Optimized-for-OLTP
+      11.0.5537
+      11.0.5569
+    Express
+      11.0.5644
+      11.0.5670
+    Standard
+      11.0.5537
+      11.0.5569
+      11.0.5570
+    Web
+      11.0.5537
+      11.0.5569
+      11.0.5570
+  SQL2012SP2-WS2012R2
+    Enterprise
+      11.0.5548
+      11.0.5569
+    Enterprise-Optimized-for-DW
+      11.0.5548
+      11.0.5569
+    Enterprise-Optimized-for-OLTP
+      11.0.5548
+      11.0.5569
+    Standard
+      11.0.5548
+      11.0.5569
+    Web
+      11.0.5548
+      11.0.5569
+  SQL2014-WS2012R2
+    Enterprise
+      12.0.2000
+      12.0.2048
+      12.0.2361
+      12.0.2430
+    Enterprise-Optimized
+      12.0.2000
+    Enterprise-Optimized-for-DW
+      12.0.2048
+      12.0.2361
+      12.0.2430
+    Enterprise-Optimized-for-OLTP
+      12.0.2048
+      12.0.2361
+      12.0.2430
+    Standard
+      12.0.2000
+      12.0.2048
+      12.0.2361
+      12.0.2430
+    Web
+      12.0.2000
+      12.0.2048
+      12.0.2361
+      12.0.2430
+  SQL2014SP1-WS2012R2
+    Enterprise
+      12.0.4100
+    Enterprise-Optimized-for-DW
+      12.0.4100
+    Enterprise-Optimized-for-OLTP
+      12.0.4100
+    Express
+      12.0.4193
+    Standard
+      12.0.4100
+    Web
+      12.0.4100
+  SQL2016CTP2.1-WS2012R2
+    Enterprise
+      13.0.300
+  SQL2016CTP2.2-WS2012R2
+    Enterprise
+      13.0.400
+  SQL2016CTP2.3-WS2012R2
+    Enterprise
+      13.0.500
+  SQL2016CTP2.4-WS2012R2
+    Enterprise
+      13.0.600
+  SQL2016CTP3-WS2012R2
+    Evaluation
+      13.0.700
+  SQL2016CTP3.1-WS2012R2
+    SQLENTCORE
+      13.0.801
+  SQL2016CTP3.2-WS2012R2
+    Evaluation
+      13.0.900
+    SQLENTCORE
+  SQL2016CTP3.3-WS2012R2
+    Evaluation
+      13.0.1000
+  SQL2016RC0-WS2012R2
+    Evaluation
+      13.0.1100
+MicrosoftVisualStudio
+  TeamFoundationServer
+    2013-Update4
+      1.0.201411
+      1.0.20150320
+      1.0.20150327
+  VisualStudio
+    2013-Community-Update-4-ws2012-az25-ntvs10
+      12.0.31101
+    2013-Community-Update-4-ws2012-az26
+    2013-Community-Update-4-ws2012-az26-cor31
+    2013-Premium-Update-4-win81
+    2013-Premium-Update-4-win81n-az26
+    2013-Premium-Update-4-ws2012-az26
+    2013-Professional-Update-4-ws2012-az26
+    2013-Ultimate-Update-4-win81
+    2013-Ultimate-Update-4-win81n-az26
+    2013-Ultimate-Update-4-ws2012-az26
+    2015-Community-RC
+    2015-Enterprise-RC
+    2015-Enterprise-Win10Tools
+      14.0.22823
+    2015-Professional-RC
+    CoreCLR
+      1.0.11624
+    VS-2013-Comm-VSU5-AzureSDK-2.8-Win8.1-N-x64
+      12.0.40629
+    VS-2013-Comm-VSU5-AzureSDK-2.8-WS2012R2
+      12.0.40629
+      12.0.40630
+    VS-2013-Comm-VSU5-Cordova-CTP3.2-AzureSDK-2.8-WS2012R2
+      12.0.40629
+    VS-2013-Community-VSU5-AzureSDK-2.7-Win8.1-N-x64
+    VS-2013-Community-VSU5-AzureSDK-2.7-WS2012R2
+    VS-2013-Community-VSU5-Cordova-CTP3.2-AzureSDK-2.7-WS2012R2
+    VS-2013-Prem-VSU5-AzureSDK-2.8-Win8.1-N-x64
+      12.0.40629
+    VS-2013-Prem-VSU5-AzureSDK-2.8-WS2012R2
+      12.0.5
+    VS-2013-Premium-VSU5-AzureSDK-2.7-SQL-WS2012R2
+    VS-2013-Premium-VSU5-AzureSDK-2.7-Win8.1-N-x64
+    VS-2013-Premium-VSU5-AzureSDK-2.7-WS2012R2
+      12.0.40629
+    VS-2013-Ultimate-VSU5-AzureSDK-2.7-SQL-WS2012R2
+    VS-2013-Ultimate-VSU5-AzureSDK-2.7-Win8.1-N-x64
+    VS-2013-Ultimate-VSU5-AzureSDK-2.7-WS2012R2
+      12.0.40629
+    VS-2013-Ultimate-VSU5-AzureSDK-2.8-Win8.1-N-x64
+      12.0.40629
+    VS-2013-Ultimate-VSU5-AzureSDK-2.8-WS2012R2
+      12.0.5
+    VS-2015-Com-VSU1-AzureSDK-2.8-WS2012R2
+    VS-2015-Comm-AzureSDK-2.8-Cordova-Win8.1-N-x64
+      14.23107.160224
+    VS-2015-Comm-AzureSDK-2.8-WS2012R2
+    VS-2015-Comm-AzureSDK-2.8-WS2012R2.1
+      14.0.23107
+    VS-2015-Comm-AzureSDK-2.8-WS2012R2.2
+      14.0.23107
+    VS-2015-Comm-VSU1-AzureSDK-2.8-W10T-1511-N-x64
+      14.23107.160221
+      14.23107.160223
+    VS-2015-Comm-VSU1-AzureSDK-2.8-W10T-N-x64
+    VS-2015-Comm-VSU1-AzureSDK-2.8-WS2012R2
+      14.24720.160221
+      14.24720.160222
+      14.24720.160224
+    VS-2015-Comm-VSU1-AzureSDK-2.8-WS2012R2.1
+    VS-2015-Community-AzureSDK-2.7-Cordova-Win8.1-N-x64
+    VS-2015-Community-AzureSDK-2.7-W10T-Win10-N
+      14.0.23107
+    VS-2015-Community-AzureSDK-2.7-WS2012R2
+    VS-2015-Ent-AzureSDK-2.8-Cordova-Win8.1-N-x64
+      14.0.23107
+    VS-2015-Ent-AzureSDK-2.8-WS2012R2
+      14.0.23107
+    VS-2015-Ent-AzureSDK-2.8-WS2012R2.2
+      14.0.23107
+    VS-2015-Ent-VSU1-AzureSDK-2.8-W10T-1511-N-x64
+      14.23107.160221
+      14.23107.160223
+    VS-2015-Ent-VSU1-AzureSDK-2.8-W10T-N-x64
+    VS-2015-Ent-VSU1-AzureSDK-2.8-WS2012R2
+      14.24720.160221
+      14.24720.160222
+      14.24720.160223
+      14.24720.160310
+    VS-2015-Ent-VSU1-AzureSDK-2.8-WS2012R2.1
+    VS-2015-Ent-VSU1-AzureSDK-2.8-WS2012R2.2
+    VS-2015-Enterprise-AzureSDK-2.7-Cordova-Win8.1-N-x64
+    VS-2015-Enterprise-AzureSDK-2.7-W10T-Win10-N
+      14.0.23107
+    VS-2015-Enterprise-AzureSDK-2.7-WS2012R2
+      14.0.23107
+    VS-2015-Pro-AzureSDK-2.8-Cordova-Win8.1-N-x64
+      14.0.23107
+    VS-2015-Pro-VSU1-AzureSDK-2.8-W10T-1511-N-x64
+    VS-2015-Pro-VSU1-AzureSDK-2.8-W10T-N-x64
+      14.24720.160221
+    VS-2015-Pro-VSU1-AzureSDK-2.8-WS2012R2.2
+      14.23107.160221
+      14.23107.160223
+    VS-2015-Professional-AzureSDK-2.7-Cordova-Win8.1-N-x64
+    VS-2015-Professional-AzureSDK-2.7-W10T-Win10-N
+      14.0.23107
+  Windows
+    10-Enterprise
+      10.0.10074
+      10.0.10240
+      10.0.10242
+    10-Enterprise-N
+      10.0.10240
+      10.0.102401221
+      10.0.10242
+    7.0-Enterprise
+    7.0-Enterprise-N
+      6.1.76010720
+      6.1.7601221
+    8.1-Enterprise
+    8.1-Enterprise-N
+      6.3.96000720
+      6.3.96001221
+MicrosoftWindowsServer
+  WindowsServer
+    2008-R2-SP1
+      2.0.20151120
+      2.0.20151214
+      2.0.20160125
+      2.0.20160229
+    2012-Datacenter
+      3.0.20151120
+      3.0.20151214
+      3.0.20160125
+      3.0.20160229
+    2012-R2-Datacenter
+      4.0.20151120
+      4.0.20151214
+      4.0.20160126
+      4.0.20160229
+    2016-Nano-Docker-Test
+    2016-Nano-Server-Technical-Preview
+      2016.0.20151118
+      2016.0.20151219
+    2016-Technical-Preview-with-Containers
+      2016.0.20151118
+    Windows-Server-Technical-Preview
+      5.0.20151118
+MicrosoftWindowsServerEssentials
+  WindowsServerEssentials
+    WindowsServerEssentials
+      1.0.20131018
+      1.0.20131127
+      1.0.20131217
+      1.0.20140213
+      1.0.20140306
+      1.0.20140327
+      1.0.20140618
+      1.0.20140715
+      1.0.20141204
+MicrosoftWindowsServerHPCPack
+  WindowsServerHPCPack
+    2012R2
+      4.3.4596
+      4.3.4650
+      4.3.4652
+      4.3.4660
+      4.3.4665
+      4.4.4864
+      4.4.4868
+      4.5.5079
+      4.5.5094
+    2012R2CN
+      4.4.4864
+      4.4.4868
+      4.5.5079
+      4.5.5094
+    2012R2CNExcel
+      4.4.4864
+      4.4.4868
+      4.5.5079
+      4.5.5094
+    TechnicalPreview
+      4.4.4806
+      4.4.4835
+      4.4.4858
+MicrosoftWindowsServerRemoteDesktop
+  WindowServer
+    RDSH-Office13P
+      4.0.20141111
+      4.0.20150127
+      4.0.20150309
+    RDSH-Office365P
+      4.0.20141121
+      4.0.20141126
+      4.0.20150128
+      4.0.20150309
+    Remote-Desktop-Session-Host
+      4.0.20141111
+      4.0.20150128
+      4.0.20150309
+  WindowsServer
+    RDSH-Office13P
+      4.0.20150514
+      4.0.20151202
+      4.0.20160125
+      4.0.20160217
+      4.0.20160223
+    RDSH-Office365P
+      4.0.20150610
+      4.0.20150901
+      4.0.20151201
+      4.0.20160125
+      4.0.20160212
+      4.0.20160223
+    Remote-Desktop-Session-Host
+      4.0.20150513
+      4.0.20150828
+      4.0.20151201
+      4.0.20160125
+      4.0.20160212
+      4.0.20160223
+midvision
+  websphere-application-server-be
+    midvision-ibm_was_base_edition-7_0_0
+      1.0.0
+    midvision-ibm_was_base_edition-7_0_0_29
+      1.0.0
+    midvision-ibm_was_base_edition-7_0_0_37
+      1.0.0
+    midvision-ibm_was_base_edition-8_0_0
+      1.0.0
+    midvision-ibm_was_base_edition-8_0_0_10
+      1.0.0
+    midvision-ibm_was_base_edition-8_0_0_7
+      1.0.0
+    midvision-ibm_was_base_edition-8_5_0
+      1.0.0
+    midvision-ibm_was_base_edition-8_5_0_2
+      1.0.0
+    midvision-ibm_was_base_edition-8_5_5
+      1.0.0
+    midvision-ibm_was_base_edition-8_5_5_1
+      1.0.0
+    midvision-ibm_was_base_edition-8_5_5_6
+      1.0.0
+  websphere-application-server-lp
+    midvision-ibm_was_liberty_profile-8_5_5_1
+      1.0.0
+    midvision-ibm_was_liberty_profile-8_5_5_6
+      1.0.0
+  websphere-application-server-nde
+    midvision-ibm_was_nd_edition-7_0_0_29
+      1.0.0
+    midvision-ibm_was_nd_edition-7_0_0_37
+      1.0.0
+    midvision-ibm_was_nd_edition-8_0_0_10
+      1.0.0
+    midvision-ibm_was_nd_edition-8_0_0_7
+      1.0.0
+    midvision-ibm_was_nd_edition-8_5_0_2
+      1.0.0
+    midvision-ibm_was_nd_edition-8_5_5_1
+      1.0.0
+    midvision-ibm_was_nd_edition-8_5_5_6
+      1.0.0
+miraclelinux
+  asianux-server-7-sp1
+    axs7sp1licazu
+      1.0.0
+miracl_linux
+  asianux-server-4-sp4
+    axs4sp4licazu
+      1.0.0
+  asianux-server-7
+    axs7licazu
+      1.0.0
+      1.0.1
+mokxa-technologies
+  joget-enterprise
+    joget-ee-v414
+      1.0.1
+moviemasher
+  moviemasher
+    moviemasher
+      1.0.0
+msopentech
+  ibm-db2-10-5
+    db2-10-5-0-4-aws
+      1.0.2
+  mq-v8-0
+    mq-v8-0-0-1
+      1.0.1
+  oracle-db-11g
+    db-11g-ee-all
+      1.0.2
+    db-11g-ee-popular
+      1.0.2
+  oracle-db-12c
+    db-12c-ee-all
+      1.0.2
+    db-12c-ee-popular
+      1.0.2
+  was-8-5
+    was-8-5-5-3
+      1.0.1
+MSOpenTech.Extensions
+msrazuresapservices
+mtnfog
+mvp-systems
+  jamsscheduler-single-instance
+    byol_x-num-servers_x-num-jobs
+      1.0.4
+mxhero
+  mail2cloud
+    mxhm2c-10000pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-1000pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-100pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-2500pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-250pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-500pk-gdss-x
+      1.0.0
+      2.0.0
+    mxhm2c-arc-1000pk-gdss-x
+      1.0.0
+    mxhm2c-arc-100pk-gdss-x
+      1.0.0
+    mxhm2c-arc-2500pk-gdss-x
+      1.0.0
+    mxhm2c-arc-250pk-gdss-x
+      1.0.0
+    mxhm2c-arc-5000pk-gdss-x
+      1.0.0
+    mxhm2c-arc-500pk-gdss-x
+      1.0.0
+    mxhm2c-arc-50pk-gdss-x
+      2.0.0
+my-com
+  tarantool
+    tarantool
+      1.0.0
+      1.6.8
+namirial
+nasuni
+  nasuni-filer
+    nasuni_filer_v72
+      1.0.0
+ncbi
+  ncbi-blast-2-3-0
+    ncbi-blast-2-3-0
+      1.0.0
+  ncbi-free-2-2-31
+    free
+      1.0.0
+netapp
+  netapp-altavault-cloud-integrated-storage-solution
+    ava-c4
+      4.1.0060
+      4.1.103596457
+netiq
+neusoft-neteye
+  neusoft-nisg-va-v1
+    neusoft-nisg-va-byol-v1
+      4.2.800201
+    neusoft-nisg-va-hourly-v1
+      4.2.800201
+new-signature
+  cloud-management-portal
+    igvmv1
+      1.0.4
+      1.0.5
+nextlimit
+  maxwell-render-tp_network_0_8_3
+    maxwellrender-tpnetwork-0_8_3
+      0.8.3
+nexus
+  nexus-chameleon-9
+    nexuschameleon
+      1.0.0
+nginxinc
+  nginx-plus-v1
+    nginx-plus
+      1.0.0
+nicepeopleatwork
+  youzana
+    youzana
+      1.0.2
+nodejsapi
+  node-js-api
+    professional
+      1.0.0
+    standard
+      1.0.0
+    starter
+      1.0.0
+nuxeo
+  nuxeo-6-lts
+    nuxeo-6-lts
+      6.0.0
+  nuxeo-lts
+    nuxeo-lts-2015
+      7.10.0
+officeclipsuite
+  officeclipsuite
+    officeclipsuite
+      1.0.0
+op5
+  op5-monitor
+    op5monitor
+      7.0.9
+      7.1.4
+opencell
+  meveo
+    meveo
+      4.0.3
+  meveo403sp2
+    meveo
+      4.0.32
+  opencell-4-1
+    opencell-4-1-3
+      4.1.3
+OpenLogic
+  CentOS
+    6.5
+      6.5.201501
+      6.5.201503
+      6.5.201506
+      6.5.20150904
+      6.5.20160309
+    6.6
+      6.6.201501
+      6.6.201503
+      6.6.201506
+      6.6.20150706
+      6.6.20150731
+      6.6.20160309
+    6.7
+      6.7.20150815
+      6.7.20160303
+      6.7.20160310
+    7.0
+      7.0.20150128
+      7.0.20150325
+      7.0.20150605
+      7.0.20150904
+      7.0.20160309
+    7.1
+      7.1.20150410
+      7.1.20150605
+      7.1.20150731
+      7.1.20160308
+    7.2
+      7.2.20160303
+      7.2.20160308
+openmeap
+  openmeap
+    openmeap-1_5-windows
+      1.5.0
+opennebulasystems
+  opennebula-sandbox
+    opennebula-sandbox
+      1.0.1
+opentext
+  opentext_content-server_105
+    ot-test-cs105
+      1.1.0
+      1.3.0
+  ot-cs-azuredb
+    ot-cs-adb
+      1.0.2
+Oracle
+  c290a6b031d841e09f2da759bbabe71f__Oracle-Linux-6-12-2014
+    OL64
+      6.4.0
+  Oracle-Linux-7
+    OL70
+      7.0.0
+  Oracle-WebLogic-Server
+    Oracle-WebLogic-Server
+      12.1.2
+orfast-technologies
+orientdb
+  orientdb-community-edition
+    orientdb-community-edition-2_0_10
+      1.0.0
+osisoft
+outsystems
+  outsystems
+    outsystems_azure_intro
+      2.0.1
+  outsystems-baseline
+    baseline
+      1.0.1
+      1.0.2
+paloaltonetworks
+panorama-necto
+  panorama-necto-business-intelligence
+    panorama-necto-0228
+      1.0.1
+panzura-file-system
+pointmatter
+  pointmatter-csvhub
+    pointmatter-csvhub
+      1.0.0
+portalarchitects
+  skysync-tier1
+    skysync-tier1
+      1.1.0
+  skysync_for_o365_onedrive_and_sharepoint
+    skysync_for_o365_onedrive_sharepoint
+      1.0.0
+  skysync_for_syncplicity
+    skysync_for_syncplicity
+      1.0.0
+predictionio
+  predictionio
+    community
+      0.9.3
+predixion
+  predixion-insight-2015-02-feb
+    r-only
+      4.1.20000
+      4.6.0
+prestashop
+  prestashop16-lamp
+    prestashopdev
+      1.0.1
+  ubuntu-base-for-prestashop
+    ubuntu_base
+      1.0.0
+prime-strategy
+  kusanagi-77
+    latestversion
+      7.7.2
+primestream
+  xchange_media_cloud_10_users
+    xchange_media_cloud_10_users
+      1.0.2
+process-one
+  ejabberd-community-edition
+    ejabberd-simple-1
+      1.0.0
+profisee
+  maestro-base-server
+    maestrosibase
+      1.0.0
+      1.1.0
+progelspa
+ptv_group
+  ptv_xserver
+    win_northamerica_one_eighteen
+      1.18.120150423
+    win_southamerica_one_eighteen
+      1.18.120150423
+PuppetLabs
+  PuppetEnterprise
+    3.2
+      3.2.3140925
+    3.7
+      3.7.2150309
+PuppetLabs.Test
+pxlag_swiss
+  pxl-portal-marketplace-edition
+    pxlportalmarketplaceedition2015
+      1.0.2
+quales
+qualysguard
+quasardb
+rancher
+  rancheros
+    os
+      0.3.1
+RedHat
+  RHEL
+    6.7
+      6.7.20160214
+      6.7.20160302
+    7.2
+      7.2.20160214
+      7.2.20160302
+redpoint-global
+  redpoint-interaction
+    rpi
+      1.0.1
+      1.0.2
+  redpoint-rpdm
+    rpdm
+      1.0.1
+      1.0.2
+remotelearner
+  fully-supported-moodle
+    version27
+      1.0.0
+revolution-analytics
+  revolution-r-enterprise
+    rre74-centos65
+      1.0.1
+      1.0.2
+    rre74-win2012r2
+      1.0.1
+      1.0.2
+RightScaleLinux
+  RightImage-CentOS
+    6
+      13.4.0
+      13.5.0
+      13.5.1
+      13.5.2
+      13.5.3
+      13.5.5
+      14.1.0
+      14.1.3
+      14.1.5
+      14.2.0
+      14.2.1
+      5.8.10
+      5.8.11
+      5.8.12
+      5.8.13
+      5.8.14
+      5.8.8
+      5.8.9
+    7
+      14.1.5
+      14.2.0
+      14.2.1
+  RightImage-Ubuntu
+    12.04
+      13.4.0
+      13.5.0
+      13.5.2
+      13.5.3
+      13.5.5
+      14.1.1
+      14.1.3
+      14.1.5
+      14.2.0
+      14.2.1
+      5.8.10
+      5.8.11
+      5.8.8
+      5.8.9
+    14.04
+      14.1.0
+      14.1.3
+      14.1.5
+      14.2.0
+      14.2.1
+RightScaleWindowsServer
+  RightImage-WindowsServer
+    2008-R2
+      13.4.12
+      13.5.0
+      14.0.0
+      14.2.0
+    2008-R2-SP1
+      5.8.8
+      5.8.9
+    2008-R2-SP1-with-IIS-7
+      5.8.8
+      5.8.9
+    2008-R2-SP1-with-SQL-2012
+      5.8.10
+      5.8.11
+      5.8.8
+      5.8.9
+    2008-R2-with-IIS-7
+      13.4.12
+      13.5.0
+      14.0.0
+      14.2.0
+    2008-R2-with-SQL-2008-R2
+      13.5.0
+      14.0.0
+      14.2.0
+    2008-R2-with-SQL-2008-R2-Ent
+      13.5.0
+      14.0.0
+      14.2.0
+    2008-R2-with-SQL-2012
+      13.4.3
+      13.5.1
+      14.0.0
+    2008-R2-with-SQL-2012-Ent
+      13.4.3
+      13.5.0
+      14.0.0
+    2012-Datacenter
+      13.4.12
+      13.5.0
+      14.0.0
+      14.2.0
+      5.8.8
+    2012-Datacenter-with-IIS-8
+      13.4.12
+      13.5.0
+      14.0.0
+      14.2.0
+      5.8.8
+    2012-Datacenter-with-SQL-2012
+      13.5.0
+      14.0.0
+      14.2.0
+    2012-Datacenter-with-SQL-2012-Ent
+      13.5.0
+      14.0.0
+      14.2.0
+    2012-R2-Datacenter
+      14.2.0
+riverbed
+  riverbed-steelcentral-appinternals
+    ai_byol
+      10.0.0
+      10.0.2
+      10.0.4
+      10.2.47
+    ai_testing_qa
+      10.2.47
+  steelapp_traffic_manager
+    stm_dev_64_byol
+      1.4.0
+RiverbedTechnology
+  steelapp_traffic_manager
+    stm_dev_64_byol
+      8.6.0
+      8.6.1
+      8.6.2
+      9.0.0
+      9.0.1
+rocketsoftware
+  rocket-discover
+    rocketdiscoverlinux
+      1.4.0
+rocket_software
+rp
+  recordpoint
+    trial
+      1.0.3
+saama
+  fluidanalyticsengine
+    patientexperience
+      1.0.0
+  insurancefraudanalytics
+    insurancefraud
+      1.1.2
+  realworldevidence
+    treatmentpathways
+      1.0.0
+      1.1.0
+saltstack
+  centos65saltstackenterprise
+    sse-01
+      1.0.0
+sap
+  ase
+    ase_byol
+      1.0.0
+    ase_hourly
+      1.0.0
+scalearc
+  scalearc-v3-5-1
+    byol-351
+      1.0.0
+  scalearc_mysql-server
+    byol_mysql
+      1.0.0
+  scalearc_oracle
+    byol
+      1.0.0
+  scalearc_sql_server
+    byol
+      1.0.1
+scalebase
+seagate
+  backup
+    014-141-001
+      1.0.1
+searchblox
+  searchblox_server_v82
+    searchblox_win_version82
+      1.0.0
+sensorberg
+servoy
+  servoy-v7
+    servoy-7-byol
+      1.0.0
+sharefile
+  netscaler-vpx-bring
+    netscalervpxbyol
+      1.0.1
+  sharefile-storagezones-controller
+    sharefile-storagezones-controller
+      2.2.3
+  sharefile-storagezones-controller-3-4-0
+    sharefile-storagezone-controller
+      3.4.0
+shavlik
+  shavlik-protect-azure-standard
+    shavlik_protect_azure_standard_commercial
+      1.0.0
+sightapps
+  sightapps
+    dtap-sightapps
+      2.3.0
+sinefa
+  sinefa-probe
+    sf-va-msa
+      15.04.0
+sios_datakeeper
+  bring_your_own_license_dkce_and_sql
+    bring_your_own_license_dkce_and_sql
+      1.0.0
+  sios-datakeeper-8
+    bring_your_own_license
+      1.0.1
+      1.0.2
+sisense
+  sisense_byol
+    sisense_byol
+      1.0.2
+      1.0.4
+snip2code
+  snip2codeprivateinstance
+    s2c-company
+      1.0.0
+    s2c-starter
+      1.0.0
+    s2c-team
+      1.0.0
+softnas
+  softnas-cloud
+    express_subscription
+      3.3.1
+      3.4.2
+    standard_byol
+      3.3.1
+      3.4.2
+    standard_subscription
+      3.3.1
+      3.4.2
+soha
+  soha-cloud
+    soha_cloud_basic_plan
+      1.0.0
+    soha_cloud_free_plan
+      1.0.0
+    soha_cloud_premium_plan
+      1.0.0
+    soha_cloud_standard_plan
+      1.0.0
+solanolabs
+  solano-ci-private-beta
+    20150603
+      1.0.0
+spacecurve
+  spacecurve-quickstart
+    sc-qs
+      1.0.0
+spagobi
+  spagobi
+    spagobi_ubuntu_14_04_lts
+      1.0.1
+sphere3d
+  glassware
+    g-series-standard-hourly
+      2.6.12
+  snapcloud-byol
+    snapbyol
+      7.6.258
+      7.6.260
+  snapcloud-standard
+    snapcloud-standard
+      7.6.169
+      7.6.173
+      7.6.254
+      7.6.260
+stackato-platform-as-a-service
+  activestate-stackato
+    stackato36
+      3.6.0
+stackstorm
+  stackstorm-2015-1
+    scu-1
+      1.0.0
+starwind
+  starwindvirtualsan
+    starwindbyol
+      8.0.7929
+      8.0.8730
+    starwindperhour
+      8.1.7929
+      8.1.8730
+  starwindvtl
+    starwindvtl
+      8.0.7929
+steelhive
+  steelhive_carbon
+    steelhive_carbon_10_users
+      1.3.2
+    steelhive_carbon_15plus_users
+      1.3.2
+    steelhive_carbon_5_users
+      1.3.2
+stonefly
+  stonefly-cloud-drive
+    hourly_iscsi
+      8.0.119
+    hourly_iscsi_encrypted_remote_replication
+      8.0.119
+    hourly_iscsi_nas_plus_the_works
+      8.0.119
+    hourly_iscsi_plus_nas
+      8.0.119
+    hourly_iscsi_remote_replication
+      8.0.119
+    hourly_iscsi_with_deduplication
+      8.0.119
+    hourly_iscsi_with_encryption
+      8.0.119
+    hourly_nas
+      8.0.119
+stormshield
+  stormshield-network-security-for-cloud
+    byol-single-instance
+      2.1.0
+      2.3.23
+  stormshield-network-security-for-cloud-xl
+    byol-single-instance
+      2.3.2
+storreduce
+  storreduce
+    sr100
+      3.1.0
+    sr1000
+      3.1.0
+    sr20
+      3.1.0
+    sr200
+      3.1.0
+    sr2000
+      3.1.0
+    sr50
+      3.1.0
+    sr500
+      3.1.0
+stratalux
+sunview-software
+  sunview_changegear_change_management
+    sunview_changegear_change_management_byol
+      1.0.0
+  sunview_changegear_service_desk
+    sunview-software-chnage-gear-service-desk
+      1.0.0
+SUSE
+  Infra-SMT
+    11-SP3
+  Infrastructure
+    SMT
+  openSUSE
+    13.2
+      2015.05.12
+      2016.02.22
+      2016.03.02
+  openSUSE-Leap
+    42.1
+      2016.01.14
+      2016.02.22
+      2016.03.02
+  SLES
+    11-SP4
+      2015.07.14
+      2015.11.10
+      2016.02.22
+      2016.03.01
+    12
+      2015.05.12
+      2015.11.10
+    12-SP1
+      2015.12.15
+      2016.02.17
+      2016.02.22
+      2016.03.01
+  SLES-HPC
+    12
+      2015.07.08
+    12-SP1
+  SLES-HPC-Priority
+    12
+      2015.07.08
+    12-SP1
+  SLES-Priority
+    11-SP4
+      2015.07.14
+      2015.11.10
+      2016.02.22
+      2016.03.01
+    12
+      2015.05.12
+      2015.11.10
+    12-SP1
+      2015.12.15
+      2016.02.17
+      2016.02.22
+      2016.03.01
+  SLES-SAPCAL
+    11-SP3
+      2015.01.27
+    11-SP4
+Symantec
+Symantec.QA
+Symantec.staging
+Symantec.test
+tactic
+  tactic-workflow-v001
+    tactic-workflow-v001
+      1.0.3
+      1.1.0
+      1.2.0
+talon
+  cloudfast-for-azure-files
+    talon_cloudfast_core
+      1.0.1
+targit
+  targit-decision-suite
+    targit-2014-byol-sql2014std
+      1.0.1
+tavendo
+  crossbar_on_azure_ubuntu1404
+    free
+      1.0.0
+techdivision
+  appserver-io-pe
+    appserver-io-pe
+      1.0.3
+telepat
+  free
+    free
+      1.0.0
+tenable
+  tenable-nessus-byol
+    serv-nes-byol-azure
+      6.5.4
+  tenable-nessus-professional
+    byol-single-instance
+      1.0.0
+tentity
+  websql-server
+    websql-server-x64-hourly
+      1.0.3
+Test.Barracuda.Azure.ConnectivityAgent
+Test.Gemalto.SafeNet.ProtectV
+Test.HP.AppDefender
+Test.NJHP.AppDefender
+Test.TrendMicro.DeepSecurity
+Test.TrendMicro.DeepSecurity2
+Test.TrendMicro.DeepSecurity3
+Test1.NJHP.AppDefender
+thinkboxsoftware
+  deadline-single-vm
+    deadline-single-vm-linux
+      1.0.0
+    deadline-single-vm-windows
+      1.0.0
+  deadline7-2
+    deadline-repository-7-2
+      1.0.0
+    deadline-slave-7-2
+      1.0.0
+topdesk
+  topdesk-demonstration
+    demonstration_account
+      1.0.0
+  topdesk-itsm-software
+    100_operator_license
+      1.0.0
+    10_operator_license
+      1.0.0
+    50_operator_license
+      1.0.0
+    5_operator_license
+      1.0.0
+  topdesk_byol
+    topdesk_service_management_byol
+      1.0.0
+torusware
+  speedus-lite-ubuntu
+    speedus_lite_free-ubuntu
+      1.0.1
+transvault
+  sprint_3_0
+    sprint_3_0
+      1.0.4
+trendmicro
+  deep-security-vm
+    dxxn100d4v2
+      1.0.0
+    dxxn200d5v2
+      1.0.0
+    dxxn25d2v2
+      1.0.0
+    dxxn50d3v2
+      1.0.0
+  deep-security-vm-byol
+    dxxnbyol
+      1.0.0
+  interscan-messaging-security-va
+    imsva90
+      9.0.1383
+  wfbs-90sp1-std-adv
+    wfbs90sp1advanced
+      19.0.2501
+    wfbs90sp1standard
+      19.0.2501
+TrendMicro.DeepSecurity
+TrendMicro.DeepSecurity.Test2
+TrendMicro.PortalProtect
+tsa-public-service
+  ckan-server
+    basepackage
+      1.0.2
+typesafe
+  typesafe-reactive-maps-demo
+    typesafe-reactive-maps-demo
+      1.0.0
+ubercloud
+  openfoam-v2dot3-centos-v6
+    openfoam-23-centos6
+      1.0.4
+    trial
+      1.0.1
+      1.0.4
+  star-ccm-v10-04
+    starccm-10_04
+      1.0.0
+  star-ccm-v10-06-heeds-mdo-v2015
+    starccm-10_06-heeds-mdo-2015_11
+      1.0.0
+unidesk
+unidesk-corp
+usp
+  unified-streaming-vod-standard
+    usp-vod
+      1.0.0
+vbot
+  vbot
+    vbotcms001
+      1.0.0
+vecompsoftware
+  docsuite
+    docsuite
+      8.24.201508
+veeam
+  managed-backup-portal
+    veeammanagedbackupportal
+      1.0.0
+  veeam-cloud-connect-enterprise
+    veeamcloudcconnectenterprise
+      1.0.2
+      1.0.3
+  veeam-direct-restore-to-microsoft-azure
+    veeamdirectrestoretomicrosoftazure
+      1.0.0
+  veeamcloudconnect
+    veeambackup
+      1.0.4
+      1.0.5
+      1.0.6
+vidispine
+  vidispine-content-management
+    developer
+      4.3.14942
+      4.4.15526
+      4.5.16101
+    midsized_team
+      4.3.14942
+      4.4.15526
+      4.5.16101
+    web_large
+      4.4.11526
+      4.5.16101
+    web_mid
+      4.4.11526
+      4.5.16101
+    web_starter
+      4.4.11526
+      4.5.16101
+vidizmo
+  enterprisetube-video-streaming-premium-portal
+    vdzmo-azr-ent-prm-1000
+      4.8.15
+      4.9.9
+vircom
+virtualworks
+  viaworks
+    viaworks
+      1.0.5
+  viaworks-online-2_5-beta
+    viaworks
+      1.0.0
+vision_solutions
+  double_take_dr
+    double_take_dr_recovery_target_2008r2
+      7.1.0
+    double_take_dr_recovery_target_2012
+      7.1.0
+    double_take_dr_recovery_target_2012r2
+      7.1.0
+    double_take_dr_repository
+      7.1.0
+  double_take_move
+    double_take_move_target_2008r2
+      7.1.0
+    double_take_move_target_2012
+      7.1.0
+    double_take_move_target_2012r2
+      7.1.0
+vmturbo
+  vmturbo64-opsmgr-5_3
+    vmturbo64-opsmgr-5-3
+      5.0.0
+    vmturbo64-opsmgr-5-3-byol
+      5.3.3
+    vmturbo64-opsmgr-5-3-saas
+      5.3.3
+Vormetric
+Vormetric.TestExt
+Vormetric.VormetricTransparentEncryption
+vte
+  slashdb
+    slashdb-azure
+      0.8.14
+      0.8.18
+    slashdb-unlimited
+      0.8.14
+      0.8.18
+WAD-VMSS.Test
+WAD2AI.Diagnostics.Test
+WAD2EventHub.Diagnostics.Test
+waratek
+  waratek-locker
+    tomcat7
+      2.0.0
+warewolf-esb
+  warewolf-esb
+    warewolf-esb-basic
+      1.0.0
+      1.0.1
+    warewolf-esb-business
+      1.0.0
+      1.0.1
+watchfulsoftware
+  rightswatch-single-instance
+    rightswatch-subscritpion-license-ae-1-100
+      1.0.3
+websense-apmailpe
+  ap-data-email-gateway
+    tdeg
+      1.0.2
+  triton-ap-data
+    adeg
+      1.0.0
+wmspanel
+  nimble-streamer-centos
+    nimble-streamer
+      1.0.0
+      1.1.0
+  nimble-streamer-ubuntu
+    nimble-streamer
+      1.1.0
+  nimble-streamer-windows
+    nimble-streamer
+      1.0.0
+      1.2.0
+workshare-technology
+  ws-prot-byol-protsvr-offer
+    ws-prot-byol-protsv
+      3.5.114
+wowza
+  wowzastreamingengine
+    std-linux-byol
+      4.1.2
+    std-linux-byol-4-2
+      4.2.0
+    std-linux-byol-4-3
+      4.3.0
+    std-windows-byol
+      4.1.2
+    std-windows-byol-4-2
+      4.2.0
+    std-windows-byol-4-3
+      4.3.0
+xebialabs
+  xebialabs-xl-deploy
+    xl-deploy-linux
+      5.0.0
+xfinityinc
+  d3view-v5
+    d3view-v5-hosted
+      1.0.0
+xmpro
+  xmpro-evaluation
+    bpm
+      1.0.0
+xrm
+xtremedata
+  dbx
+    dbx15001mnt
+      1.0.0
+    dbx2014001
+      1.1.0
+yellowfin
+  yellowfin-for-azure-byol
+    yellowfinforazurebyol
+      7.1.501
+your-shop-online
+  herefordshire-enterprise-platform-drupal-7
+    herefordshire-1
+      1.0.0
+  xenofile
+    xenofile-basic
+      1.0.0
+zementis
+  adapa-decision-engine
+    adapa-decision-engine
+      4.2.1
+      4.2.4
+  adapa-scoring-enging-4-1
+    zementis-adapa-4-1-azure
+      1.0.0
+      1.0.2
+      1.0.3
+zend
+  php-zend-server
+    zs-d-00-u-php5_6
+      8.5.00
+      8.5.1
+      8.5.2
+    zs-e-00-u-php5_6
+      8.5.00
+      8.5.1
+      8.5.2
+    zs-p-00-u-php5_6
+      8.5.00
+      8.5.1
+      8.5.2
+zoomdata
+  zoomdata-server
+    server-byol
+      1.0.1
+    server-production
+      1.0.1
+    server-trial
+      1.0.1
+</pre></body></html>
