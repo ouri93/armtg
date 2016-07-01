@@ -479,7 +479,7 @@ $(document).ready(function() {
 	controlHtml += "</div>";
     }
 
-    $("#control").html(controlHtml);
+    $("div#control").html(controlHtml);
 
     drawCurrent();
 });
@@ -523,7 +523,7 @@ function populateDetails(blockType) {
 
     detailsHtml += blockHtml + "<br/><br/>" + commitsDivHtml(blockType) + "<hr/>";
 
-    $('#details').html(detailsHtml);
+    $('div#details').html(detailsHtml);
 
     populateSelectors(blockType);
 }
@@ -673,7 +673,7 @@ function addBlock(blockType) {
 }
 
 function nixBlock() {
-    $('#details').html("");
+    $('div#details').html("");
 }
 
 function drawCurrent() {
@@ -687,7 +687,7 @@ function drawCurrent() {
 	currentString += "<br/>";
     }
     
-    $("#current").html(currentString);
+    $("div#current").html(currentString);
 }
 
 
@@ -782,7 +782,7 @@ function createResources(templateObject) {
 function generateTemplate() {
     var freshCopy = jQuery.extend(true, {}, baseTemplateObject);
     createResources(freshCopy);
-    $('#output').html("<pre>" + JSON.stringify(freshCopy, null, 2) + "</pre>");
+    $('div#output').html("<pre>" + JSON.stringify(freshCopy, null, 2) + "</pre>");
 }
 
 function restartTemplate() {
@@ -790,7 +790,7 @@ function restartTemplate() {
     blocks = freshCopy;
     initializeBlocks();
     drawCurrent();
-    $('#output').html("");
+    $('div#output').html("");
 }
 
 function deployToAzure() {
