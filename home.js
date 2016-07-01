@@ -32,6 +32,23 @@
   Subnets are treated as "first-class blocks", making the code below easier, with some consequences. For instance, users must specify subnets separately from vnets. Additionally, there is some special-case code to embed subnets within vnets when generating the template.
 */
 
+var osMap = {"Linux":
+	     {
+		 "publisher": "Canonical",
+		 "offer": "UbuntuServer",
+		 "sku": "14.04.4-LTS",
+		 "version": "latest"
+	     },
+
+	     "Windows":
+	     {
+		 "publisher": "MicrosoftWindowsServer",
+		 "offer": "WindowsServer",
+		 "sku": "2012-R2-Datacenter",
+		 "version": "latest"
+	     },
+	    };
+
 // apiVersion, location, name
 var blocks = {
     // properties::subnets, //properties::addressSpace::addressPrefixes
@@ -207,7 +224,6 @@ var blocks = {
 			  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			  /*'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}*/},
 	   'cospecifications': [],
-	   // properties::networkProfile::networkInterfaces::0::id, dependsOn SA and NIC, properties::hardwareProfile::vmSize, osProfile::computerName/adminUsername/adminPassword, properties::storageProfile::imageReference, properties::storageProfile::osDisk::name/vhd
 	   'baseObject': {
 	       "type": "Microsoft.Compute/virtualMachines",
 	       "dependsOn": [],
@@ -228,8 +244,23 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
-	       console.log(block);
-	       //getBlockNamingInfix(getBlockTemplateName("vm", blockInfix));
+	       vmBlock = blocks["vm"]["blocks"][blockInfix];
+	       nic = vmBlock["nic"];
+	       sa = vmBlock["sa"];
+
+	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + getPartialNamingInfix(nic) + ")]");
+	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + getPartialNamingInfix(sa) + ")]");
+
+	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
+	       block["properties"]["osProfile"]["computerName"] = block["name"];
+	       block["properties"]["osProfile"]["adminUsername"] = vmBlock["adminUsername"];
+	       block["properties"]["osProfile"]["adminPassword"] = vmBlock["adminPassword"];
+	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + getPartialTemplateName(nic) + ")]"};
+	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
+	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
+	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + getPartialTemplateName(sa) + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
+	       
+	       return block;
 	   }
 	  }
 
