@@ -14,7 +14,8 @@ for resources:
 TODO
 P0
 ==
-> refactor types to have their own object
+> refactor types to have their own object?
+> allow custom VM images?
 > multiple subnets per vnet (& referencable as such)
 > addressPrefix should have its own type and should do validation on the format
 > VM
@@ -71,7 +72,9 @@ P3
 > error checking
   > e.g. that ports are real numbers, etc.
   > ports adhere to inequality constraints (start < end for nat rules, etc.)
+  > don't have overlapping subnets within a vnet
   > e.g. when spitting out errors, should spit out all errors instead of just one (e.g. in LB)
 
+> make 10.0.0.0/24 default value for subnets
 
 > assumes IPv4 for addressPrefixes; expand to IPv6?

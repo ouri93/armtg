@@ -26,12 +26,16 @@
   'baseObject': the base JSON object used to create the block of that type; if this is missing, the button to add this object to the template won't appear
 
   'customization': a function for customizing a block based on user input; takes in a base block populated by baseObject and the block infix; returns the customized block
+
+  Misc
+  ----
+  Subnets are treated as "first-class blocks", making the code below easier, with some consequences. For instance, users must specify subnets separately from vnets. Additionally, there is some special-case code to embed subnets within vnets when generating the template.
 */
 
 // apiVersion, location, name
 var blocks = {
     // properties::subnets, //properties::addressSpace::addressPrefixes
-    'VNET': {'plural': 'VNETs',
+    'vnet': {'plural': 'VNETs',
 	     'populatableSelectors': {},
 	     'blocks': {},
 	     'properties': {'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 12}},
@@ -46,29 +50,43 @@ var blocks = {
 		 }
 	     },
 	     'customization': function(block, blockInfix) {
+		 // add addressPrefix to this vnet
+		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["vnet"]["blocks"][blockInfix]["addressPrefix"]);
+
+		 // add subnets to this vnet
+		 for (var subnetInfix in blocks["subnet"]["blocks"]) {
+		     if (getInfixFromBlockName(blocks["subnet"]["blocks"][subnetInfix]["vnet"]) == blockInfix) {
+			 var subnetBlock = createSubBlock("subnet", subnetInfix);
+			 subnetBlock["properties"] = {"addressPrefix": blocks["subnet"]["blocks"][subnetInfix]["addressPrefix"]};
+			 block["properties"]["subnets"].push(subnetBlock);
+		     }
+		 }
+
 		 return block;
 	     }
 	    },
 
     // properties::addressPrefix
-    'SUBNET': {'plural': 'SUBNETs',
-	       'populatableSelectors': {'VNET': true},
+    'subnet': {'plural': 'SUBNETs',
+	       'populatableSelectors': {'vnet': true},
 	       'blocks': {},
-	       'properties': {'VNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			      'addressPrefix': {'type': 'addressPrefix', 'required': true, 'columnWidth': 6}},
+	       'properties': {'vnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			      'addressPrefix': {'type': 'smallAddressPrefix', 'required': true, 'columnWidth': 6}},
 	       'cospecifications': [],
 	       'baseObject': {
 		   "properties": {
 		   }
 	       },
 	       'customization': function(block, blockInfix) {
-		   return block;
+		   // don't actually want subnets as their own top-level resource, so return null
+		   // subnets are dealt with in the 'customization' section of vnets
+		   return null;
 	       }
 	      },
 
 
     // properties::dnsSettings::domainNameLabel
-    'PIP': {'plural': 'PIPs',
+    'pip': {'plural': 'PIPs',
 	    'populatableSelectors': {},
 	    'blocks': {},
 	    'properties': {'domainNameLabel': {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12}},
@@ -80,8 +98,8 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		if (blocks["PIP"]["blocks"][blockInfix]["domainNameLabel"] != "") {
-		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["PIP"]["blocks"][blockInfix]["domainNameLabel"]};
+		if (blocks["pip"]["blocks"][blockInfix]["domainNameLabel"] != "") {
+		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["pip"]["blocks"][blockInfix]["domainNameLabel"]};
 		}
 
 		return block;
@@ -89,11 +107,11 @@ var blocks = {
 	   },
     
     // dependsOn vnet and optional pip; ipconfigurations::name; ipConfigurations::properties::subnet::id
-    'NIC': {'plural': 'NICs',
-	    'populatableSelectors': {'SUBNET': true, 'PIP': true},
+    'nic': {'plural': 'NICs',
+	    'populatableSelectors': {'subnet': true, 'pip': true},
 	    'blocks': {},
-	    'properties': {'SUBNET': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			   'PIP': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
+	    'properties': {'subnet': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			   'pip': {'type': 'dropdown', 'required': false, 'columnWidth': 6}},
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/networkInterfaces",
@@ -109,18 +127,20 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockInfix) {
-		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("NIC", blockInfix)) + ", 'ipconfig')]";
-		if (blocks["NIC"]["blocks"][blockInfix]["PIP"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]");
-		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["NIC"]["blocks"][blockInfix]["PIP"]) + ")]"};
+		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("nic", blockInfix)) + ", 'ipconfig')]";
+		if (blocks["nic"]["blocks"][blockInfix]["pip"] != "none") {
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]");
+		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]"};
 		}
 		
-		alert('FIX NIC VNET!');
-		vnet = blocks["NIC"]["blocks"][blockInfix]["VNET"];
+		subnet = blocks["nic"]["blocks"][blockInfix]["subnet"];
+		subnetInfix = getInfixFromBlockName(subnet);
+
+		vnet = blocks["subnet"]["blocks"][subnetInfix]["vnet"];
 		vnetInfix = getInfixFromBlockName(vnet);
 		
 		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
-		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(vnet) + ", 'subnet')]"};
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(subnet) + ")]"};
 		
 		return block;
 	    }
@@ -158,7 +178,7 @@ var blocks = {
 	       }},
     */
     
-    'SA': {'plural': 'SAs',
+    'sa': {'plural': 'SAs',
 	   'populatableSelectors': {},
 	   'blocks': {},
 	   'properties': {'accountType': {'type': 'storageAccountType', 'required': true, 'columnWidth': 12}},
@@ -170,21 +190,21 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
-	       partialBlockName = getPartialTemplateName(getBlockName("SA", blockInfix));
+	       partialBlockName = getPartialTemplateName(getBlockName("sa", blockInfix));
 	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
-	       block["properties"]["accountType"] = blocks["SA"]["blocks"][blockInfix]["accountType"];
+	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockInfix]["accountType"];
 	       return block;
 	   }},
     
-    'VM': {'plural': 'VMs',
-	   'populatableSelectors': {'NIC': true, 'SA': true},
+    'vm': {'plural': 'VMs',
+	   'populatableSelectors': {'nic': true, 'sa': true},
 	   'blocks': {},
 	   'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
 			  'os': {'type': 'os', 'required': true, 'columnWidth': 6},
 			  'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
 			  'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
-			  'NIC': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
-			  'SA': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
+			  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			  /*'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}*/},
 	   'cospecifications': [],
 	   // properties::networkProfile::networkInterfaces::0::id, dependsOn SA and NIC, properties::hardwareProfile::vmSize, osProfile::computerName/adminUsername/adminPassword, properties::storageProfile::imageReference, properties::storageProfile::osDisk::name/vhd
@@ -228,11 +248,21 @@ var blocks = {
 
 };
 
-// add common properties to all block types
-for (var blockType in blocks) {
-    blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
-    //blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+var blocksCopy = null;
+
+function initializeBlocks() {
+    blocksCopy = jQuery.extend(true, {}, blocks);
+
+    // add common properties to all block types
+    for (var blockType in blocks) {
+	blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
+	//blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
+    }
 }
+
+
+
+
 
 var types = {
     'text': {
@@ -356,7 +386,7 @@ var types = {
 
     'addressPrefix': {
 	'getView': function(details, referenceId) {
-	    return "<input placeholder='10.0.0.0/16' id='" + referenceId + "'></input>";
+	    return "<input id='" + referenceId + "' value='10.0.0.0/16'></input>";
 	},
 	'isValid': function(input) {
             if (input === "") {
@@ -391,6 +421,15 @@ var types = {
 
 	    return true;
 	}
+    },
+
+    'smallAddressPrefix': {
+	'getView': function(details, referenceId) {
+	    return "<input id='" + referenceId + "' value='10.0.0.0/24'></input>";
+	},
+	'isValid': function(input) {
+	    return types['addressPrefix'].isValid(input);
+	}
     }
 };
 
@@ -405,6 +444,8 @@ var controlButtonWidth = 3;
 var numControlButtonsPerRow = properRowWidth / controlButtonWidth;
 
 $(document).ready(function() {
+    initializeBlocks();
+
     var controlHtml = "";
     var currentWidthUsed = 0;
     numBlockTypes = 0;
@@ -446,15 +487,15 @@ $(document).ready(function() {
 function commitsDivHtml(blockType) {
     var ret =
 	'<div id="commits">' +
-	'  <button class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
-	'  <button class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
+	'  <button id="addBlockButton" class="btn btn-default" onclick="javascript:addBlock(\'' + blockType + '\')">Add</button>' +
+	'  <button id="nixBlockButton" class="btn btn-default" onclick="javascript:nixBlock()">Cancel</button>' +
 	'</div>';
 
     return ret;
 }
 
 function populateDetails(blockType) {
-    var detailsHtml = "<hr/><div class='subtitle'>" + "NEW " + blockType + "</div><br/><br/>";
+    var detailsHtml = "<hr/><div class='subtitle'>" + "new " + blockType + "</div><br/><br/>";
 
     var blockHtml = "";
     var currentWidthUsed = 0;
@@ -696,13 +737,33 @@ function getBlockTemplateName(blockName) {
     return getBlockNamingInfix(blockName) + ")]";
 }
 
-function createBlock(blockType, blockInfix) {
+// mostly here to re-use some block creation code for subnets,
+// which are special-cased because we treat them like top-level
+// blocks for convenience, but they are really subBlocks
+function createSubBlock(blockType, blockInfix) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
+    // lowercase name because storage requires it
     deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
+    return deepCopy;
+}
+
+function createBlock(blockType, blockInfix) {
+    var deepCopy = createSubBlock(blockType, blockInfix);
     deepCopy['apiVersion'] = "[variables('apiVersion')]";
     deepCopy['location'] = "[variables('location')]";
 
     return deepCopy;
+}
+
+function sortKeys(obj) {
+    keys = Object.keys(obj);
+    keys.sort();
+    ret = {};
+    for (var keyIndex in keys) {
+	ret[keys[keyIndex]] = obj[keys[keyIndex]];
+    }
+
+    return ret;
 }
 
 function createResources(templateObject) {
@@ -710,7 +771,10 @@ function createResources(templateObject) {
 	for (var blockInfix in blocks[blockType]["blocks"]) {
 	    var curBlock = createBlock(blockType, blockInfix);
 	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
-	    templateObject["resources"].push(finalForm);
+	    if (finalForm != null) {
+		var sortedFinalForm = sortKeys(finalForm);
+		templateObject["resources"].push(sortedFinalForm);
+	    }
 	}
     }
 }
@@ -718,7 +782,15 @@ function createResources(templateObject) {
 function generateTemplate() {
     var freshCopy = jQuery.extend(true, {}, baseTemplateObject);
     createResources(freshCopy);
-    $('#output').html(JSON.stringify(freshCopy, null, 2));
+    $('#output').html("<pre>" + JSON.stringify(freshCopy, null, 2) + "</pre>");
+}
+
+function restartTemplate() {
+    var freshCopy = jQuery.extend(true, {}, blocksCopy);
+    blocks = freshCopy;
+    initializeBlocks();
+    drawCurrent();
+    $('#output').html("");
 }
 
 function deployToAzure() {
