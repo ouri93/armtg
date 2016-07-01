@@ -130,7 +130,7 @@ var blocks = {
 		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("nic", blockInfix)) + ", 'ipconfig')]";
 		if (blocks["nic"]["blocks"][blockInfix]["pip"] != "none") {
 		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]");
-		    block["properties"]["ipConfigurations"][0]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]"};
+		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]"};
 		}
 		
 		subnet = blocks["nic"]["blocks"][blockInfix]["subnet"];
