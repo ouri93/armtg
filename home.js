@@ -207,6 +207,7 @@ var blocks = {
 	       }
 	   },
 	   'customization': function(block, blockInfix) {
+	       // !!! TODO this sa naming code is duplicated in the 'vm' section.
 	       partialBlockName = getPartialTemplateName(getBlockName("sa", blockInfix));
 	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockInfix]["accountType"];
@@ -248,8 +249,13 @@ var blocks = {
 	       nic = vmBlock["nic"];
 	       sa = vmBlock["sa"];
 
+	       // !!! TODO this sa naming code is duplicated from the 'sa' section.
+	       saBlockInfix = getInfixFromBlockName("sa", sa);
+	       saPartialBlockName = getPartialTemplateName(getBlockName("sa", saBlockInfix));
+	       saBlockNameWithoutBrackets = "concat(uniqueString(concat(resourceGroup().id, toLower(" + saPartialBlockName + "))), toLower(" + saPartialBlockName + "))";
+
 	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + getPartialNamingInfix(nic) + ")]");
-	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + getPartialNamingInfix(sa) + ")]");
+	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + saBlockNameWithoutBrackets + ")]");
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
@@ -258,7 +264,7 @@ var blocks = {
 	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + getPartialTemplateName(nic) + ")]"};
 	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
 	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
-	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + getPartialTemplateName(sa) + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
+	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + saBlockNameWithoutBrackets + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
 	       
 	       return block;
 	   }

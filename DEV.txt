@@ -9,8 +9,6 @@ for resources:
 	other reasonable options based on existing resources
 
 
-
-
 TODO
 P0
 ==
