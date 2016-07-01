@@ -226,6 +226,10 @@ var blocks = {
 		       "networkInterfaces": [{}]
 		   }
 	       }
+	   },
+	   'customization': function(block, blockInfix) {
+	       console.log(block);
+	       //getBlockNamingInfix(getBlockTemplateName("vm", blockInfix));
 	   }
 	  }
 
