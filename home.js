@@ -15,7 +15,7 @@
 
   'properties': the user-specified aspects of blocks of this type
 
-  'properties[property][type]': 'num', 'dropdown', 'text', 'potentiallyEmptyText', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
+  'properties[property][type]': 'num', 'dropdown', 'text', 'vmSize', 'storageAccountType', 'os', 'password', or 'checkbox'; determines the html element (view) that receives the user input, as well as the validation of this property (controller)
 
   'properties::required': true if required, false if not
 
@@ -89,7 +89,7 @@ var blocks = {
     'pip': {'plural': 'PIPs',
 	    'populatableSelectors': {},
 	    'blocks': {},
-	    'properties': {'domainNameLabel': {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12}},
+	    'properties': {'domainNameLabel': {'type': 'text', 'required': false, 'columnWidth': 12}},
 	    'cospecifications': [],
 	    'baseObject': {
 		"type": "Microsoft.Network/publicIPAddresses",
@@ -255,7 +255,7 @@ function initializeBlocks() {
 
     // add common properties to all block types
     for (var blockType in blocks) {
-	blocks[blockType]['properties']['namingInfix'] = {'type': 'potentiallyEmptyText', 'required': false, 'columnWidth': 12};
+	blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 12};
 	//blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
     }
 }
@@ -278,15 +278,6 @@ var types = {
 	}
     },
 
-    'potentiallyEmptyText': {
-	'getView': function(details, referenceId) {
-	    return "<input id='" + referenceId + "'></input>";
-	},
-	'isValid': function(input) {
-	    return true;
-	}
-    },
-    
     'num': {
 	'getView': function(details, referenceId) {
 	    return "<input id='" + referenceId + "' type='number'></input>";
@@ -578,6 +569,10 @@ function specified(property, proposedBlock) {
     }
     
     if (proposedBlock[property] == undefined) {
+	return false;
+    }
+
+    if (proposedBlock[property] == "") {
 	return false;
     }
 
