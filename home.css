@@ -1,22 +1,9 @@
+body {
+    text-align: center;
+}
+
 h1#title {
-    text-align: center;
     font-family: 'Raleway', sans-serif;
-}
-
-div#control {
-    text-align: center;
-}
-
-div#details {
-    text-align: center;
-}
-
-div#currentTitle {
-    text-align: center;
-}
-
-div#generateControl {
-    text-align: center;
 }
 
 div#output {
