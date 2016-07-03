@@ -6,6 +6,10 @@ h1#title {
     font-family: 'Raleway', sans-serif;
 }
 
+div#current {
+    text-align: left;
+}
+
 div#output {
     text-align: left;
 }
