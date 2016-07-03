@@ -144,7 +144,7 @@ var blocks = {
 		}
 	    },
 	    'customization': function(block, blockName) {
-		block["properties"]["ipConfigurations"][0]["name"] = blockName + ", 'ipconfig')]";
+		block["properties"]["ipConfigurations"][0]["name"] = blockName + "ipconfig";
 		if (blocks["nic"]["blocks"][blockName]["pip"] != "none") {
 		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]");
 		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]"};
@@ -206,7 +206,7 @@ var blocks = {
 	   'customization': function(block, blockName) {
 	       // !!! TODO this sa naming code is duplicated in the 'vm' section.
 	       partialBlockName = blockName;
-	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
+	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower('" + partialBlockName + "'))), toLower(" + partialBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockName]["accountType"];
 	       return block;
 	   }},
