@@ -146,15 +146,15 @@ var blocks = {
 	    'customization': function(block, blockName) {
 		block["properties"]["ipConfigurations"][0]["name"] = blockName + ", 'ipconfig')]";
 		if (blocks["nic"]["blocks"][blockName]["pip"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockName]["pip"]) + ")]");
-		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockName]["pip"]) + ")]"};
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]");
+		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]"};
 		}
 		
 		subnetName = blocks["nic"]["blocks"][blockName]["subnet"];
 		vnetName = blocks["subnet"]["blocks"][subnetName]["vnet"];
 		
-		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnetName) + ")]");
-		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnetName) + "), '/subnets/', " + getPartialNamingInfix(subnetName) + ")]"};
+		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + vnetName + ")]");
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + vnetName + "), '/subnets/', " + subnetName + ")]"};
 		
 		return block;
 	    }
@@ -205,7 +205,7 @@ var blocks = {
 	   },
 	   'customization': function(block, blockName) {
 	       // !!! TODO this sa naming code is duplicated in the 'vm' section.
-	       partialBlockName = getPartialTemplateName(blockName);
+	       partialBlockName = blockName;
 	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
 	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockName]["accountType"];
 	       return block;
@@ -247,17 +247,17 @@ var blocks = {
 	       saName = vmBlock["sa"];
 
 	       // !!! TODO this sa naming code is duplicated from the 'sa' section.
-	       saPartialBlockName = getPartialTemplateName(saName);
+	       saPartialBlockName = saName;
 	       saBlockNameWithoutBrackets = "concat(uniqueString(concat(resourceGroup().id, toLower(" + saPartialBlockName + "))), toLower(" + saPartialBlockName + "))";
 
-	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + getPartialNamingInfix(nicName) + ")]");
+	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + nicName + ")]");
 	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + saBlockNameWithoutBrackets + ")]");
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
 	       block["properties"]["osProfile"]["adminUsername"] = vmBlock["adminUsername"];
 	       block["properties"]["osProfile"]["adminPassword"] = vmBlock["adminPassword"];
-	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + getPartialTemplateName(nicName) + ")]"};
+	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + nicName + ")]"};
 	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
 	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
 	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + saBlockNameWithoutBrackets + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
@@ -741,15 +741,7 @@ function drawCurrent() {
 var baseTemplateObject = {
     "$schema":"http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-	"namingInfix": {
-	    "type": "string",
-	    "maxLength": 9,
-	    "metadata": {
-		"description": "String used as a base for naming resources (9 characters or less). A hash is prepended to this string for some resources, and resource-specific information is appended."
-	    }
-	}
-    },
+    "parameters": {},
     "variables": {
 	"apiVersion": "2015-06-15",
 	"location": "[resourceGroup().location]"
@@ -758,29 +750,12 @@ var baseTemplateObject = {
     "outputs": {}
 }
 
-function getPartialNamingInfix(blockName) {
-    return "parameters('namingInfix'), '" + blockName + "'";
-}
-
-function getPartialTemplateName(blockName) {
-    return "concat(" + getPartialNamingInfix(blockName) + ")";
-}
-
-function getBlockNamingInfix(blockName) {
-    return "[concat(parameters('namingInfix'), '" + blockName + "'";
-}
-
-function getBlockTemplateName(blockName) {
-    return getBlockNamingInfix(blockName) + ")]";
-}
-
 // mostly here to re-use some block creation code for subnets,
 // which are special-cased because we treat them like top-level
 // blocks for convenience, but they are really subBlocks
 function createSubBlock(blockType, blockName) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
-    // lowercase name because storage requires it
-    deepCopy['name'] = getBlockTemplateName(blockType, blockName);
+     deepCopy['name'] = blockName;
     return deepCopy;
 }
 
