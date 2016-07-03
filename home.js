@@ -66,15 +66,15 @@ var blocks = {
 		     "subnets": []
 		 }
 	     },
-	     'customization': function(block, blockInfix) {
+	     'customization': function(block, blockName) {
 		 // add addressPrefix to this vnet
-		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["vnet"]["blocks"][blockInfix]["addressPrefix"]);
+		 block["properties"]["addressSpace"]["addressPrefixes"].push(blocks["vnet"]["blocks"][blockName]["addressPrefix"]);
 
 		 // add subnets to this vnet
-		 for (var subnetInfix in blocks["subnet"]["blocks"]) {
-		     if (getInfixFromBlockName(blocks["subnet"]["blocks"][subnetInfix]["vnet"]) == blockInfix) {
-			 var subnetBlock = createSubBlock("subnet", subnetInfix);
-			 subnetBlock["properties"] = {"addressPrefix": blocks["subnet"]["blocks"][subnetInfix]["addressPrefix"]};
+		 for (var subnetName in blocks["subnet"]["blocks"]) {
+		     if (blocks["subnet"]["blocks"][subnetName]["vnet"] == blockName) {
+			 var subnetBlock = createSubBlock("subnet", subnetName);
+			 subnetBlock["properties"] = {"addressPrefix": blocks["subnet"]["blocks"][subnetName]["addressPrefix"]};
 			 block["properties"]["subnets"].push(subnetBlock);
 		     }
 		 }
@@ -94,7 +94,7 @@ var blocks = {
 		   "properties": {
 		   }
 	       },
-	       'customization': function(block, blockInfix) {
+	       'customization': function(block, blockName) {
 		   // don't actually want subnets as their own top-level resource, so return null
 		   // subnets are dealt with in the 'customization' section of vnets
 		   return null;
@@ -114,9 +114,9 @@ var blocks = {
 		    "publicIPAllocationMethod": "Dynamic"
 		}
 	    },
-	    'customization': function(block, blockInfix) {
-		if (blocks["pip"]["blocks"][blockInfix]["domainNameLabel"] != "") {
-		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["pip"]["blocks"][blockInfix]["domainNameLabel"]};
+	    'customization': function(block, blockName) {
+		if (blocks["pip"]["blocks"][blockName]["domainNameLabel"] != "") {
+		    block["properties"]["dnsSettings"] = {"domainNameLabel": blocks["pip"]["blocks"][blockName]["domainNameLabel"]};
 		}
 
 		return block;
@@ -143,21 +143,18 @@ var blocks = {
 		    ]
 		}
 	    },
-	    'customization': function(block, blockInfix) {
-		block["properties"]["ipConfigurations"][0]["name"] = getBlockNamingInfix(getBlockName("nic", blockInfix)) + ", 'ipconfig')]";
-		if (blocks["nic"]["blocks"][blockInfix]["pip"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]");
-		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockInfix]["pip"]) + ")]"};
+	    'customization': function(block, blockName) {
+		block["properties"]["ipConfigurations"][0]["name"] = blockName + ", 'ipconfig')]";
+		if (blocks["nic"]["blocks"][blockName]["pip"] != "none") {
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + getPartialNamingInfix(blocks["nic"]["blocks"][blockName]["pip"]) + ")]");
+		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + getPartialTemplateName(blocks["nic"]["blocks"][blockName]["pip"]) + ")]"};
 		}
 		
-		subnet = blocks["nic"]["blocks"][blockInfix]["subnet"];
-		subnetInfix = getInfixFromBlockName(subnet);
-
-		vnet = blocks["subnet"]["blocks"][subnetInfix]["vnet"];
-		vnetInfix = getInfixFromBlockName(vnet);
+		subnetName = blocks["nic"]["blocks"][blockName]["subnet"];
+		vnetName = blocks["subnet"]["blocks"][subnetName]["vnet"];
 		
-		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnet) + ")]");
-		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnet) + "), '/subnets/', " + getPartialNamingInfix(subnet) + ")]"};
+		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + getPartialNamingInfix(vnetName) + ")]");
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + getPartialTemplateName(vnetName) + "), '/subnets/', " + getPartialNamingInfix(subnetName) + ")]"};
 		
 		return block;
 	    }
@@ -206,11 +203,11 @@ var blocks = {
 		   "accountType": "Standard_LRS"
 	       }
 	   },
-	   'customization': function(block, blockInfix) {
+	   'customization': function(block, blockName) {
 	       // !!! TODO this sa naming code is duplicated in the 'vm' section.
-	       partialBlockName = getPartialTemplateName(getBlockName("sa", blockInfix));
+	       partialBlockName = getPartialTemplateName(blockName);
 	       block["name"] = "[concat(uniqueString(concat(resourceGroup().id, toLower(" + partialBlockName + "))), toLower(" + partialBlockName + "))]";
-	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockInfix]["accountType"];
+	       block["properties"]["accountType"] = blocks["sa"]["blocks"][blockName]["accountType"];
 	       return block;
 	   }},
     
@@ -244,24 +241,23 @@ var blocks = {
 		   }
 	       }
 	   },
-	   'customization': function(block, blockInfix) {
-	       vmBlock = blocks["vm"]["blocks"][blockInfix];
-	       nic = vmBlock["nic"];
-	       sa = vmBlock["sa"];
+	   'customization': function(block, blockName) {
+	       vmBlock = blocks["vm"]["blocks"][blockName];
+	       nicName = vmBlock["nic"];
+	       saName = vmBlock["sa"];
 
 	       // !!! TODO this sa naming code is duplicated from the 'sa' section.
-	       saBlockInfix = getInfixFromBlockName("sa", sa);
-	       saPartialBlockName = getPartialTemplateName(getBlockName("sa", saBlockInfix));
+	       saPartialBlockName = getPartialTemplateName(saName);
 	       saBlockNameWithoutBrackets = "concat(uniqueString(concat(resourceGroup().id, toLower(" + saPartialBlockName + "))), toLower(" + saPartialBlockName + "))";
 
-	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + getPartialNamingInfix(nic) + ")]");
+	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + getPartialNamingInfix(nicName) + ")]");
 	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + saBlockNameWithoutBrackets + ")]");
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
 	       block["properties"]["osProfile"]["adminUsername"] = vmBlock["adminUsername"];
 	       block["properties"]["osProfile"]["adminPassword"] = vmBlock["adminPassword"];
-	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + getPartialTemplateName(nic) + ")]"};
+	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + getPartialTemplateName(nicName) + ")]"};
 	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
 	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
 	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + saBlockNameWithoutBrackets + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
@@ -296,7 +292,7 @@ function initializeBlocks() {
 
     // add common properties to all block types
     for (var blockType in blocks) {
-	blocks[blockType]['properties']['namingInfix'] = {'type': 'text', 'required': false, 'columnWidth': 12};
+	blocks[blockType]['properties']['name'] = {'type': 'text', 'required': true, 'columnWidth': 12};
 	//blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
     }
 }
@@ -595,9 +591,8 @@ function populateSelectors(blockType) {
     
     for (populatableSelector in blocks[blockType]['populatableSelectors']) {
 	for (blockName in blocks[populatableSelector]['blocks']) {
-	    value = getBlockName(populatableSelector, blockName)
-	    option = "<option value='" + value + "'>" +
-		value + "</option>";
+	    option = "<option value='" + blockName + "'>" +
+		blockName + "</option>";
 	    $('select#' + populatableSelector).append(option);
 	}
     }
@@ -698,12 +693,12 @@ function addBlock(blockType) {
 	return;
     }
 
-    if (newBlock['namingInfix'] in blocks[blockType]['blocks']) {
-	alert('There is already a ' + blockType + ' with naming infix "' + newBlock['namingInfix'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
+    if (newBlock['name'] in blocks[blockType]['blocks']) {
+	alert('There is already a ' + blockType + ' with name "' + newBlock['name'] + '"! please choose a different infix, or edit/delete the other ' + blockType + '.');
 	return;
     }
 
-    blocks[blockType]['blocks'][newBlock['namingInfix']] = newBlock;
+    blocks[blockType]['blocks'][newBlock['name']] = newBlock;
 
     drawCurrent();
 }
@@ -717,7 +712,7 @@ function drawCurrent() {
     for (blockType in blocks) {
 	currentString += "&nbsp;&nbsp;<span class='subtitle'>" + blocks[blockType]['plural'] + ":</span>&nbsp;&nbsp;&nbsp;";
 	for (blockName in blocks[blockType]['blocks']) {
-	    currentString += getBlockName(blockType, blockName) + "&nbsp;&nbsp;&nbsp;";
+	    currentString += blockName + "&nbsp;&nbsp;&nbsp;";
 	}
 
 	currentString += "<br/>";
@@ -776,15 +771,15 @@ function getBlockTemplateName(blockName) {
 // mostly here to re-use some block creation code for subnets,
 // which are special-cased because we treat them like top-level
 // blocks for convenience, but they are really subBlocks
-function createSubBlock(blockType, blockInfix) {
+function createSubBlock(blockType, blockName) {
     var deepCopy = jQuery.extend(true, {}, blocks[blockType]["baseObject"]);
     // lowercase name because storage requires it
-    deepCopy['name'] = getBlockTemplateName(getBlockName(blockType, blockInfix));
+    deepCopy['name'] = getBlockTemplateName(blockType, blockName);
     return deepCopy;
 }
 
-function createBlock(blockType, blockInfix) {
-    var deepCopy = createSubBlock(blockType, blockInfix);
+function createBlock(blockType, blockName) {
+    var deepCopy = createSubBlock(blockType, blockName);
     deepCopy['apiVersion'] = "[variables('apiVersion')]";
     deepCopy['location'] = "[variables('location')]";
 
@@ -804,9 +799,9 @@ function sortKeys(obj) {
 
 function createResources(templateObject) {
     for (var blockType in blocks) {
-	for (var blockInfix in blocks[blockType]["blocks"]) {
-	    var curBlock = createBlock(blockType, blockInfix);
-	    var finalForm = blocks[blockType].customization(curBlock, blockInfix);
+	for (var blockName in blocks[blockType]["blocks"]) {
+	    var curBlock = createBlock(blockType, blockName);
+	    var finalForm = blocks[blockType].customization(curBlock, blockName);
 	    if (finalForm != null) {
 		var sortedFinalForm = sortKeys(finalForm);
 		templateObject["resources"].push(sortedFinalForm);
