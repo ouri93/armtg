@@ -292,7 +292,9 @@ function initializeBlocks() {
 
     // add common properties to all block types
     for (var blockType in blocks) {
-	blocks[blockType]['properties']['name'] = {'type': 'text', 'required': true, 'columnWidth': 12};
+	// !!! putting blockType in the properties section is a tad hacky but is an easy way
+	// to make default names populate properly in the UI (see 'getView' in the types object)
+	blocks[blockType]['properties']['name'] = {'type': 'text', 'required': true, 'columnWidth': 12, 'blockType': blockType};
 	//blocks[blockType]['properties']['numCopies'] = {'type': 'num', 'required': true, 'columnWidth': 6};
     }
 }
@@ -304,6 +306,10 @@ function initializeBlocks() {
 var types = {
     'text': {
 	'getView': function(details, referenceId) {
+	    if (referenceId == "name") {
+		return "<input id='" + referenceId + "' value='" + details["blockType"] + "'></input>";
+	    }
+
 	    return "<input id='" + referenceId + "'></input>";
 	},
 	'isValid': function(input) {
