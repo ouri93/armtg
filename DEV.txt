@@ -1,3 +1,6 @@
+remove SA and namingInfix?
+move adminUsername and adminPassword to default parameters
+
 default params:
 	unique naming substring
 	location
