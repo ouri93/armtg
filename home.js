@@ -153,8 +153,8 @@ var blocks = {
 		subnetName = blocks["nic"]["blocks"][blockName]["subnet"];
 		vnetName = blocks["subnet"]["blocks"][subnetName]["vnet"];
 		
-		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', " + vnetName + ")]");
-		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', " + vnetName + "), '/subnets/', " + subnetName + ")]"};
+		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', '" + vnetName + "')]");
+		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + vnetName + "'), '/subnets/" + subnetName + "')]"};
 		
 		return block;
 	    }
@@ -250,14 +250,14 @@ var blocks = {
 	       saPartialBlockName = saName;
 	       saBlockNameWithoutBrackets = "concat(uniqueString(concat(resourceGroup().id, toLower(" + saPartialBlockName + "))), toLower(" + saPartialBlockName + "))";
 
-	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', " + nicName + ")]");
-	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + saBlockNameWithoutBrackets + ")]");
+	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', '" + nicName + "')]");
+	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', '" + saBlockNameWithoutBrackets + "')]");
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
 	       block["properties"]["osProfile"]["adminUsername"] = vmBlock["adminUsername"];
 	       block["properties"]["osProfile"]["adminPassword"] = vmBlock["adminPassword"];
-	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', " + nicName + ")]"};
+	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', '" + nicName + "')]"};
 	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
 	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
 	       block["properties"]["storageProfile"]["osDisk"]["vhd"] = {"uri": "[concat('https://', " + saBlockNameWithoutBrackets + ", '.blob.core.windows.net/vhds/osdisk.vhd')]"};
