@@ -146,8 +146,8 @@ var blocks = {
 	    'customization': function(block, blockName) {
 		block["properties"]["ipConfigurations"][0]["name"] = blockName + "ipconfig";
 		if (blocks["nic"]["blocks"][blockName]["pip"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]");
-		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', " + blocks["nic"]["blocks"][blockName]["pip"] + ")]"};
+		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', '" + blocks["nic"]["blocks"][blockName]["pip"] + "')]");
+		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + blocks["nic"]["blocks"][blockName]["pip"] + "')]"};
 		}
 		
 		subnetName = blocks["nic"]["blocks"][blockName]["subnet"];
