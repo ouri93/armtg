@@ -146,14 +146,14 @@ var blocks = {
 	    'customization': function(block, blockName) {
 		block["properties"]["ipConfigurations"][0]["name"] = blockName + "ipconfig";
 		if (blocks["nic"]["blocks"][blockName]["pip"] != "none") {
-		    block["dependsOn"].push("[concat('Microsoft.Network/publicIPAddresses/', '" + blocks["nic"]["blocks"][blockName]["pip"] + "')]");
+		    block["dependsOn"].push("Microsoft.Network/publicIPAddresses/" + blocks["nic"]["blocks"][blockName]["pip"]);
 		    block["properties"]["ipConfigurations"][0]["properties"]["publicIPAddress"] = {"id": "[resourceId('Microsoft.Network/publicIPAddresses', '" + blocks["nic"]["blocks"][blockName]["pip"] + "')]"};
 		}
 		
 		subnetName = blocks["nic"]["blocks"][blockName]["subnet"];
 		vnetName = blocks["subnet"]["blocks"][subnetName]["vnet"];
 		
-		block["dependsOn"].push("[concat('Microsoft.Network/virtualNetworks/', '" + vnetName + "')]");
+		block["dependsOn"].push("Microsoft.Network/virtualNetworks/" + vnetName);
 		block["properties"]["ipConfigurations"][0]["properties"]["subnet"] = {"id": "[concat(resourceId('Microsoft.Network/virtualNetworks', '" + vnetName + "'), '/subnets/" + subnetName + "')]"};
 		
 		return block;
@@ -250,8 +250,8 @@ var blocks = {
 	       saPartialBlockName = saName;
 	       saBlockNameWithoutBrackets = "concat(uniqueString(concat(resourceGroup().id, toLower(" + saPartialBlockName + "))), toLower(" + saPartialBlockName + "))";
 
-	       block["dependsOn"].push("[concat('Microsoft.Network/networkInterfaces/', '" + nicName + "')]");
-	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', '" + saBlockNameWithoutBrackets + "')]");
+	       block["dependsOn"].push("Microsoft.Network/networkInterfaces/" + nicName);
+	       block["dependsOn"].push("[concat('Microsoft.Storage/storageAccounts/', " + saBlockNameWithoutBrackets + ")]");
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
