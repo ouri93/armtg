@@ -805,7 +805,7 @@ function createResources(templateObject) {
     }
 
     // all VMs use parameter admin creds, so if there is at least one VM, add these params
-    if (blocks["vm"]["blocks"].length > 0) {
+    if (Object.keys(blocks["vm"]["blocks"]).length > 0) {
 	templateObject["parameters"].push(adminParamsObject);
     }
 }
