@@ -216,8 +216,6 @@ var blocks = {
 	   'blocks': {},
 	   'properties': {'vmSize': {'type': 'vmSize', 'required': true, 'columnWidth': 6},
 			  'os': {'type': 'os', 'required': true, 'columnWidth': 6},
-			  'adminUsername': {'type': 'text', 'required': true, 'columnWidth': 6},
-			  'adminPassword': {'type': 'password', 'required': true, 'columnWidth': 6},
 			  'nic': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			  'sa': {'type': 'dropdown', 'required': true, 'columnWidth': 6},
 			  /*'bootDiagnostics': {'type': 'checkbox', 'required': true, 'columnWidth': 4}*/},
@@ -227,7 +225,10 @@ var blocks = {
 	       "dependsOn": [],
 	       "properties": {
 		   "hardwareProfile": {},
-		   "osProfile": {},
+		   "osProfile": {
+		       "adminUsername": "[parameters('adminUsername')]",
+		       "adminPassword": "[parameters('adminPassword')]"
+		   },
 		   "storageProfile": {
 		       "imageReference": {},
 		       "osDisk": {
@@ -255,8 +256,6 @@ var blocks = {
 
 	       block["properties"]["hardwareProfile"]["vmSize"] = vmBlock["vmSize"];
 	       block["properties"]["osProfile"]["computerName"] = block["name"];
-	       block["properties"]["osProfile"]["adminUsername"] = vmBlock["adminUsername"];
-	       block["properties"]["osProfile"]["adminPassword"] = vmBlock["adminPassword"];
 	       block["properties"]["networkProfile"]["networkInterfaces"][0] = {"id": "[resourceId('Microsoft.Network/networkInterfaces', '" + nicName + "')]"};
 	       block["properties"]["storageProfile"]["imageReference"] = osMap[vmBlock["os"]];
 	       block["properties"]["storageProfile"]["osDisk"]["name"] = block["name"];
@@ -739,16 +738,31 @@ function drawCurrent() {
 //////////////////////////////
 
 var baseTemplateObject = {
-    "$schema":"http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json",
+    "$schema":"http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
-    "parameters": {},
+    "parameters": {}
     "variables": {
 	"apiVersion": "2015-06-15",
 	"location": "[resourceGroup().location]"
     },
     "resources": [],
     "outputs": {}
-}
+};
+
+var adminParamsObject = {
+    "adminUsername": {
+	"type": "string",
+	"metadata": {
+	    "description": "Admin user name"
+	}
+    },
+    "adminPassword": {
+	"type": "securestring",
+	"metadata": {
+	    "description": "Admin password"
+	}
+    }
+};
 
 // mostly here to re-use some block creation code for subnets,
 // which are special-cased because we treat them like top-level
@@ -788,6 +802,11 @@ function createResources(templateObject) {
 		templateObject["resources"].push(sortedFinalForm);
 	    }
 	}
+    }
+
+    // all VMs use parameter admin creds, so if there is at least one VM, add these params
+    if (blocks["vm"]["blocks"].length > 0) {
+	templateObject["parameters"].push(adminParamsObject);
     }
 }
 
