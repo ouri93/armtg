@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2016-10-25 13:03:45.476775 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2016-10-26 13:03:31.655435 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -5695,8 +5695,24 @@ azure provider list --json
                          u'resourceType': u'anonymousapiusers'}]},
   { 'namespace': u'Microsoft.AnalysisServices',
     'resourceTypes': [ { u'apiVersions': [u'2016-05-16'],
+                         u'locations': [ u'South Central US',
+                                         u'West Europe'],
+                         u'resourceType': u'servers'},
+                       { u'apiVersions': [u'2016-05-16'],
                          u'locations': [],
                          u'resourceType': u'locations'},
+                       { u'apiVersions': [u'2016-05-16'],
+                         u'locations': [ u'South Central US',
+                                         u'West Europe'],
+                         u'resourceType': u'locations/checkNameAvailability'},
+                       { u'apiVersions': [u'2016-05-16'],
+                         u'locations': [ u'South Central US',
+                                         u'West Europe'],
+                         u'resourceType': u'locations/operationresults'},
+                       { u'apiVersions': [u'2016-05-16'],
+                         u'locations': [ u'South Central US',
+                                         u'West Europe'],
+                         u'resourceType': u'locations/operationstatuses'},
                        { u'apiVersions': [u'2016-05-16'],
                          u'locations': [ u'East US 2',
                                          u'South Central US',
@@ -6270,6 +6286,10 @@ azure provider list --json
                                          u'West US',
                                          u'West US 2'],
                          u'resourceType': u'labs'},
+                       { u'apiVersions': [u'2016-05-15'],
+                         u'locations': [ u'Southeast Asia',
+                                         u'West Central US'],
+                         u'resourceType': u'schedules'},
                        { u'apiVersions': [ u'2016-05-15',
                                            u'2015-05-21-preview'],
                          u'locations': [ u'Australia East',
