@@ -1,1 +1,0 @@
-{"imageReference": {"sku": "[parameters('ubuntuOSVersion')]", "publisher": "[variables('imagePublisher')]", "version": "latest", "offer": "[variables('imageOffer')]"}}
