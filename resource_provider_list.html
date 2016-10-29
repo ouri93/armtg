@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2016-10-28 13:04:02.370406 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2016-10-29 13:04:06.419470 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -5641,6 +5641,10 @@ azure provider list --json
                                          u'South India',
                                          u'West India'],
                          u'resourceType': u'clusters'}]},
+  { 'namespace': u'84codes.CloudAMQP',
+    'resourceTypes': [ { u'apiVersions': [u'2016-08-01'],
+                         u'locations': [],
+                         u'resourceType': u'operations'}]},
   { 'namespace': u'Aspera.Transfers',
     'resourceTypes': [ { u'apiVersions': [u'2016-03-25'],
                          u'locations': [ u'West US',
@@ -6918,7 +6922,9 @@ azure provider list --json
                        { u'apiVersions': [u'2016-05-01-preview'],
                          u'locations': [ u'South Central US',
                                          u'West Europe',
-                                         u'Southeast Asia'],
+                                         u'Southeast Asia',
+                                         u'Japan East',
+                                         u'East US 2'],
                          u'resourceType': u'webServices'},
                        { u'apiVersions': [u'2016-05-01-preview'],
                          u'locations': [u'South Central US'],
@@ -6926,12 +6932,16 @@ azure provider list --json
                        { u'apiVersions': [u'2016-05-01-preview'],
                          u'locations': [ u'South Central US',
                                          u'West Europe',
-                                         u'Southeast Asia'],
+                                         u'Southeast Asia',
+                                         u'Japan East',
+                                         u'East US 2'],
                          u'resourceType': u'locations/operations'},
                        { u'apiVersions': [u'2016-05-01-preview'],
                          u'locations': [ u'South Central US',
                                          u'West Europe',
-                                         u'Southeast Asia'],
+                                         u'Southeast Asia',
+                                         u'Japan East',
+                                         u'East US 2'],
                          u'resourceType': u'locations/operationsStatus'},
                        { u'apiVersions': [u'2016-05-01-preview'],
                          u'locations': [ u'South Central US',
@@ -8010,7 +8020,9 @@ azure provider list --json
                                          u'Canada Central',
                                          u'Canada East',
                                          u'West Central US',
-                                         u'West US 2'],
+                                         u'West US 2',
+                                         u'UK South',
+                                         u'UK West'],
                          u'resourceType': u'accounts'}]},
   { 'namespace': u'Signiant.Flight',
     'resourceTypes': [ { u'apiVersions': [u'2015-06-29'],
@@ -8050,6 +8062,10 @@ azure provider list --json
                        { u'apiVersions': [u'2016-08-01'],
                          u'locations': [],
                          u'resourceType': u'updateCommunicationPreference'}]},
+  { 'namespace': u'stackify.retrace',
+    'resourceTypes': [ { u'apiVersions': [u'2016-01-01'],
+                         u'locations': [],
+                         u'resourceType': u'operations'}]},
   { 'namespace': u'TrendMicro.DeepSecurity',
     'resourceTypes': [ { u'apiVersions': [u'2015-06-15'],
                          u'locations': [u'Central US'],
