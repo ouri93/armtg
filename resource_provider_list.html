@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2016-11-17 13:02:14.479755 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2016-11-18 13:02:42.679511 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -5701,7 +5701,10 @@ azure provider list --json
                          u'resourceType': u'listCommunicationPreference'},
                        { u'apiVersions': [u'2016-05-26'],
                          u'locations': [],
-                         u'resourceType': u'updateCommunicationPreference'}]},
+                         u'resourceType': u'updateCommunicationPreference'},
+                       { u'apiVersions': [u'2016-05-26'],
+                         u'locations': [u'West US'],
+                         u'resourceType': u'locations'}]},
   { 'namespace': u'Aspera.Transfers',
     'resourceTypes': [ { u'apiVersions': [u'2016-03-25'],
                          u'locations': [ u'West US',
@@ -6518,7 +6521,8 @@ azure provider list --json
                                          u'West US 2'],
                          u'resourceType': u'labs'},
                        { u'apiVersions': [u'2016-05-15'],
-                         u'locations': [ u'Southeast Asia',
+                         u'locations': [ u'Japan East',
+                                         u'Southeast Asia',
                                          u'West Central US'],
                          u'resourceType': u'schedules'},
                        { u'apiVersions': [ u'2016-05-15',
