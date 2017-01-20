@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2017-01-19 13:02:32.440089 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2017-01-20 13:02:33.262229 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -6114,8 +6114,17 @@ azure provider list --json
                          u'resourceType': u'clusters'}]},
   { 'namespace': u'84codes.CloudAMQP',
     'resourceTypes': [ { u'apiVersions': [u'2016-08-01'],
+                         u'locations': [u'East US 2'],
+                         u'resourceType': u'servers'},
+                       { u'apiVersions': [u'2016-08-01'],
                          u'locations': [],
-                         u'resourceType': u'operations'}]},
+                         u'resourceType': u'operations'},
+                       { u'apiVersions': [u'2016-08-01'],
+                         u'locations': [],
+                         u'resourceType': u'listCommunicationPreference'},
+                       { u'apiVersions': [u'2016-08-01'],
+                         u'locations': [],
+                         u'resourceType': u'updateCommunicationPreference'}]},
   { 'namespace': u'AppDynamics.APM',
     'resourceTypes': [ { u'apiVersions': [u'2016-05-26'],
                          u'locations': [u'West US'],
@@ -6315,7 +6324,9 @@ azure provider list --json
                                          u'West Europe',
                                          u'West Central US',
                                          u'Southeast Asia',
-                                         u'East US 2'],
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'Brazil South'],
                          u'resourceType': u'servers'},
                        { u'apiVersions': [u'2016-05-16'],
                          u'locations': [],
@@ -6327,7 +6338,9 @@ azure provider list --json
                                          u'West Europe',
                                          u'West Central US',
                                          u'Southeast Asia',
-                                         u'East US 2'],
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'Brazil South'],
                          u'resourceType': u'locations/checkNameAvailability'},
                        { u'apiVersions': [u'2016-05-16'],
                          u'locations': [ u'West US',
@@ -6336,7 +6349,9 @@ azure provider list --json
                                          u'West Europe',
                                          u'West Central US',
                                          u'Southeast Asia',
-                                         u'East US 2'],
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'Brazil South'],
                          u'resourceType': u'locations/operationresults'},
                        { u'apiVersions': [u'2016-05-16'],
                          u'locations': [ u'West US',
@@ -6345,7 +6360,9 @@ azure provider list --json
                                          u'West Europe',
                                          u'West Central US',
                                          u'Southeast Asia',
-                                         u'East US 2'],
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'Brazil South'],
                          u'resourceType': u'locations/operationstatuses'},
                        { u'apiVersions': [u'2016-05-16'],
                          u'locations': [u'East US 2', u'South Central US'],
