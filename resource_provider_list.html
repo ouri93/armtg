@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2017-01-31 13:02:30.965563 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2017-02-01 13:02:27.226386 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -3020,7 +3020,9 @@ azure provider list --json
                          u'locations': [u'Central US', u'East US'],
                          u'resourceType': u'tasks'},
                        { u'apiVersions': [u'2015-06-01-preview'],
-                         u'locations': [u'Central US', u'East US'],
+                         u'locations': [ u'Central US',
+                                         u'East US',
+                                         u'West Europe'],
                          u'resourceType': u'alerts'},
                        { u'apiVersions': [u'2015-06-01-preview'],
                          u'locations': [u'Central US', u'East US'],
@@ -6792,6 +6794,13 @@ azure provider list --json
                                          u'West US',
                                          u'East Asia'],
                          u'resourceType': u'locations'}]},
+  { 'namespace': u'microsoft.consumption',
+    'resourceTypes': [ { u'apiVersions': [u'2017-01-30'],
+                         u'locations': [],
+                         u'resourceType': u'reservationsummaries'},
+                       { u'apiVersions': [u'2017-01-30'],
+                         u'locations': [],
+                         u'resourceType': u'reservationdetails'}]},
   { 'namespace': u'Microsoft.ContainerRegistry',
     'resourceTypes': [ { u'apiVersions': [u'2016-06-27-preview'],
                          u'locations': [ u'West US',
@@ -7840,7 +7849,8 @@ azure provider list --json
                                          u'West India'],
                          u'resourceType': u'locations/checkNameAvailability'}]},
   { 'namespace': u'Microsoft.RecoveryServices',
-    'resourceTypes': [ { u'apiVersions': [ u'2016-08-10',
+    'resourceTypes': [ { u'apiVersions': [ u'2016-12-01',
+                                           u'2016-08-10',
                                            u'2016-06-01',
                                            u'2016-05-01',
                                            u'2015-12-15',
