@@ -12,7 +12,7 @@ Publisher
 .
 </pre>
 
-Each Sku is a link to a json block you can use as an imageReference in an ARM template or REST API call. This list was generated using my subscription in West US (2017-03-01 13:00:02.019707 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like:
+Each Sku is a link to a json block you can use as an imageReference in an ARM template or REST API call. This list was generated using my subscription in West US (2017-03-02 13:00:01.821589 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like:
 
 <br/>
 
@@ -42,7 +42,6 @@ azure vm image list-skus -l "West US" -p &lt;publisher&gt; -o &lt;offer&gt;
 a10networks
   a10-lightning-adc
     <a href='a10networks_a10-lightning-adc_li-ads-azure-byol.html'>li-ads-azure-byol</a>
-      1.0.2
       2.2.2
   a10-vthunder-adc
     <a href='a10networks_a10-vthunder-adc_vthunder_100mbps.html'>vthunder_100mbps</a>
@@ -347,6 +346,9 @@ auriq-systems
       3.0.9
       3.1.1
 avds
+  local-scanning-server
+    <a href='avds_local-scanning-server_azurevmlss.html'>azurevmlss</a>
+      3.1.2
 avepoint
   avepoint-compliance-guardian
     <a href='avepoint_avepoint-compliance-guardian_complianceguardian_4.html'>complianceguardian_4</a>
@@ -1908,25 +1910,30 @@ citrix
       1.0.0
       7.11.0
       7.12.0
+      7.13.0
   xenapp-vda-rdsh
     <a href='citrix_xenapp-vda-rdsh_coldfirerdsh.html'>coldfirerdsh</a>
       1.0.0
       1.0.2
       7.11.0
       7.12.0
+      7.13.0
     <a href='citrix_xenapp-vda-rdsh_server2016rdsh.html'>server2016rdsh</a>
       7.11.0
       7.11.1
       7.12.0
+      7.13.0
   xenapp-vda-vdi
     <a href='citrix_xenapp-vda-vdi_coldfirevdi.html'>coldfirevdi</a>
       1.0.0
       7.11.0
       7.12.0
+      7.13.0
     <a href='citrix_xenapp-vda-vdi_server2016vdi.html'>server2016vdi</a>
       7.11.0
       7.11.1
       7.12.0
+      7.13.0
 clear-linux-project
   clear-linux-os
     <a href='clear-linux-project_clear-linux-os_basic.html'>basic</a>
@@ -2068,6 +2075,7 @@ cloudsoft
       1.0.1
     <a href='cloudsoft_cloudsoft-amp_cloudsoft-amp.html'>cloudsoft-amp</a>
       1.2.0
+      1.2.1
 clustrix
   clustrixdb
     <a href='clustrix_clustrixdb_clxnode_byol.html'>clxnode_byol</a>
@@ -2948,6 +2956,7 @@ cognosys
     <a href='cognosys_secured-haproxy-on-centos_secured-haproxy-on-centos.html'>secured-haproxy-on-centos</a>
       1.0.0
       1.1.0
+      1.2.0
   secured-help-desk-support-system-on-win-2012-r2
     <a href='cognosys_secured-help-desk-support-system-on-win-2012-r2_help-desk-support-system-on-win-2012-r2-ent.html'>help-desk-support-system-on-win-2012-r2-ent</a>
       1.0.3
@@ -3147,16 +3156,18 @@ cognosys
     <a href='cognosys_secured-plone-on-centos_secured-plone-on-centos.html'>secured-plone-on-centos</a>
       1.0.0
       1.1.1
+      1.2.0
   secured-plone-on-ubuntu-14-04-lts
-    <a href='cognosys_secured-plone-on-ubuntu-14-04-lts_plone-on-ubuntu-14-04-lts-enterprise-lic.html'>plone-on-ubuntu-14-04-lts-enterprise-lic</a>
-      1.0.4
-    <a href='cognosys_secured-plone-on-ubuntu-14-04-lts_plone-on-ubuntu-14-04-lts-professional-lic.html'>plone-on-ubuntu-14-04-lts-professional-lic</a>
-      1.0.4
+    <a href='cognosys_secured-plone-on-ubuntu-14-04-lts_new-plone-on-ubuntu-14-04-lts-enterprise-lic.html'>new-plone-on-ubuntu-14-04-lts-enterprise-lic</a>
+      1.2.0
+    <a href='cognosys_secured-plone-on-ubuntu-14-04-lts_new-plone-on-ubuntu-14-04-lts-professional-lic.html'>new-plone-on-ubuntu-14-04-lts-professional-lic</a>
+      1.2.0
     <a href='cognosys_secured-plone-on-ubuntu-14-04-lts_secured-plone-on-ubuntu-14-04-lts.html'>secured-plone-on-ubuntu-14-04-lts</a>
       1.0.0
       1.1.0
       1.1.1
       1.1.2
+      1.2.0
   secured-prestashop-on-centos
     <a href='cognosys_secured-prestashop-on-centos_secured-prestashop-on-centos.html'>secured-prestashop-on-centos</a>
       1.0.0
@@ -3747,6 +3758,7 @@ CoreOS
       1248.4.0
       1298.3.0
       1298.4.0
+      1325.2.0
       494.0.0
       494.1.0
       494.4.0
@@ -3805,6 +3817,7 @@ CoreOS
       1235.6.0
       1235.8.0
       1235.9.0
+      1298.5.0
       494.3.0
       494.4.0
       494.5.0
@@ -3889,6 +3902,7 @@ credativ
       7.0.201702270
       7.0.201702280
       7.0.201703010
+      7.0.201703020
     <a href='credativ_Debian_8.html'>8</a>
       8.0.201602010
       8.0.201603020
@@ -3899,7 +3913,6 @@ credativ
       8.0.201611020
       8.0.201701180
     <a href='credativ_Debian_8-backports-DAILY.html'>8-backports-DAILY</a>
-      8.0.201702150
       8.0.201702160
       8.0.201702170
       8.0.201702180
@@ -3914,8 +3927,8 @@ credativ
       8.0.201702270
       8.0.201702280
       8.0.201703010
+      8.0.201703020
     <a href='credativ_Debian_8-DAILY.html'>8-DAILY</a>
-      8.0.201702150
       8.0.201702160
       8.0.201702170
       8.0.201702180
@@ -3930,11 +3943,11 @@ credativ
       8.0.201702270
       8.0.201702280
       8.0.201703010
+      8.0.201703020
     <a href='credativ_Debian_9-beta.html'>9-beta</a>
       9.0.201702070
       9.0.201702080
     <a href='credativ_Debian_9-DAILY.html'>9-DAILY</a>
-      9.0.201702140
       9.0.201702160
       9.0.201702170
       9.0.201702180
@@ -3948,8 +3961,8 @@ credativ
       9.0.201702270
       9.0.201702280
       9.0.201703010
+      9.0.201703020
     <a href='credativ_Debian_99-DAILY.html'>99-DAILY</a>
-      99.0.201702150
       99.0.201702160
       99.0.201702170
       99.0.201702180
@@ -3964,6 +3977,7 @@ credativ
       99.0.201702270
       99.0.201702280
       99.0.201703010
+      99.0.201703020
 cristie-software-clonemanager
   cristie-clonemanager
     <a href='cristie-software-clonemanager_cristie-clonemanager_cmconsole.html'>cmconsole</a>
@@ -4624,6 +4638,7 @@ GitHub
       2.6.14
       2.6.15
       2.6.16
+      2.6.17
       2.6.2
       2.6.3
       2.6.4
@@ -4636,6 +4651,7 @@ GitHub
       2.7.1
       2.7.10
       2.7.11
+      2.7.12
       2.7.2
       2.7.3
       2.7.4
@@ -4652,6 +4668,8 @@ GitHub
       2.8.5
       2.8.6
       2.8.7
+      2.8.8
+      2.9.0
 gitlab
   gitlab-ce
     <a href='gitlab_gitlab-ce_gitlab-ce.html'>gitlab-ce</a>
@@ -4929,6 +4947,7 @@ informatica
   platform_10_1_1_multi_node_domain_rhel-7-3_byol
     <a href='informatica_platform_10_1_1_multi_node_domain_rhel-7-3_byol_byol_rhel_7_3_platform_10_1_1.html'>byol_rhel_7_3_platform_10_1_1</a>
       1.0.0
+      1.0.1
   platform_10_1_1_multi_node_domain_windows_byol
     <a href='informatica_platform_10_1_1_multi_node_domain_windows_byol_byol_windows_platform_10_1_1.html'>byol_windows_platform_10_1_1</a>
       1.0.2
@@ -5625,6 +5644,8 @@ MicrosoftDynamicsAX
       7.0.20170222
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-AOS-U4-Preview.html'>Pre-Req-AX7-AOS-U4-Preview</a>
       7.0.20170112
+    <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-AOS-U5.html'>Pre-Req-AX7-AOS-U5</a>
+      7.0.20170228
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-BI.html'>Pre-Req-AX7-BI</a>
       7.0.20150728
       7.0.20150820
@@ -5674,6 +5695,8 @@ MicrosoftDynamicsAX
       7.0.20170222
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-BI-U4-Preview.html'>Pre-Req-AX7-BI-U4-Preview</a>
       7.0.20170112
+    <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-BI-U5.html'>Pre-Req-AX7-BI-U5</a>
+      7.0.20170228
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Gate-RTWU1.html'>Pre-Req-AX7-Gate-RTWU1</a>
       7.0.20160419
       7.0.20160426
@@ -5736,6 +5759,8 @@ MicrosoftDynamicsAX
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Onebox-U4-Preview.html'>Pre-Req-AX7-Onebox-U4-Preview</a>
       7.0.20170110
       7.0.20170111
+    <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Onebox-U5.html'>Pre-Req-AX7-Onebox-U5</a>
+      7.0.20170228
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Onebox-VSENT.html'>Pre-Req-AX7-Onebox-VSENT</a>
       7.0.20151029
       7.0.20151113
@@ -5782,6 +5807,8 @@ MicrosoftDynamicsAX
       7.0.20170222
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Onebox-VSENT-U4-Preview.html'>Pre-Req-AX7-Onebox-VSENT-U4-Preview</a>
       7.0.20170112
+    <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-Onebox-VSENT-US.html'>Pre-Req-AX7-Onebox-VSENT-US</a>
+      7.0.20170228
     <a href='MicrosoftDynamicsAX_Dynamics_Pre-Req-AX7-PowerApps.html'>Pre-Req-AX7-PowerApps</a>
       7.0.20160322
       7.0.20160404
@@ -6136,6 +6163,7 @@ MicrosoftVisualStudio
 MicrosoftWindowsServer
   Windows-HUB
     <a href='MicrosoftWindowsServer_Windows-HUB_Windows-10-HUB.html'>Windows-10-HUB</a>
+      10.0.20170228
   WindowsServer
     <a href='MicrosoftWindowsServer_WindowsServer_2008-R2-SP1.html'>2008-R2-SP1</a>
       2.0.20160617
@@ -6301,6 +6329,7 @@ MicrosoftWindowsServerRemoteDesktop
       4.0.20161021
       4.0.20161128
       4.0.20161202
+      4.0.20170301
     <a href='MicrosoftWindowsServerRemoteDesktop_WindowsServer_Remote-Desktop-Session-Host.html'>Remote-Desktop-Session-Host</a>
       4.0.20151201
       4.0.20160125
@@ -6313,6 +6342,7 @@ MicrosoftWindowsServerRemoteDesktop
       4.0.20161021
       4.0.20161129
       4.0.20161203
+      4.0.20170301
 midvision
   websphere-application-server-be
     <a href='midvision_websphere-application-server-be_midvision-ibm_was_base_edition-7_0_0.html'>midvision-ibm_was_base_edition-7_0_0</a>
@@ -6770,6 +6800,7 @@ passlogy
   passlogic
     <a href='passlogy_passlogic_passlogic.html'>passlogic</a>
       1.0.0
+pivotal
 plesk
   plesk-onyx-linux
     <a href='plesk_plesk-onyx-linux_plsk-cent-byol-azr-m.html'>plsk-cent-byol-azr-m</a>
@@ -6964,18 +6995,22 @@ RedHat
     <a href='RedHat_RHEL_6.7.html'>6.7</a>
       6.7.20161104
       6.7.20161212
+      6.7.20170223
     <a href='RedHat_RHEL_6.8.html'>6.8</a>
       6.8.20160921
       6.8.20161014
       6.8.20161028
       6.8.20161213
+      6.8.20170223
     <a href='RedHat_RHEL_7.2.html'>7.2</a>
       7.2.20160921
       7.2.20161026
       7.2.20170131
+      7.2.20170223
     <a href='RedHat_RHEL_7.3.html'>7.3</a>
       7.3.20161104
       7.3.20170201
+      7.3.20170223
   RHEL-SAP-APPS
     <a href='RedHat_RHEL-SAP-APPS_6.8.html'>6.8</a>
     <a href='RedHat_RHEL-SAP-APPS_7.3.html'>7.3</a>
@@ -7433,6 +7468,7 @@ stormshield
     <a href='stormshield_stormshield-network-security-for-cloud-xl_byol-single-instance.html'>byol-single-instance</a>
       2.3.2
       2.5.0
+      3.0.1
 storreduce
   storreduce
     <a href='storreduce_storreduce_storreduce-large.html'>storreduce-large</a>
@@ -8071,6 +8107,7 @@ yellowfin
       7.2.4
       7.2.5
       7.2.6
+      7.3.0
 your-shop-online
   herefordshire-enterprise-platform-drupal-7
     <a href='your-shop-online_herefordshire-enterprise-platform-drupal-7_herefordshire-1.html'>herefordshire-1</a>
