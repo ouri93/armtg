@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2017-03-14 13:02:47.194923 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2017-03-15 13:02:49.505857 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -3351,14 +3351,19 @@ azure provider list --json
                                            u'2015-05-04-preview'],
                          u'locations': [u'global'],
                          u'resourceType': u'dnszones/SRV'},
-                       { u'apiVersions': [ u'2015-11-01',
+                       { u'apiVersions': [ u'2017-03-01',
+                                           u'2015-11-01',
                                            u'2015-04-28-preview'],
                          u'locations': [u'global'],
                          u'resourceType': u'trafficmanagerprofiles'},
-                       { u'apiVersions': [ u'2015-11-01',
+                       { u'apiVersions': [ u'2017-03-01',
+                                           u'2015-11-01',
                                            u'2015-04-28-preview'],
                          u'locations': [u'global'],
                          u'resourceType': u'checkTrafficManagerNameAvailability'},
+                       { u'apiVersions': [u'2017-03-01'],
+                         u'locations': [u'global'],
+                         u'resourceType': u'trafficManagerGeographicHierarchies'},
                        { u'apiVersions': [ u'2017-03-01',
                                            u'2016-12-01',
                                            u'2016-11-01',
@@ -7736,6 +7741,9 @@ azure provider list --json
                                          u'East US',
                                          u'West Central US'],
                          u'resourceType': u'dataFactories'},
+                       { u'apiVersions': [u'2017-03-01-preview'],
+                         u'locations': [u'East US'],
+                         u'resourceType': u'factories'},
                        { u'apiVersions': [u'2014-04-01'],
                          u'locations': [ u'North Europe',
                                          u'East US',
