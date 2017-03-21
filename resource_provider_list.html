@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2017-03-20 13:02:40.163763 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2017-03-21 13:02:52.696020 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -7416,9 +7416,6 @@ azure provider list --json
   { 'namespace': u'Microsoft.Billing',
     'resourceTypes': [ { u'apiVersions': [u'2017-02-27-preview'],
                          u'locations': [u'Central US'],
-                         u'resourceType': u'Invoices'},
-                       { u'apiVersions': [u'2017-02-27-preview'],
-                         u'locations': [u'Central US'],
                          u'resourceType': u'operations'}]},
   { 'namespace': u'Microsoft.BingMaps',
     'resourceTypes': [ { u'apiVersions': [u'2016-08-18', u'2015-07-02'],
@@ -7697,9 +7694,16 @@ azure provider list --json
                        { u'apiVersions': [ u'2017-03-01',
                                            u'2016-06-27-preview'],
                          u'locations': [ u'South Central US',
-                                         u'West Central US',
                                          u'East US',
                                          u'West US',
+                                         u'Central US',
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'West Central US',
+                                         u'West US 2',
+                                         u'Brazil South',
+                                         u'Canada East',
+                                         u'Canada Central',
                                          u'West Europe',
                                          u'North Europe',
                                          u'UK South',
@@ -7717,6 +7721,14 @@ azure provider list --json
                          u'locations': [ u'South Central US',
                                          u'East US',
                                          u'West US',
+                                         u'Central US',
+                                         u'East US 2',
+                                         u'North Central US',
+                                         u'West Central US',
+                                         u'West US 2',
+                                         u'Brazil South',
+                                         u'Canada East',
+                                         u'Canada Central',
                                          u'West Europe',
                                          u'North Europe',
                                          u'UK South',
@@ -8476,7 +8488,8 @@ azure provider list --json
                                          u'South India',
                                          u'South Central US',
                                          u'Canada Central',
-                                         u'Canada East'],
+                                         u'Canada East',
+                                         u'West Central US'],
                          u'resourceType': u'mediaservices'},
                        { u'apiVersions': [u'2015-10-01', u'2015-04-01'],
                          u'locations': [],
