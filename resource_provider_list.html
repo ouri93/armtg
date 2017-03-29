@@ -2,7 +2,7 @@
 <body>
 Below is a list of resource providers, their resource types, the locations you can deploy them to, and which apiVersions they support.
 
-It was generated using my subscription (2017-03-28 13:02:53.408848 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
+It was generated using my subscription (2017-03-29 13:02:48.447697 UTC), so this list might differ from yours. To get the official list, use the REST endpoints, one of the Azure SDKs, Azure Powershell, or the Azure CLI. In Azure CLI, the process looks something like the following:
 
 <br/>
 
@@ -3627,6 +3627,9 @@ azure provider list --json
                          u'locations': [u'Central US', u'East US'],
                          u'resourceType': u'locations'},
                        { u'apiVersions': [u'2015-06-01-preview'],
+                         u'locations': [u'Central US', u'East US'],
+                         u'resourceType': u'securityStatusesSummaries'},
+                       { u'apiVersions': [u'2015-06-01-preview'],
                          u'locations': [u'Central US', u'West Europe'],
                          u'resourceType': u'locations/alerts'},
                        { u'apiVersions': [u'2015-06-01-preview'],
@@ -3853,8 +3856,7 @@ azure provider list --json
                                          u'Korea Central',
                                          u'Korea South'],
                          u'resourceType': u'checkNameAvailability'},
-                       { u'apiVersions': [ u'2015-05-01-preview',
-                                           u'2014-04-01-preview',
+                       { u'apiVersions': [ u'2014-04-01-preview',
                                            u'2014-04-01',
                                            u'2014-01-01'],
                          u'locations': [ u'East US',
